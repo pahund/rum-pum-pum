@@ -1,2 +1,5 @@
 .idea
 *.iml
+js/lib
+bower_components
+node_modules

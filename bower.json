@@ -1,0 +1,19 @@
+{
+  "name": "dudlofant",
+  "version": "0.0.1",
+  "authors": [
+    "Patrick Hund <pahund@ebay.com>"
+  ],
+  "description": "Experimenting with the Web Audio API",
+  "main": "index.html",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "requirejs": "~2.1.15",
+    "jquery": "~2.1.1",
+    "pixi": "~2.1.1"
+  },
+  "devDependencies": {
+    "mde-jshintrc": "~0.1.0"
+  }
+}
