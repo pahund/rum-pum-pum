@@ -4,3 +4,8 @@
  * @author <a href="mailto:pahund@team.mobile.de">Patrick Hund</a>
  * @since 22/10/14
  */
+
+body {
+    padding: 0;
+    margin: 0;
+}
