@@ -18,8 +18,10 @@ require.config({
 require([
     "jquery",
     "app/player",
-    "pixi.dev"
-], function ($, player, PIXI) {
+    "pixi.dev",
+    "app/factory/intervalExecutor",
+    "app/factory/phasedExecutor"
+], function ($, player, PIXI, intervalExecutorFactory, phasedExecutorFactory) {
 
     var win = {
             w: $(window).width(),
@@ -56,43 +58,6 @@ require([
     bird.position.y = win.h / 2;
     stage.addChild(bird);
     $("body").append(renderer.view);
-
-    function intervalExecutorFactory(func, interval) {
-        var startTime;
-        function getTimestamp() {
-            return new Date().getTime();
-        }
-        if (typeof func !== "function") {
-            throw "Error: intervalExecutorFacotry expects function to be executed as first argument";
-        }
-        if (interval === undefined) {
-            interval = 1000; // default interval 1 sec
-        }
-        startTime = getTimestamp();
-        return function () {
-            var currentTime = getTimestamp();
-            if (currentTime > startTime + interval) {
-                func();
-                startTime = getTimestamp();
-            }
-        };
-    }
-
-    function phasedExecutorFactory(func, numberOfPhases) {
-        var phase = 0;
-        if (typeof func !== "function") {
-            throw "Error: phasedExecutorFactory expects function to be executed as first argument";
-        }
-        if (typeof numberOfPhases !== "number") {
-            throw "Error: phasedExecutorFactory expects number of phases as second argument";
-        }
-        return function () {
-            func(phase);
-            if (++phase === numberOfPhases) {
-                phase = 0;
-            }
-        };
-    }
 
     function flap(phase) {
         texture.setFrame(new PIXI.Rectangle(phase * 395, 0, 395, 419));
