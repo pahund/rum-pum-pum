@@ -5,7 +5,7 @@
  * @since 03/12/14
  */
 
-define([], function () {
+define(function () {
     "use strict";
 
     return function when() {

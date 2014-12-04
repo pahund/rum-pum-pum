@@ -5,10 +5,8 @@
  * @since 06/11/14
  */
 
-"use strict";
-
-/* global define */
-define([], function () {
+define(function () {
+    "use strict";
 
     var Context = window.AudioContext ||
         window.webkitAudioContext ||

@@ -5,12 +5,11 @@
  * @since 06/11/14
  */
 
-define([
-    "app/context",
-    "app/load"
-], function (context, load) {
+define(function (require) {
 
-    var buffers = {};
+    var context = require("app/audio/context"),
+        load = require("app/audio/load"),
+        buffers = {};
 
     return {
         load: function (id, path) {

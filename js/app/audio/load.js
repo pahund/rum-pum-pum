@@ -5,11 +5,10 @@
  * @since 06/11/14
  */
 
-/* global define */
-define([
-    "jquery",
-    "app/context"
-], function ($, context) {
+define(function (require) {
+
+    var context = require("app/audio/context");
+
     return function (url, callback) {
 
         var request = new XMLHttpRequest();
