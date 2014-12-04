@@ -19,6 +19,7 @@ define(function (require) {
 
     var drums = require("app/audio/drums"),
         PIXI = require("pixi.dev"),
+        renderer = require("app/game/renderer"),
         assets = [
             "images/flapping-bird.png"
         ],
@@ -30,6 +31,8 @@ define(function (require) {
 
         bird.init();
     }
+
+    $("body").append(renderer.view);
 
     loader = new PIXI.AssetLoader(assets);
 
