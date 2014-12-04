@@ -20,8 +20,9 @@ require([
     "app/player",
     "pixi.dev",
     "app/factory/intervalExecutor",
-    "app/factory/phasedExecutor"
-], function ($, player, PIXI, intervalExecutorFactory, phasedExecutorFactory) {
+    "app/factory/phasedExecutor",
+    "app/factory/when"
+], function ($, player, PIXI, intervalExecutorFactory, phasedExecutorFactory, when) {
 
     var win = {
             w: $(window).width(),
@@ -52,12 +53,19 @@ require([
     texture = PIXI.Texture.fromImage("images/flapping-bird.png");
     texture.setFrame(new PIXI.Rectangle(0, 0, 395, 419));
     bird = new PIXI.Sprite(texture);
-    bird.anchor.x = 0.5;
+    bird.anchor.x = 0;
     bird.anchor.y = 0.5;
-    bird.position.x = win.w / 2;
     bird.position.y = win.h / 2;
     stage.addChild(bird);
     $("body").append(renderer.view);
+
+    function placeLeft(sprite) {
+        sprite.position.x = 0 - sprite.width;
+    }
+
+    function isRight(sprite) {
+        return sprite.x > win.w;
+    }
 
     function flap(phase) {
         texture.setFrame(new PIXI.Rectangle(phase * 395, 0, 395, 419));
@@ -65,9 +73,13 @@ require([
 
     flapper = intervalExecutorFactory(phasedExecutorFactory(flap, 3), 100);
 
+    placeLeft(bird);
+
     (function animloop(){
-        requestAnimationFrame(animloop);
+        window.requestAnimationFrame(animloop);
         flapper();
+        bird.position.x += 20;
+        when(bird)(isRight, placeLeft);
         renderer.render(stage);
     })();
 
