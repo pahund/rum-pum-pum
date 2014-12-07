@@ -8,8 +8,7 @@ define(function () {
     "use strict";
 
     return function delayed(func, ms) {
-        var flag = true,
-            startTime;
+        var startTime;
         function getTimestamp() {
             return new Date().getTime();
         }
@@ -22,9 +21,8 @@ define(function () {
         startTime = getTimestamp();
         return function () {
             var currentTime = getTimestamp();
-            if (flag && currentTime > startTime + ms) {
+            if (currentTime > startTime + ms) {
                 func();
-                flag = false;
             }
         };
     };
