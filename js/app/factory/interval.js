@@ -1,5 +1,5 @@
 /**
- * intervalExecutor
+ * interval
  *
  * @author <a href="mailto:pahund@team.mobile.de">Patrick Hund</a>
  * @since 03/12/14
@@ -8,21 +8,21 @@
 define(function () {
     "use strict";
 
-    return function intervalExecutor(func, interval) {
+    return function interval(func, ms) {
         var startTime;
         function getTimestamp() {
             return new Date().getTime();
         }
         if (typeof func !== "function") {
-            throw "Error: intervalExecutorFacotry expects function to be executed as first argument";
+            throw "Error: interval factory expects function to be executed as first argument";
         }
-        if (interval === undefined) {
-            interval = 1000; // default interval 1 sec
+        if (ms === undefined) {
+            ms = 1000; // default interval 1 sec
         }
         startTime = getTimestamp();
         return function () {
             var currentTime = getTimestamp();
-            if (currentTime > startTime + interval) {
+            if (currentTime > startTime + ms) {
                 func();
                 startTime = getTimestamp();
             }

@@ -24,7 +24,6 @@
         grunt.initConfig({
             clean: [
                 "bower_components",
-                ".jshintrc",
                 "js/lib"
             ],
             jshint: {
@@ -70,10 +69,6 @@
             },
 
             copy: {
-                jshintrc: {
-                    src: "bower_components/mde-jshintrc/linters/jshintrc",
-                    dest: ".jshintrc"
-                },
                 bower_js: {
                     src: bowerManaged.js,
                     cwd: "bower_components",
@@ -93,7 +88,7 @@
         grunt.registerTask("help", function () {
             grunt.log.writeln("grunt help:      displays this message");
             grunt.log.writeln("grunt test:      checks JavaScript code style with JSHint and JSCS");
-            grunt.log.writeln("grunt install:   copies libs from bower_components, deploys .jshintrc");
+            grunt.log.writeln("grunt install:   copies libs from bower_components");
             grunt.log.writeln("grunt watch:     checks JavaScript code style when JS files are changed");
             grunt.log.writeln("grunt clean:     deletes downloaded or generated files and directories");
         });

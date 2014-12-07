@@ -1,5 +1,5 @@
 {
-  "name": "dudlofant",
+  "name": "rum-pum-pum",
   "version": "0.0.1",
   "description": "Experimenting with the Web Audio API",
   "main": "Gruntfile.js",
@@ -8,9 +8,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.corp.ebay.com:pahund/dudlofant.git"
+    "url": "https://github.com/pahund/rum-pum-pum.git"
   },
-  "author": "Patrick Hund <pahund@team.mobile.de>",
+  "author": "Patrick Hund <wiekatz@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "grunt": "~0.4.5",

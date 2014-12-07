@@ -1,10 +1,10 @@
 {
-  "name": "dudlofant",
+  "name": "rum-pum-pum",
   "version": "0.0.1",
   "authors": [
-    "Patrick Hund <pahund@ebay.com>"
+    "Patrick Hund <wiekatz@gmail.com>"
   ],
-  "description": "Experimenting with the Web Audio API",
+  "description": "Music program for kids, based on Web Audio API and PIXI.js",
   "main": "index.html",
   "license": "MIT",
   "private": true,
@@ -12,8 +12,5 @@
     "requirejs": "~2.1.15",
     "jquery": "~2.1.1",
     "pixi": "~2.1.1"
-  },
-  "devDependencies": {
-    "mde-jshintrc": "~0.1.0"
   }
 }

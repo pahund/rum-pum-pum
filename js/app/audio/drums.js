@@ -8,7 +8,8 @@ define(function (require) {
     "use strict";
 
     var $ = require("jquery"),
-        player = require("app/audio/player");
+        player = require("app/audio/player"),
+        kick;
 
     function playFactory(name) {
         return function () {
@@ -16,7 +17,14 @@ define(function (require) {
         };
     }
 
+    kick = playFactory("kick");
+
     return {
+        get: {
+            player: function () {
+                return player;
+            }
+        },
         init: function () {
             $(".drum").each(function () {
                 var $button = $(this),
@@ -25,6 +33,8 @@ define(function (require) {
                 player.load(name, file);
                 $button.on("click", playFactory(name));
             });
-        }
+        },
+
+        kick: kick
     };
 });

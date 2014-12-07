@@ -16,8 +16,8 @@ define(function (require) {
         $.each(actions, function (name, action) {
             action();
         });
-        renderer.render(stage);
         window.requestAnimationFrame(loop);
+        renderer.render(stage);
     })();
 
     return {

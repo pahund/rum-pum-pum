@@ -20,24 +20,21 @@ define(function (require) {
     var drums = require("app/audio/drums"),
         PIXI = require("pixi.dev"),
         renderer = require("app/game/renderer"),
+        controller = require("app/game/controller"),
         assets = [
-            "images/flapping-bird.png"
+            "images/flapping-bird.png",
+            "images/kick-bear.png"
         ],
         loader;
 
-    function onAssetsLoaded() {
-
-        var bird = require("app/game/bird");
-
-        bird.init();
-    }
-
     $("body").append(renderer.view);
+
+    controller.set.drums(drums);
 
     loader = new PIXI.AssetLoader(assets);
 
     // use callback
-    loader.onComplete = onAssetsLoaded;
+    loader.onComplete = controller.run;
 
     //begin load
     loader.load();
