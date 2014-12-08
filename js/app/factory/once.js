@@ -4,14 +4,17 @@
  * @author <a href="mailto:pahund@team.mobile.de">Patrick Hund</a>
  * @since 05/12/14
  */
-define(function () {
+define(function (require) {
     "use strict";
 
-    return function once(func) {
-        var flag = true;
+    var executor = require("app/factory/executor");
+
+    return function once(f) {
+        var exec = executor(f),
+            flag = true;
         return function () {
             if (flag) {
-                func();
+                exec.apply(null, arguments);
             }
             flag = false;
         };

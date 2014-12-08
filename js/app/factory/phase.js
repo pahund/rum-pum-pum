@@ -5,19 +5,21 @@
  * @since 03/12/14
  */
 
-define(function () {
+define(function (require) {
     "use strict";
 
-    return function phase(func, numberOfPhases) {
-        var p = 0;
-        if (typeof func !== "function") {
-            throw "Error: phase factory expects function to be executed as first argument";
-        }
+    var executor = require("app/factory/executor");
+
+    return function phase(f, numberOfPhases) {
+        var exec = executor(f),
+            p = 0;
         if (typeof numberOfPhases !== "number") {
             throw "Error: phase factory expects number of phases as second argument";
         }
         return function () {
-            func(p);
+            var slice = Array.prototype.slice,
+                args = [p].concat(slice.apply(arguments));
+            exec.apply(null, args);
             if (++p === numberOfPhases) {
                 p = 0;
             }

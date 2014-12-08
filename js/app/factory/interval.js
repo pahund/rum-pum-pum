@@ -5,25 +5,25 @@
  * @since 03/12/14
  */
 
-define(function () {
+define(function (require) {
     "use strict";
 
-    return function interval(func, ms) {
-        var startTime;
-        function getTimestamp() {
-            return new Date().getTime();
-        }
-        if (typeof func !== "function") {
-            throw "Error: interval factory expects function to be executed as first argument";
-        }
+    var executor = require("app/factory/executor");
+
+    function getTimestamp() {
+        return new Date().getTime();
+    }
+
+    return function interval(f, ms) {
+        var exec = executor(f),
+            startTime = getTimestamp();
         if (ms === undefined) {
             ms = 1000; // default interval 1 sec
         }
-        startTime = getTimestamp();
         return function () {
             var currentTime = getTimestamp();
             if (currentTime > startTime + ms) {
-                func();
+                exec.apply(null, arguments);
                 startTime = getTimestamp();
             }
         };
