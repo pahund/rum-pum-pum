@@ -36,7 +36,7 @@ define(function (require) {
             texture.setFrame(new PIXI.Rectangle(0, 0, 395, 419));
 
             bird = new PIXI.Sprite(texture);
-            bird.anchor.x = 0;
+            bird.anchor.x = 0.5;
             bird.anchor.y = 0.5;
             bird.position.y = dimensions.viewport.h / 4;
             stage.addChild(bird);
@@ -53,6 +53,7 @@ define(function (require) {
         },
 
         isRightOf: function (otherSprite) {
+            console.log("[PH_LOG] is right of? " + (bird.x > otherSprite.x)); // PH_TODO: REMOVE
             return bird.x > otherSprite.x;
         },
 

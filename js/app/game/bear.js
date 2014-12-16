@@ -10,7 +10,9 @@ define(function (require) {
     var PIXI = require("pixi.dev"),
         factory = {
             flip: require("app/factory/flip"),
-            once: require("app/factory/once")
+            once: require("app/factory/once"),
+            delayed: require("app/factory/delayed"),
+            conditional: require("app/factory/conditional")
         },
         width = 551,
         height = 760,
@@ -26,12 +28,15 @@ define(function (require) {
         kicker,
         sound;
 
-    function kick() {
+    function beat() {
+        console.log("[PH_LOG] beat"); // PH_TODO: REMOVE
         sound();
         texture.setFrame(frame.beat);
-        window.setTimeout(function () {
-            texture.setFrame(frame.pause);
-        }, 100);
+    }
+
+    function pause() {
+        console.log("[PH_LOG] pause"); // PH_TODO: REMOVE
+        texture.setFrame(frame.pause);
     }
 
     function birdHasPassed() {
@@ -43,7 +48,21 @@ define(function (require) {
     }
 
     function getKicker() {
-        return factory.flip(factory.once(kick), resetKicker, birdHasPassed);
+        /*
+        return factory.flip([
+            factory.once(beat),
+            factory.delayed(factory.once(pause), 100)
+        ], resetKicker, birdHasPassed);
+        */
+        return factory.conditional([
+            factory.once(beat),
+            factory.delayed([
+                factory.once([
+                    pause,
+                    resetKicker
+                ])
+            ], 100)
+        ], birdHasPassed);
     }
 
     return {

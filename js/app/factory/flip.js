@@ -14,16 +14,13 @@ define(function (require) {
             exec2 = executor(f2),
             state = true;
         return function () {
+            if (predf.apply(null, arguments)) {
+                state = !state;
+            }
             if (state) {
-                if (predf.apply(null, arguments)) {
-                    exec1.apply(null, arguments);
-                    state = !state;
-                }
+                exec1.apply(null, arguments);
             } else {
-                if (!predf.apply(null, arguments)) {
-                    exec2.apply(null, arguments);
-                    state = !state;
-                }
+                exec2.apply(null, arguments);
             }
         };
     };
