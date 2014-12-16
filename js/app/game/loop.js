@@ -1,6 +1,8 @@
 /**
  * loop.js
  *
+ * The main game loop.
+ *
  * @author <a href="mailto:pahund@team.mobile.de">Patrick Hund</a>
  * @since 04/12/14
  */
@@ -10,19 +12,19 @@ define(function (require) {
     var $ = require("jquery"),
         renderer = require("app/game/renderer"),
         stage = require("app/game/stage"),
-        actions = {};
+        actions = [];
 
     (function loop(){
-        $.each(actions, function (name, action) {
-            action();
+        $.each(actions, function () {
+            this();
         });
         window.requestAnimationFrame(loop);
         renderer.render(stage);
     })();
 
     return {
-        add: function (name, func) {
-            actions[name] = func;
+        add: function (func) {
+            actions.push(func);
         }
     };
 });
