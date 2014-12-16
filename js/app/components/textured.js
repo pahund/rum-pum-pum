@@ -6,18 +6,18 @@
  * @author <a href="mailto:pahund@team.mobile.de">Patrick Hund</a>
  * @since 11/12/14
  */
-define(function () {
+define(function (require) {
     "use strict";
 
+    var id = "textured",
+        validateComponent = require("app/util/validateComponent");
+
     return function (input) {
-        if (input.image === undefined) {
-            throw "Error: attempted to create textured component without mandatory setting path";
-        }
-        if (input.frame === undefined) {
-            throw "Error: attempted to create textured component without mandatory setting frame";
-        }
+
+        validateComponent(id, input, ["image", "frame"]);
+
         return {
-            id: "textured",
+            id: id,
             image: input.image,
             frame: input.frame,
             startFrame: input.startFrame === undefined ? 0 : input.startFrame

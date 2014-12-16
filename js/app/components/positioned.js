@@ -9,11 +9,12 @@
 define(function (require) {
     "use strict";
 
-    var PIXI = require("pixi.dev");
+    var id = "positioned",
+        PIXI = require("pixi.dev");
 
     return function (input) {
         return {
-            id: "positioned",
+            id: id,
             coordinates: input.coordinates === undefined ? new PIXI.Point(0, 0) : input.coordinates,
             scale: input.scale === undefined ? new PIXI.Point(1, 1) : input.scale
         };

@@ -4,15 +4,18 @@
  * @author <a href="mailto:pahund@team.mobile.de">Patrick Hund</a>
  * @since 16/12/14
  */
-define(function () {
+define(function (require) {
     "use strict";
 
+    var id = "playing",
+        validateComponent = require("app/util/validateComponent");
+
     return function (input) {
-        if (input.sound === undefined) {
-            throw "Error: attempted to create playing component without mandatory setting sound";
-        }
+
+        validateComponent(id, input, "sound");
+
         return {
-            id: "playing",
+            id: id,
             sound: input.sound,
             triggered: input.triggered === undefined ? false : input.triggered
         };

@@ -9,9 +9,11 @@
 define(function () {
     "use strict";
 
+    var id = "animated";
+
     return function (input) {
         return {
-            id: "animated",
+            id: id,
             numberOfFrames: input.numberOfFrames === undefined ? 1 : input.numberOfFrames,
             currentFrame: input.currentFrame === undefined ? 0 : input.currentFrame,
             interval: input.interval === undefined ? 0 : input.interval

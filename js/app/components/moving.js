@@ -9,9 +9,11 @@
 define(function () {
     "use strict";
 
+    var id = "moving";
+
     return function (input) {
         return {
-            id: "moving",
+            id: id,
             deltaX: input.deltaX === undefined ? 0 : input.deltaX,
             deltaY: input.deltaY === undefined ? 0 : input.deltaY,
             minX: input.minX, // may be undefined

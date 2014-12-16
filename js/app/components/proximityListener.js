@@ -7,9 +7,11 @@
 define(function () {
     "use strict";
 
+    var id = "proximityListener";
+
     return function (input) {
         return {
-            id: "proximityListener",
+            id: id,
             action: input.action === undefined ? function () {} : input.action
         };
     };

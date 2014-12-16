@@ -7,9 +7,11 @@
 define(function () {
     "use strict";
 
+    var id = "proximityTrigger";
+
     return function (input) {
         return {
-            id: "proximityTrigger",
+            id: id,
             vertical: input.vertical === undefined ? false : input.vertical,
             horizontal: input.horizontal === undefined ? false : input.horizontal,
             threshold: input.threshold === undefined ? 100 : input.threshold

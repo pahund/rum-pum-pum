@@ -7,9 +7,11 @@
 define(function () {
     "use strict";
 
+    var id = "withSequenceAnimation";
+
     return function (input) {
         return {
-            id: "withSequenceAnimation",
+            id: id,
             sequence: input.sequence === undefined ? [] : input.sequence,
             currentFrame: input.currentFrame === undefined ? 0 : input.currentFrame,
             running: input.running === undefined ? false : input.running
