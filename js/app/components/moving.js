@@ -20,15 +20,19 @@ define(function (require) {
         },
         {
             name: "minX"
+            // no fallback, may be undefined
         },
         {
             name: "maxX"
+            // no fallback, may be undefined
         },
         {
             name: "minY"
+            // no fallback, may be undefined
         },
         {
             name: "maxY"
+            // no fallback, may be undefined
         },
         {
             name: "interval",
