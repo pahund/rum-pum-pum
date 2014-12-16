@@ -6,17 +6,21 @@
  * @author <a href="mailto:pahund@team.mobile.de">Patrick Hund</a>
  * @since 14/12/14
  */
-define(function () {
+define(function (require) {
     "use strict";
 
-    var id = "animated";
-
-    return function (input) {
-        return {
-            id: id,
-            numberOfFrames: input.numberOfFrames === undefined ? 1 : input.numberOfFrames,
-            currentFrame: input.currentFrame === undefined ? 0 : input.currentFrame,
-            interval: input.interval === undefined ? 0 : input.interval
-        };
-    };
+    return require("app/components/componentFactory")("animated", [
+        {
+            name: "numberOfFrames",
+            fallback: 1
+        },
+        {
+            name: "currentFrame",
+            fallback: 0
+        },
+        {
+            name: "interval",
+            fallback: 0
+        }
+    ]);
 });

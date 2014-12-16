@@ -7,17 +7,14 @@
 define(function (require) {
     "use strict";
 
-    var id = "playing",
-        validateComponent = require("app/util/validateComponent");
-
-    return function (input) {
-
-        validateComponent(id, input, "sound");
-
-        return {
-            id: id,
-            sound: input.sound,
-            triggered: input.triggered === undefined ? false : input.triggered
-        };
-    };
+    return require("app/components/componentFactory")("playing", [
+        {
+            name: "sound",
+            mandatory: true
+        },
+        {
+            name: "triggered",
+            fallback: false
+        }
+    ]);
 });

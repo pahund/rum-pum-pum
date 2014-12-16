@@ -6,21 +6,33 @@
  * @author <a href="mailto:pahund@team.mobile.de">Patrick Hund</a>
  * @since 14/12/14
  */
-define(function () {
+define(function (require) {
     "use strict";
 
-    var id = "moving";
-
-    return function (input) {
-        return {
-            id: id,
-            deltaX: input.deltaX === undefined ? 0 : input.deltaX,
-            deltaY: input.deltaY === undefined ? 0 : input.deltaY,
-            minX: input.minX, // may be undefined
-            maxX: input.maxX, // may be undefined
-            minY: input.minY, // may be undefined
-            maxY: input.maxY, // may be undefined
-            interval: input.interval === undefined ? 0 : input.interval
-        };
-    };
+    return require("app/components/componentFactory")("moving", [
+        {
+            name: "deltaX",
+            fallback: 0
+        },
+        {
+            name: "deltaY",
+            fallback: 0
+        },
+        {
+            name: "minX"
+        },
+        {
+            name: "maxX"
+        },
+        {
+            name: "minY"
+        },
+        {
+            name: "maxY"
+        },
+        {
+            name: "interval",
+            fallback: 0
+        }
+    ]);
 });

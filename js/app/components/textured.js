@@ -9,18 +9,18 @@
 define(function (require) {
     "use strict";
 
-    var id = "textured",
-        validateComponent = require("app/util/validateComponent");
-
-    return function (input) {
-
-        validateComponent(id, input, ["image", "frame"]);
-
-        return {
-            id: id,
-            image: input.image,
-            frame: input.frame,
-            startFrame: input.startFrame === undefined ? 0 : input.startFrame
-        };
-    };
+    return require("app/components/componentFactory")("textured", [
+        {
+            name: "image",
+            mandatory: true
+        },
+        {
+            name: "frame",
+            mandatory: true
+        },
+        {
+            name: "startFrame",
+            fallback: 0
+        }
+    ]);
 });

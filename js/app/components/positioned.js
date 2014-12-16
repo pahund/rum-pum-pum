@@ -9,14 +9,16 @@
 define(function (require) {
     "use strict";
 
-    var id = "positioned",
-        PIXI = require("pixi.dev");
+    var PIXI = require("pixi.dev");
 
-    return function (input) {
-        return {
-            id: id,
-            coordinates: input.coordinates === undefined ? new PIXI.Point(0, 0) : input.coordinates,
-            scale: input.scale === undefined ? new PIXI.Point(1, 1) : input.scale
-        };
-    };
+    return require("app/components/componentFactory")("positioned", [
+        {
+            name: "coordinates",
+            fallback: new PIXI.Point(0, 0)
+        },
+        {
+            name: "scale",
+            fallback: new PIXI.Point(1, 1)
+        }
+    ]);
 });
