@@ -64,6 +64,7 @@ define(function (require) {
                 sprites[this.id] = sprite;
             });
         },
+
         update: function () {
             world.forEachEntityWithComponents("textured", "positioned")(function (id, comp) {
                 var sprite = sprites[id];

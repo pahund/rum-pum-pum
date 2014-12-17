@@ -13,7 +13,7 @@ define(function (require) {
     var world = require("app/game/world"),
         animated = require("app/components/animated"),
         getTimestamp = require("app/util/getTimestamp"),
-        animations = {};
+        rex;
 
     function animation(entityId, animatedc) {
         var timestamp = getTimestamp(),
@@ -34,14 +34,9 @@ define(function (require) {
         };
     }
 
+    rex = require("app/util/registerAndExecute")(animation, "animated");
+
     return function () {
-        world.forEachEntityWithComponents("animated")(function (id, comp) {
-            var a = animations[id];
-            if (a === undefined) {
-                a = animation(id, comp.animated);
-                animations[id] = a;
-            }
-            a();
-        });
+        world.forEachEntityWithComponents("animated")(rex);
     };
 });

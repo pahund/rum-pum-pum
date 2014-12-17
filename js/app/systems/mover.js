@@ -13,7 +13,7 @@ define(function (require) {
         world = require("app/game/world"),
         positioned = require("app/components/positioned"),
         getTimestamp = require("app/util/getTimestamp"),
-        motions = {};
+        rex;
 
     function calc(current, delta, min, max) {
         var val = current + delta;
@@ -27,6 +27,7 @@ define(function (require) {
         }
         return val;
     }
+
     function motion(entityId, movingc, positionedc) {
         var timestamp = getTimestamp(),
             x = positionedc.coordinates.x,
@@ -43,14 +44,9 @@ define(function (require) {
         };
     }
 
+    rex = require("app/util/registerAndExecute")(motion, "moving", "positioned");
+
     return function () {
-        world.forEachEntityWithComponents("moving", "positioned")(function (id, comp) {
-            var m = motions[id];
-            if (m === undefined) {
-                m = motion(id, comp.moving, comp.positioned);
-                motions[id] = m;
-            }
-            m();
-        });
+        world.forEachEntityWithComponents("moving", "positioned")(rex);
     };
 });
