@@ -1,6 +1,9 @@
 /**
  * sequenceAnimator.js
  *
+ * A system that animates entities that have the withSequenceAnimation component by executing a sequence of steps,
+ * where each step sets a frame on the entity's sprite texture and lasts a specific time interval.
+ *
  * @author <a href="mailto:pahund@team.mobile.de">Patrick Hund</a>
  * @since 16/12/14
  */

@@ -1,7 +1,8 @@
 /**
  * mover.js
  *
- * Modifies the coordinates of entities that have the positioned and moving components in regular intervals.
+ * A system that modifies the coordinates of entities that have the positioned and moving components in regular
+ * intervals.
  *
  * @author <a href="mailto:pahund@team.mobile.de">Patrick Hund</a>
  * @since 14/12/14

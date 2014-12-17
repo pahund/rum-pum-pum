@@ -1,6 +1,8 @@
 /**
  * soundPlayer.js
  *
+ * A system that plays sounds for entities with the playing component.
+ *
  * @author <a href="mailto:pahund@team.mobile.de">Patrick Hund</a>
  * @since 16/12/14
  */

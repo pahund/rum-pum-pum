@@ -1,6 +1,9 @@
 /**
  * proximityDetector.js
  *
+ * A system that detects if a trigger component moves past a listener component and triggers a callback when the
+ * detection is successful.
+ *
  * @author <a href="mailto:pahund@team.mobile.de">Patrick Hund</a>
  * @since 15/12/14
  */

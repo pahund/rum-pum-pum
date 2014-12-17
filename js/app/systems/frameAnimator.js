@@ -1,8 +1,8 @@
 /**
  * frameAnimator.js
  *
- * Animates entities that have the animated and textured component by cycling through the frames of their textures
- * in regular intervals.
+ * A system that animates entities that have the animated and textured component by cycling through the frames of their
+ * textures in regular intervals.
  *
  * @author <a href="mailto:pahund@team.mobile.de">Patrick Hund</a>
  * @since 14/12/14
