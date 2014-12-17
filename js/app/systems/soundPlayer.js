@@ -7,19 +7,18 @@
 define(function (require) {
     "use strict";
 
-    var $ = require("jquery"),
-        world = require("app/game/world"),
+    var world = require("app/game/world"),
         playing = require("app/components/playing"),
         player = require("app/audio/player");
 
     return function () {
-        $.each(world.getEntitiesByComponent("playing"), function () {
-            var pc = this.components.playing;
+        world.forEachEntityWithComponents("playing")(function (id, comp) {
+            var pc = comp.playing;
             if (!pc.triggered) {
                 return;
             }
             player.play(pc.sound);
-            world.setComponent(this.id, playing({
+            world.setComponent(id, playing({
                 sound: pc.sound
             }));
         });

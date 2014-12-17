@@ -16,11 +16,11 @@ define(function (require) {
         world = require("app/game/world"),
         sprites = {};
 
-    function updateFrame(sprite, entity) {
+    function updateFrame(sprite, comp) {
         var currentFrame,
             frame;
 
-        $.each(entity.components, function () {
+        $.each(comp, function () {
             currentFrame = this.currentFrame;
             if (currentFrame !== undefined) {
                 return false;
@@ -30,19 +30,18 @@ define(function (require) {
         if (currentFrame === undefined) {
             return;
         }
-        frame = entity.components.textured.frame.clone();
+        frame = comp.textured.frame.clone();
         frame.x = frame.width * currentFrame;
         sprite.texture.setFrame(frame);
     }
 
-    function updatePosition(sprite, entity) {
-        sprite.position = entity.components.positioned.coordinates;
+    function updatePosition(sprite, comp) {
+        sprite.position = comp.positioned.coordinates;
     }
 
     return {
         init: function () {
-            var entities = world.getEntitiesByComponent("textured");
-            $.each(entities, function () {
+            world.forEachEntityWithComponents("textured")(function () {
                 var texture,
                     frame,
                     sprite;
@@ -66,11 +65,10 @@ define(function (require) {
             });
         },
         update: function () {
-            var entities = world.getEntitiesByComponents("textured", "positioned");
-            $.each(entities, function () {
-                var sprite = sprites[this.id];
-                updateFrame(sprite, this);
-                updatePosition(sprite, this);
+            world.forEachEntityWithComponents("textured", "positioned")(function (id, comp) {
+                var sprite = sprites[id];
+                updateFrame(sprite, comp);
+                updatePosition(sprite, comp);
             });
         }
     };

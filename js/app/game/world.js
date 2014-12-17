@@ -13,6 +13,28 @@ define(function (require) {
         entities = {};
 
     return {
+        forEachEntityWithComponents: function () {
+            var needles = arguments;
+            return function(callback) {
+                $.each(entities, function (id, haystack) {
+                    var applicable = true;
+                    $.each(needles, function () {
+                        if (haystack[this] === undefined) {
+                            applicable = false;
+                            return false;
+                        }
+                    });
+                    if (!applicable) {
+                        return;
+                    }
+                    callback.call({
+                        id: id,
+                        components: haystack
+                    }, id, haystack);
+                });
+            };
+        },
+
         addEntity: function (entityId, components) {
             if (entities[entityId] !== undefined) {
                 throw "Error: attempted to add entity " + entityId + ", which is already registered";

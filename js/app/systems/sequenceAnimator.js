@@ -44,18 +44,18 @@ define(function (require) {
     }
 
     return function () {
-        $.each(world.getEntitiesByComponent("withSequenceAnimation"), function () {
-            var a = animations[this.id],
-                wsa = this.components.withSequenceAnimation;
+        world.forEachEntityWithComponents("withSequenceAnimation")(function (id, comp) {
+            var a = animations[id],
+                wsa = comp.withSequenceAnimation;
             if (!wsa.running) {
                 if (a) {
-                    delete animations[this.id];
+                    delete animations[id];
                 }
                 return;
             }
             if (!a) {
-                a = animation(this.id, wsa);
-                animations[this.id] = a;
+                a = animation(id, wsa);
+                animations[id] = a;
             }
             a();
         });

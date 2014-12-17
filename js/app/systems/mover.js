@@ -44,11 +44,11 @@ define(function (require) {
     }
 
     return function () {
-        $.each(world.getEntitiesByComponents("moving", "positioned"), function () {
-            var m = motions[this.id];
+        world.forEachEntityWithComponents("moving", "positioned")(function (id, comp) {
+            var m = motions[id];
             if (m === undefined) {
-                m = motion(this.id, this.components.moving, this.components.positioned);
-                motions[this.id] = m;
+                m = motion(id, comp.moving, comp.positioned);
+                motions[id] = m;
             }
             m();
         });

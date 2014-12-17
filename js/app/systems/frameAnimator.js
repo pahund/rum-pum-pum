@@ -10,8 +10,7 @@
 define(function (require) {
     "use strict";
 
-    var $ = require("jquery"),
-        world = require("app/game/world"),
+    var world = require("app/game/world"),
         animated = require("app/components/animated"),
         getTimestamp = require("app/util/getTimestamp"),
         animations = {};
@@ -36,11 +35,11 @@ define(function (require) {
     }
 
     return function () {
-        $.each(world.getEntitiesByComponents("animated"), function () {
-            var a = animations[this.id];
+        world.forEachEntityWithComponents("animated")(function (id, comp) {
+            var a = animations[id];
             if (a === undefined) {
-                a = animation(this.id, this.components.animated);
-                animations[this.id] = a;
+                a = animation(id, comp.animated);
+                animations[id] = a;
             }
             a();
         });

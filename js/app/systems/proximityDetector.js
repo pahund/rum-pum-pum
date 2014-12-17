@@ -79,12 +79,14 @@ define(function (require) {
     }
 
     return function () {
-        $.each(world.getEntitiesByComponents("proximityTrigger", "positioned"), function (index, triggerEnt) {
-            $.each(world.getEntitiesByComponents("proximityListener", "positioned"), function (index, listenerEnt) {
-                var key = triggerEnt + ">" + listenerEnt,
+        world.forEachEntityWithComponents("proximityTrigger", "positioned")(function () {
+            var trigger = this;
+            world.forEachEntityWithComponents("proximityListener", "positioned")(function () {
+                var listener = this,
+                    key = trigger.id + ">" + listener.id,
                     p = proximities[key];
                 if (p === undefined) {
-                    p = proximity(triggerEnt, listenerEnt);
+                    p = proximity(trigger, listener);
                     proximities[key] = p;
                 }
                 p();
