@@ -13,14 +13,22 @@ define(function (require) {
         var slice = Array.prototype.slice,
             registry = {},
             callback = arguments[0],
-            compIds = slice.call(arguments, 1);
+            hasCondition = typeof arguments[1] === "function",
+            condition = hasCondition ? arguments[1] : function () { return true; },
+            compIds = slice.call(arguments, hasCondition ? 2 : 1);
         return function (id, comp) {
-            var a = registry[id];
+            var a = registry[id],
+                c = [ id ];
+            $.each(compIds, function () {
+                c.push(comp[this]);
+            });
+            if (!condition.apply(null, c)) {
+                if (a) {
+                    delete registry[id];
+                }
+                return;
+            }
             if (a === undefined) {
-                var c = [ id ];
-                $.each(compIds, function () {
-                    c.push(comp[this]);
-                });
                 a = callback.apply(null, c);
                 registry[id] = a;
             }

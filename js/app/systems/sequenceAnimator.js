@@ -7,11 +7,10 @@
 define(function (require) {
     "use strict";
 
-    var $ = require("jquery"),
-        world = require("app/game/world"),
+    var world = require("app/game/world"),
         getTimestamp = require("app/util/getTimestamp"),
         withSequenceAnimation = require("app/components/withSequenceAnimation"),
-        animations = {};
+        rex;
 
     function animation(entityId, wsa) {
         var timestamp = getTimestamp(),
@@ -43,21 +42,13 @@ define(function (require) {
         };
     }
 
+    function condition(entityId, wsa) {
+        return wsa.running;
+    }
+
+    rex = require("app/util/registerAndExecute")(animation, condition, "withSequenceAnimation");
+
     return function () {
-        world.forEachEntityWithComponents("withSequenceAnimation")(function (id, comp) {
-            var a = animations[id],
-                wsa = comp.withSequenceAnimation;
-            if (!wsa.running) {
-                if (a) {
-                    delete animations[id];
-                }
-                return;
-            }
-            if (!a) {
-                a = animation(id, wsa);
-                animations[id] = a;
-            }
-            a();
-        });
+        world.forEachEntityWithComponents("withSequenceAnimation")(rex);
     };
 });
