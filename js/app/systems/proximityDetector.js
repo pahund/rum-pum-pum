@@ -11,6 +11,8 @@ define(function (require) {
     "use strict";
 
     var world = require("app/game/world"),
+        nest = require("app/util/nest"),
+        iterate = require("app/util/iterate"),
         proximities = {};
 
     function getDistance(ent1, ent2) {
@@ -82,18 +84,17 @@ define(function (require) {
     }
 
     return function () {
-        world.forEachEntityWithComponents("proximityTrigger", "positioned")(function () {
-            var trigger = this;
-            world.forEachEntityWithComponents("proximityListener", "positioned")(function () {
-                var listener = this,
-                    key = trigger.id + ">" + listener.id,
-                    p = proximities[key];
-                if (p === undefined) {
-                    p = proximity(trigger, listener);
-                    proximities[key] = p;
-                }
-                p();
-            });
+        var triggerIt = iterate(world.getEntitiesByComponents("proximityTrigger", "positioned")),
+            listenerIt = iterate(world.getEntitiesByComponent("proximityListener", "positioned"));
+
+        nest(triggerIt, listenerIt, function (trigger, listener) {
+            var key = trigger.id + ">" + listener.id,
+                p = proximities[key];
+            if (p === undefined) {
+                p = proximity(trigger, listener);
+                proximities[key] = p;
+            }
+            p();
         });
     };
 });
