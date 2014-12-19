@@ -23,8 +23,10 @@ define(function (require) {
     })();
 
     return {
-        add: function (func) {
-            actions.push(func);
+        add: function () {
+            $.each(arguments, function () {
+                actions.push(this);
+            });
         }
     };
 });

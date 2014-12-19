@@ -42,15 +42,17 @@ define(function (require) {
 
         spriteManager.init(world);
 
-        loop.add(require("app/systems/frameAnimator"));
-        loop.add(require("app/systems/mover"));
-        loop.add(require("app/systems/proximityDetector"));
-        loop.add(require("app/systems/sequenceAnimator"));
-        loop.add(require("app/systems/soundPlayer"));
-        loop.add(spriteManager.update);
+        loop.add(
+            require("app/systems/frameAnimator"),
+            require("app/systems/mover"),
+            require("app/systems/proximityDetector"),
+            require("app/systems/sequenceAnimator"),
+            require("app/systems/soundPlayer"),
+            spriteManager.update
+        );
     };
 
-    //begin load
+    // begin loading
     loader.load();
     drums.init();
 });
