@@ -10,9 +10,7 @@
 define(function (require) {
     "use strict";
 
-    var PIXI = require("pixi.dev"),
-        world = require("app/game/world"),
-        positioned = require("app/components/positioned"),
+    var world = require("app/game/world"),
         getTimestamp = require("app/util/getTimestamp"),
         rex;
 
@@ -29,17 +27,12 @@ define(function (require) {
         return val;
     }
 
-    function motion(entityId, movingc, positionedc) {
-        var timestamp = getTimestamp(),
-            x = positionedc.coordinates.x,
-            y = positionedc.coordinates.y;
+    function motion(movingc, positionedc) {
+        var timestamp = getTimestamp();
         return function () {
             if (getTimestamp() > timestamp + movingc.interval) {
-                x = calc(x, movingc.deltaX, movingc.minX, movingc.maxX);
-                y = calc(y, movingc.deltaY, movingc.minY, movingc.maxY);
-                world.setComponent(entityId, positioned({
-                    coordinates: new PIXI.Point(x, y)
-                }));
+                positionedc.coordinates.x = calc(positionedc.coordinates.x, movingc.deltaX, movingc.minX, movingc.maxX);
+                positionedc.coordinates.y = calc(positionedc.coordinates.y, movingc.deltaY, movingc.minY, movingc.maxY);
                 timestamp = getTimestamp();
             }
         };

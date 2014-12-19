@@ -10,19 +10,16 @@ define(function (require) {
     "use strict";
 
     var world = require("app/game/world"),
-        playing = require("app/components/playing"),
         player = require("app/audio/player");
 
     return function () {
-        world.forEachEntityWithComponents("playing")(function (id, comp) {
-            var pc = comp.playing;
+        world.forEachEntityWithComponents("playing")(function (id, components) {
+            var pc = components.playing;
             if (!pc.triggered) {
                 return;
             }
             player.play(pc.sound);
-            world.setComponent(id, playing({
-                sound: pc.sound
-            }));
+            pc.triggered = false;
         });
     };
 });

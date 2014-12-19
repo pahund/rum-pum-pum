@@ -31,7 +31,7 @@ define(function (require) {
             compIds = slice.call(arguments, hasCondition ? 2 : 1);
 
         return function (id, comp) {
-            var c = [ id ];
+            var c = [];
             $.each(compIds, function () {
                 c.push(comp[this]);
             });

@@ -12,40 +12,29 @@ define(function (require) {
 
     var world = require("app/game/world"),
         getTimestamp = require("app/util/getTimestamp"),
-        withSequenceAnimation = require("app/components/withSequenceAnimation"),
         rex;
 
-    function animation(entityId, wsa) {
+    function animation(wsa) {
         var timestamp = getTimestamp(),
             step = 0;
-        world.setComponent(entityId, withSequenceAnimation({
-            currentFrame: wsa.sequence[step].frame,
-            sequence: wsa.sequence,
-            running: true
-        }));
+
+        wsa.running = true;
+        wsa.currentFrame = wsa.sequence[step].frame;
         return function () {
             if (getTimestamp() < timestamp + wsa.sequence[step].interval) {
                 return;
             }
             step++;
             if (step === wsa.sequence.length) {
-                world.setComponent(entityId, withSequenceAnimation({
-                    currentFrame: wsa.currentFrame,
-                    sequence: wsa.sequence,
-                    running: false
-                }));
+                wsa.running = false;
                 return;
             }
-            world.setComponent(entityId, withSequenceAnimation({
-                currentFrame: wsa.sequence[step].frame,
-                sequence: wsa.sequence,
-                running: true
-            }));
+            wsa.currentFrame = wsa.sequence[step].frame;
             timestamp = getTimestamp();
         };
     }
 
-    function condition(entityId, wsa) {
+    function condition(wsa) {
         return wsa.running;
     }
 

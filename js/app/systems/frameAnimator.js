@@ -11,24 +11,17 @@ define(function (require) {
     "use strict";
 
     var world = require("app/game/world"),
-        animated = require("app/components/animated"),
         getTimestamp = require("app/util/getTimestamp"),
         rex;
 
-    function animation(entityId, animatedc) {
-        var timestamp = getTimestamp(),
-            currentFrame = animatedc.currentFrame;
+    function animation(animatedc) {
+        var timestamp = getTimestamp();
         return function () {
             if (getTimestamp() > timestamp + animatedc.interval) {
-                currentFrame++;
-                if (currentFrame >= animatedc.numberOfFrames) {
-                    currentFrame = 0;
+                animatedc.currentFrame++;
+                if (animatedc.currentFrame >= animatedc.numberOfFrames) {
+                    animatedc.currentFrame = 0;
                 }
-                world.setComponent(entityId, animated({
-                    numberOfFrames: animatedc.numberOfFrames,
-                    currentFrame: currentFrame,
-                    interval: animatedc.interval
-                }));
                 timestamp = getTimestamp();
             }
         };
