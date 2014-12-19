@@ -13,7 +13,7 @@ define(function (require) {
     var world = require("app/game/world"),
         nest = require("app/util/nest"),
         iterate = require("app/util/iterate"),
-        proximities = {};
+        registry = require("app/util/registry")();
 
     function getDistance(ent1, ent2) {
         var h = ent2.components.positioned.coordinates.x - ent1.components.positioned.coordinates.x,
@@ -89,12 +89,13 @@ define(function (require) {
 
         nest(triggerIt, listenerIt, function (trigger, listener) {
             var key = trigger.id + ">" + listener.id,
-                p = proximities[key];
-            if (p === undefined) {
-                p = proximity(trigger, listener);
-                proximities[key] = p;
-            }
-            p();
+                constructor;
+
+            constructor = function () {
+                return proximity(trigger, listener);
+            };
+
+            registry.call(key, constructor);
         });
     };
 });

@@ -24,28 +24,24 @@ define(function (require) {
      */
     return function () {
         var slice = Array.prototype.slice,
-            registry = {},
+            registry = require("app/util/registry")(),
             callback = arguments[0],
             hasCondition = typeof arguments[1] === "function",
             condition = hasCondition ? arguments[1] : function () { return true; },
             compIds = slice.call(arguments, hasCondition ? 2 : 1);
+
         return function (id, comp) {
-            var a = registry[id],
-                c = [ id ];
+            var c = [ id ];
             $.each(compIds, function () {
                 c.push(comp[this]);
             });
             if (!condition.apply(null, c)) {
-                if (a) {
-                    delete registry[id];
-                }
+                registry.remove(id);
                 return;
             }
-            if (a === undefined) {
-                a = callback.apply(null, c);
-                registry[id] = a;
-            }
-            a();
+            registry.call(id, function () {
+                return callback.apply(null, c);
+            });
         };
     };
 });
