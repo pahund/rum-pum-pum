@@ -19,14 +19,6 @@ define(function (require) {
                     throw new Error("Attempted to create component \"" + id +
                             "\" without mandatory property \"" + this.name + "\"");
                 }
-                //component[this.name] = input[this.name] === undefined ? this.fallback : input[this.name];
-                //var comp = input[this.name] === undefined ? this.fallback : input[this.name];
-                /*
-                if (typeof comp === "object") {
-                    comp = $.extend(true, {}, comp);
-                }
-                */
-                //component[this.name] = clone(comp);
                 component[this.name] = input[this.name] === undefined ? this.fallback : input[this.name];
             });
             return component;
