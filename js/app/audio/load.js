@@ -21,18 +21,18 @@ define(function (require) {
                 request.response,
                 function (buffer) {
                     if (!buffer) {
-                        throw "error decoding file data: " + url;
+                        throw new Error("error decoding file data: " + url);
                     }
                     callback(buffer);
                 },
                 function () {
-                    throw "error decoding file data: " + url;
+                    throw new Error("error decoding file data: " + url);
                 }
             );
         };
 
         request.onerror = function () {
-            throw "error loading " + url;
+            throw new Error("error loading " + url);
         };
 
         request.send();

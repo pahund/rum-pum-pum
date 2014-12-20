@@ -20,26 +20,31 @@ define(function (require) {
         height = 419,
         scale = 0.2;
 
-    return [
-        textured({
-            image: "images/flapping-bird.png",
-            frame: new PIXI.Rectangle(0, 0, width, height)
-        }),
-        positioned({
-            coordinates: new PIXI.Point(width * scale * -1, height * scale),
-            scale: new PIXI.Point(scale, scale)
-        }),
-        moving({
-            deltaX: 20,
-            minX: 0,
-            maxX: dimensions.viewport.w + width
-        }),
-        animated({
-            numberOfFrames: 3,
-            interval: 100
-        }),
-        proximityTrigger({
-            horizontal: true
-        })
-    ];
+    return function () {
+        return [
+            textured({
+                image: "bird_wings-up.png"
+            }),
+            positioned({
+                coordinates: new PIXI.Point(width * scale * -1, height * scale),
+                scale: new PIXI.Point(scale, scale)
+            }),
+            moving({
+                deltaX: 20,
+                minX: 0,
+                maxX: dimensions.viewport.w + width
+            }),
+            animated({
+                frames: [
+                    "bird_wings-up.png",
+                    "bird_wings-middle.png",
+                    "bird_wings-down.png"
+                ],
+                interval: 100
+            }),
+            proximityTrigger({
+                horizontal: true
+            })
+        ];
+    };
 });

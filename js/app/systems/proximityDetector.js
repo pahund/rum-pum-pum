@@ -73,7 +73,8 @@ define(function (require) {
 
             // it does not make sense to have a prox trigger that has neither horizontal nor vertial triggering enabled
             if (requiredHits === 0) {
-                throw "Error: proximity trigger component for entity " + trigger.id + " does not have any directions enabled";
+                throw new Error("Proximity trigger component for entity " + trigger.id +
+                        " does not have any directions enabled");
             }
 
             if (requiredHits === actualHits) {

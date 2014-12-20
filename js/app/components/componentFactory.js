@@ -7,7 +7,8 @@
 define(function (require) {
     "use strict";
 
-    var $ = require("jquery");
+    var $ = require("jquery"),
+        clone = require("app/util/clone");
 
     return function(id, properties) {
         return function (input) {
@@ -16,10 +17,17 @@ define(function (require) {
             };
             $.each(properties, function () {
                 if (this.mandatory && input[this.name] === undefined) {
-                    throw "Error: attempted to create component \"" + id +
-                            "\" without mandatory property \"" + this.name + "\"";
+                    throw new Error("Attempted to create component \"" + id +
+                            "\" without mandatory property \"" + this.name + "\"");
                 }
-                component[this.name] = input[this.name] === undefined ? this.fallback : input[this.name];
+                //component[this.name] = input[this.name] === undefined ? this.fallback : input[this.name];
+                var comp = input[this.name] === undefined ? this.fallback : input[this.name];
+                /*
+                if (typeof comp === "object") {
+                    comp = $.extend(true, {}, comp);
+                }
+                */
+                component[this.name] = clone(comp);
             });
             return component;
         };

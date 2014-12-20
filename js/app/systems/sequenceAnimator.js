@@ -14,22 +14,22 @@ define(function (require) {
         getTimestamp = require("app/util/getTimestamp"),
         rex;
 
-    function animation(wsa) {
-        var timestamp = getTimestamp(),
-            step = 0;
+    function animation(wsa, tex) {
+        var timestamp = getTimestamp();
 
         wsa.running = true;
-        wsa.currentFrame = wsa.sequence[step].frame;
+        tex.image = wsa.sequence[wsa.currentFrame].frame;
         return function () {
-            if (getTimestamp() < timestamp + wsa.sequence[step].interval) {
+            if (getTimestamp() < timestamp + wsa.sequence[wsa.currentFrame].interval) {
                 return;
             }
-            step++;
-            if (step === wsa.sequence.length) {
+            wsa.currentFrame++;
+            if (wsa.currentFrame === wsa.sequence.length) {
+                wsa.currentFrame = 0;
                 wsa.running = false;
                 return;
             }
-            wsa.currentFrame = wsa.sequence[step].frame;
+            tex.image = wsa.sequence[wsa.currentFrame].frame;
             timestamp = getTimestamp();
         };
     }
@@ -38,9 +38,9 @@ define(function (require) {
         return wsa.running;
     }
 
-    rex = require("app/util/registerAndExecute")(animation, condition, "withSequenceAnimation");
+    rex = require("app/util/registerAndExecute")(animation, condition, "withSequenceAnimation", "textured");
 
     return function () {
-        world.forEachEntityWithComponents("withSequenceAnimation")(rex);
+        world.forEachEntityWithComponents("withSequenceAnimation", "textured")(rex);
     };
 });

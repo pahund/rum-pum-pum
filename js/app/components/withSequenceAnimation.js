@@ -10,7 +10,7 @@ define(function (require) {
     return require("app/components/componentFactory")("withSequenceAnimation", [
         {
             name: "sequence",
-            fallback: []
+            mandatory: true
         },
         {
             name: "currentFrame",

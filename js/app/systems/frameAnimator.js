@@ -14,22 +14,23 @@ define(function (require) {
         getTimestamp = require("app/util/getTimestamp"),
         rex;
 
-    function animation(animatedc) {
+    function animation(animatedc, texturedc) {
         var timestamp = getTimestamp();
         return function () {
             if (getTimestamp() > timestamp + animatedc.interval) {
                 animatedc.currentFrame++;
-                if (animatedc.currentFrame >= animatedc.numberOfFrames) {
+                if (animatedc.currentFrame === animatedc.frames.length) {
                     animatedc.currentFrame = 0;
                 }
+                texturedc.image = animatedc.frames[animatedc.currentFrame];
                 timestamp = getTimestamp();
             }
         };
     }
 
-    rex = require("app/util/registerAndExecute")(animation, "animated");
+    rex = require("app/util/registerAndExecute")(animation, "animated", "textured");
 
     return function () {
-        world.forEachEntityWithComponents("animated")(rex);
+        world.forEachEntityWithComponents("animated", "textured")(rex);
     };
 });

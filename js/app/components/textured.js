@@ -13,14 +13,6 @@ define(function (require) {
         {
             name: "image",
             mandatory: true
-        },
-        {
-            name: "frame",
-            mandatory: true
-        },
-        {
-            name: "startFrame",
-            fallback: 0
         }
     ]);
 });

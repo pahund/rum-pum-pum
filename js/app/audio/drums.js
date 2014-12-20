@@ -31,7 +31,7 @@ define(function (require) {
                     name = $button.data("name"),
                     file = "sounds/" + name + ".ogg";
                 player.load(name, file);
-                $button.on("click", playFactory(name));
+                $button.on("mousedown", playFactory(name));
             });
         },
 

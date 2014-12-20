@@ -37,7 +37,7 @@ define(function (require) {
 
         addEntity: function (entityId, components) {
             if (entities[entityId] !== undefined) {
-                throw "Error: attempted to add entity " + entityId + ", which is already registered";
+                throw new Error("Attempted to add entity " + entityId + ", which is already registered");
             }
             entities[entityId] = {};
             $.each(components, function () {
@@ -48,11 +48,11 @@ define(function (require) {
         addComponent: function (entityId, component) {
             var components = entities[entityId];
             if (components === undefined) {
-                throw "Error: attempted to add component " + component.id + " to unknown entity " + entityId;
+                throw new Error("Attempted to add component " + component.id + " to unknown entity " + entityId);
             }
             if (components[component.id] !== undefined) {
-                throw "Error: attempted to add component " + component.id + " to entity " + entityId + ", which " +
-                        "has already been added to that entity";
+                throw new Error("Attempted to add component " + component.id + " to entity " + entityId + ", which " +
+                        "has already been added to that entity");
             }
             components[component.id] = component;
         },
@@ -66,11 +66,11 @@ define(function (require) {
         setComponent: function (entityId, component) {
             var components = entities[entityId];
             if (components === undefined) {
-                throw "Error: attempted to set component " + component.id + " of unknown entity " + entityId;
+                throw new Error("Attempted to set component " + component.id + " of unknown entity " + entityId);
             }
             if (components[component.id] === undefined) {
-                throw "Error: attempted to set component " + component.id + " of entity " + entityId + ", which " +
-                "does not have that component";
+                throw new Error("Attempted to set component " + component.id + " of entity " + entityId + ", which " +
+                        "does not have that component");
             }
             components[component.id] = component;
         },
@@ -82,7 +82,7 @@ define(function (require) {
         getEntity: function (entityId) {
             var components = entities[entityId];
             if (components === undefined) {
-                throw "Error: attempted to get entity " + entityId + ", which does not exist";
+                throw new Error("Attempted to get entity " + entityId + ", which does not exist");
             }
             return {
                 id: entityId,
@@ -93,8 +93,8 @@ define(function (require) {
         getComponentOfEntity: function (entityId, componentId) {
             var component = entities[entityId][componentId];
             if (component === undefined) {
-                throw "Error: attempted to get component " + componentId + " from entity " + entityId + ", which the " +
-                        "entity does not have";
+                throw new Error("Attempted to get component " + componentId + " from entity " + entityId + ", which the " +
+                        "entity does not have");
             }
             return component;
         },

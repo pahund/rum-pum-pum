@@ -24,21 +24,21 @@ define(function (require) {
         PIXI = require("pixi.dev"),
         renderer = require("app/game/renderer"),
         loop = require("app/game/loop"),
-        assets = [
-            "images/flapping-bird.png",
-            "images/kick-bear.png"
-        ],
         world = require("app/game/world"),
         spriteManager = require("app/systems/spriteManager"),
-        loader = new PIXI.AssetLoader(assets);
+        bear = require("app/entities/bear"),
+        loader = new PIXI.AssetLoader(["images/sprites.json"]);
 
     $("body").append(renderer.view);
 
     // use callback
     loader.onComplete = function () {
 
-        world.addEntity("bird1", require("app/entities/bird"));
-        world.addEntity("bear1", require("app/entities/bear"));
+        world.addEntity("bird1", require("app/entities/bird")());
+        world.addEntity("bear1", bear(100));
+        world.addEntity("bear2", bear(400));
+        world.addEntity("bear3", bear(700));
+        world.addEntity("bear4", bear(1000));
 
         spriteManager.init(world);
 

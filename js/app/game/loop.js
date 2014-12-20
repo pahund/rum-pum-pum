@@ -12,14 +12,21 @@ define(function (require) {
     var $ = require("jquery"),
         renderer = require("app/game/renderer"),
         stage = require("app/game/stage"),
+        //counter = 0,
+        //timer = require("app/util/timer")(),
         actions = [];
 
     (function loop(){
+        //console.log("loop #" + (++counter) + ", " + timer.duration()); */
         $.each(actions, function () {
             this();
         });
-        window.requestAnimationFrame(loop);
         renderer.render(stage);
+        //console.log("    stage:");
+        //$.each(stage.children, function (index, value) {
+        //    console.log("        #" + index + " " + value.texture.frame.x);
+        //});
+        window.requestAnimationFrame(loop);
     })();
 
     return {

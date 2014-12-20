@@ -17,8 +17,7 @@ define(function (require) {
         sprites = {};
 
     function updateFrame(sprite, comp) {
-        var currentFrame,
-            frame;
+        var currentFrame;
 
         $.each(comp, function () {
             currentFrame = this.currentFrame;
@@ -30,9 +29,9 @@ define(function (require) {
         if (currentFrame === undefined) {
             return;
         }
-        frame = comp.textured.frame.clone();
-        frame.x = frame.width * currentFrame;
-        sprite.texture.setFrame(frame);
+        sprite.setTexture(PIXI.Texture.fromFrame(comp.textured.image));
+        //sprite.updateCache();
+        //sprite.texture.setFrame(frame);
     }
 
     function updatePosition(sprite, comp) {
@@ -43,13 +42,9 @@ define(function (require) {
         init: function () {
             world.forEachEntityWithComponents("textured")(function () {
                 var texture,
-                    frame,
                     sprite;
 
-                texture = PIXI.Texture.fromImage(this.components.textured.image);
-                frame = this.components.textured.frame.clone();
-                frame.x = frame.width * this.components.textured.startFrame;
-                texture.setFrame(frame);
+                texture = PIXI.Texture.fromFrame(this.components.textured.image);
                 sprite = new PIXI.Sprite(texture);
                 sprite.anchor.x = 0.5;
                 sprite.anchor.y = 0.5;
@@ -60,8 +55,7 @@ define(function (require) {
                     // if the sprite is not positioned, it is hidden (out of visible viewport)
                     sprite.position = new PIXI.Point(-10000, 0);
                 }
-                stage.addChild(sprite);
-                sprites[this.id] = sprite;
+                sprites[this.id] = stage.addChild(sprite);
             });
         },
 
@@ -70,6 +64,15 @@ define(function (require) {
                 var sprite = sprites[id];
                 updateFrame(sprite, comp);
                 updatePosition(sprite, comp);
+                //if (id.match(/^bear.*/)) {
+                //    if (comp.withSequenceAnimation.running) {
+                //        console.log("    ENTITY " + id + " RUNNING!");
+                //    } else {
+                //        console.log("    entity " + id);
+                //    }
+                //    console.log("        frame #" + comp.withSequenceAnimation.currentFrame);
+                //    console.log("        texture x: " + sprite.texture.frame.x);
+                //}
             });
         }
     };

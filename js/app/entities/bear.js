@@ -16,9 +16,10 @@ define(function (require) {
         playing = require("app/components/playing"),
         width = 551,
         height = 760,
-        scale = 0.2;
+        scale = 0.2,
+        blueprint;
 
-    return [
+    blueprint = [
         textured({
             image: "images/kick-bear.png",
             frame: new PIXI.Rectangle(0, 0, width, height),
@@ -60,4 +61,47 @@ define(function (require) {
             sound: "kick"
         })
     ];
+
+    return function (input) {
+        if (input === undefined) {
+            input = {};
+        }
+        if (typeof input === "number") {
+            input = {
+                x: input
+            };
+        }
+        return [
+            textured({
+                image: "bear_beater-up.png"
+            }),
+            positioned({
+                coordinates: new PIXI.Point(
+                        input.x === undefined ? dimensions.viewport.w / 2 : input.x,
+                        dimensions.viewport.h - (height * scale)),
+                scale: new PIXI.Point(scale, scale)
+            }),
+            proximityListener({
+                action: function (trigger, listener) {
+                    listener.components.withSequenceAnimation.running = true;
+                    listener.components.playing.triggered = true;
+                }
+            }),
+            withSequenceAnimation({
+                sequence: [
+                    {
+                        frame: "bear_beater-down.png",
+                        interval: 150
+                    },
+                    {
+                        frame: "bear_beater-up.png",
+                        interval: 0
+                    }
+                ]
+            }),
+            playing({
+                sound: "kick"
+            })
+        ];
+    };
 });

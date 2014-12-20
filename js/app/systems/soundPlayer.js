@@ -19,6 +19,7 @@ define(function (require) {
                 return;
             }
             player.play(pc.sound);
+            //console.log("    KICK!");
             pc.triggered = false;
         });
     };
