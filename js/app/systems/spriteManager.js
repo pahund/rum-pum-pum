@@ -17,18 +17,6 @@ define(function (require) {
         sprites = {};
 
     function updateFrame(sprite, comp) {
-        var currentFrame;
-
-        $.each(comp, function () {
-            currentFrame = this.currentFrame;
-            if (currentFrame !== undefined) {
-                return false;
-            }
-        });
-
-        if (currentFrame === undefined) {
-            return;
-        }
         sprite.setTexture(PIXI.Texture.fromFrame(comp.textured.image));
     }
 

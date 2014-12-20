@@ -15,10 +15,6 @@ define(function (require) {
             mandatory: true
         },
         {
-            name: "currentFrame",
-            fallback: 0
-        },
-        {
             name: "interval",
             fallback: 0
         }

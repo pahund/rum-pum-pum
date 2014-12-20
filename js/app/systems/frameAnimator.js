@@ -11,19 +11,21 @@ define(function (require) {
     "use strict";
 
     var world = require("app/game/world"),
-        getTimestamp = require("app/util/getTimestamp"),
+        timer = require("app/util/timer"),
         rex;
 
     function animation(animatedc, texturedc) {
-        var timestamp = getTimestamp();
+        var t = timer(),
+            step = 0;
+        texturedc.image = animatedc.frames[step];
         return function () {
-            if (getTimestamp() > timestamp + animatedc.interval) {
-                animatedc.currentFrame++;
-                if (animatedc.currentFrame === animatedc.frames.length) {
-                    animatedc.currentFrame = 0;
+            if (t.duration() > animatedc.interval) {
+                step++;
+                if (step === animatedc.frames.length) {
+                    step = 0;
                 }
-                texturedc.image = animatedc.frames[animatedc.currentFrame];
-                timestamp = getTimestamp();
+                texturedc.image = animatedc.frames[step];
+                t.reset();
             }
         };
     }

@@ -22,6 +22,10 @@ define(function (require) {
             },
             duration: function () {
                 return getTimestamp() - startTime;
+            },
+            reset: function () {
+                time = getTimestamp();
+                startTime = time;
             }
         };
     };
