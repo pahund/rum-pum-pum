@@ -30,8 +30,6 @@ define(function (require) {
             return;
         }
         sprite.setTexture(PIXI.Texture.fromFrame(comp.textured.image));
-        //sprite.updateCache();
-        //sprite.texture.setFrame(frame);
     }
 
     function updatePosition(sprite, comp) {
@@ -64,15 +62,6 @@ define(function (require) {
                 var sprite = sprites[id];
                 updateFrame(sprite, comp);
                 updatePosition(sprite, comp);
-                //if (id.match(/^bear.*/)) {
-                //    if (comp.withSequenceAnimation.running) {
-                //        console.log("    ENTITY " + id + " RUNNING!");
-                //    } else {
-                //        console.log("    entity " + id);
-                //    }
-                //    console.log("        frame #" + comp.withSequenceAnimation.currentFrame);
-                //    console.log("        texture x: " + sprite.texture.frame.x);
-                //}
             });
         }
     };
