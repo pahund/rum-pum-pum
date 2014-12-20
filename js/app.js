@@ -27,6 +27,7 @@ define(function (require) {
         world = require("app/game/world"),
         spriteManager = require("app/systems/spriteManager"),
         bear = require("app/entities/bear"),
+        bird = require("app/entities/bird"),
         loader = new PIXI.AssetLoader(["images/sprites.json"]);
 
     $("body").append(renderer.view);
@@ -34,7 +35,7 @@ define(function (require) {
     // use callback
     loader.onComplete = function () {
 
-        world.addEntity("bird1", require("app/entities/bird")());
+        world.addEntity("bird1", bird());
         world.addEntity("bear1", bear(100));
         world.addEntity("bear2", bear(400));
         world.addEntity("bear3", bear(700));
