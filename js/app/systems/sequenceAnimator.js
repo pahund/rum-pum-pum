@@ -11,26 +11,27 @@ define(function (require) {
     "use strict";
 
     var world = require("app/game/world"),
-        getTimestamp = require("app/util/getTimestamp"),
+        timer = require("app/util/timer"),
         rex;
 
     function animation(wsa, tex) {
-        var timestamp = getTimestamp();
+        var t = timer(),
+            step = 0;
 
         wsa.running = true;
-        tex.image = wsa.sequence[wsa.currentFrame].frame;
+        tex.image = wsa.sequence[step].frame;
         return function () {
-            if (getTimestamp() < timestamp + wsa.sequence[wsa.currentFrame].interval) {
+            if (t.duration() < wsa.sequence[step].interval) {
                 return;
             }
-            wsa.currentFrame++;
-            if (wsa.currentFrame === wsa.sequence.length) {
-                wsa.currentFrame = 0;
+            step++;
+            if (step === wsa.sequence.length) {
+                step = 0;
                 wsa.running = false;
                 return;
             }
-            tex.image = wsa.sequence[wsa.currentFrame].frame;
-            timestamp = getTimestamp();
+            tex.image = wsa.sequence[step].frame;
+            t.reset();
         };
     }
 

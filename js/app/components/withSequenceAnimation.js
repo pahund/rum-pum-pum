@@ -13,10 +13,6 @@ define(function (require) {
             mandatory: true
         },
         {
-            name: "currentFrame",
-            fallback: 0
-        },
-        {
             name: "running",
             fallback: false
         }
