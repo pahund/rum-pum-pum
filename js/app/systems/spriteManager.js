@@ -10,8 +10,7 @@
 define(function (require) {
     "use strict";
 
-    var $ = require("jquery"),
-        PIXI = require("pixi.dev"),
+    var PIXI = require("pixi.dev"),
         stage = require("app/game/stage"),
         world = require("app/game/world"),
         sprites = {};

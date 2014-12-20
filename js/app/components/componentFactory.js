@@ -7,8 +7,7 @@
 define(function (require) {
     "use strict";
 
-    var $ = require("jquery"),
-        clone = require("app/util/clone");
+    var $ = require("jquery");
 
     return function(id, properties) {
         return function (input) {
