@@ -20,6 +20,7 @@ require.config({
 define(function (require) {
 
     var $ = require("jquery"),
+        config = require("app/config"),
         drums = require("app/audio/drums"),
         PIXI = require("pixi.dev"),
         renderer = require("app/game/renderer"),
@@ -36,10 +37,15 @@ define(function (require) {
     loader.onComplete = function () {
 
         world.addEntity("bird1", bird());
+        for (var i = 100; i <= 1000; i += 50) {
+            world.addEntity("bear" + i, bear(i));
+        }
+        /*
         world.addEntity("bear1", bear(100));
         world.addEntity("bear2", bear(400));
         world.addEntity("bear3", bear(700));
         world.addEntity("bear4", bear(1000));
+        */
 
         spriteManager.init(world);
 
@@ -56,6 +62,11 @@ define(function (require) {
     // begin loading
     loader.load();
     drums.init();
+
+    if (config.debug) {
+        $("#monitor").html("debug active").show();
+    }
+
 });
 
 

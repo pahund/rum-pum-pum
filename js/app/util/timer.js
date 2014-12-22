@@ -11,7 +11,8 @@ define(function (require) {
 
     return function () {
         var time = getTimestamp(),
-            startTime = time;
+            startTime = time,
+            calls = 0;
 
         return {
             interval: function () {
@@ -26,6 +27,9 @@ define(function (require) {
             reset: function () {
                 time = getTimestamp();
                 startTime = time;
+            },
+            average: function () {
+                return Math.round((getTimestamp() - startTime) * 10 / ++calls) / 10;
             }
         };
     };
