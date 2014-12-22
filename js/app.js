@@ -26,6 +26,7 @@ define(function (require) {
         renderer = require("app/game/renderer"),
         loop = require("app/game/loop"),
         world = require("app/game/world"),
+        gridCalculator = require("app/util/gridCalculator"),
         spriteManager = require("app/systems/spriteManager"),
         bear = require("app/entities/bear"),
         bird = require("app/entities/bird"),
@@ -36,16 +37,20 @@ define(function (require) {
     // use callback
     loader.onComplete = function () {
 
+        var grid = gridCalculator({
+            rows: 8,
+            columns: 1,
+            top: 10,
+            left: 10,
+            width: 80,
+            height: 90
+        });
+        grid.set.columns(16);
+
         world.addEntity("bird1", bird());
-        for (var i = 100; i <= 1000; i += 50) {
-            world.addEntity("bear" + i, bear(i));
+        for (var i = 1; i <= 16; i ++) {
+            world.addEntity("bear" + i, bear(grid.get.x(i)));
         }
-        /*
-        world.addEntity("bear1", bear(100));
-        world.addEntity("bear2", bear(400));
-        world.addEntity("bear3", bear(700));
-        world.addEntity("bear4", bear(1000));
-        */
 
         spriteManager.init(world);
 
