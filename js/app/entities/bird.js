@@ -18,7 +18,7 @@ define(function (require) {
         proximityTrigger = require("app/components/proximityTrigger"),
         width = 395,
         height = 419,
-        scale = 0.2;
+        scale = 1;
 
     return function () {
         return [

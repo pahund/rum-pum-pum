@@ -16,7 +16,7 @@ define(function (require) {
         proximityListener = require("app/components/proximityListener"),
         withSequenceAnimation = require("app/components/withSequenceAnimation"),
         playing = require("app/components/playing"),
-        scale = 0.2;
+        scale = 1;
         /*
         cyclef = require("app/util/cycle"),
         cycle;
