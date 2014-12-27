@@ -17,6 +17,10 @@ define(function (require) {
         withSequenceAnimation = require("app/components/withSequenceAnimation"),
         playing = require("app/components/playing"),
         scale = 0.2;
+        /*
+        cyclef = require("app/util/cycle"),
+        cycle;
+        */
 
     return function (input) {
         if (input === undefined) {

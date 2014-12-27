@@ -55,7 +55,7 @@ define(function (require) {
             }));
         });
         $.each([5, 13, 15, 16], function (i, x) {
-            world.addEntity("monkey" + i, bear({
+            world.addEntity("monkey" + i, monkey({
                 x: grid.get.x(x),
                 y: grid.get.y(7)
             }));
