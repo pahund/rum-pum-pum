@@ -3,7 +3,7 @@
  *
  * The "world" object is the central manager for all entities. Created and returned as a singleton.
  *
- * @author <a href="mailto:pahund@team.mobile.de">Patrick Hund</a>
+ * @author <a href="https://github.com/pahund">Patrick Hund</a>
  * @since 14/12/14
  */
 define(function (require) {

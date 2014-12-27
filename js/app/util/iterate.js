@@ -29,7 +29,7 @@
  * "My favorite fruit is: oranges"
  * "My favorite vegetable is: broccoli"
  *
- * @author <a href="mailto:pahund@team.mobile.de">Patrick Hund</a>
+ * @author <a href="https://github.com/pahund">Patrick Hund</a>
  * @since 18/12/14
  */
 define(function () {

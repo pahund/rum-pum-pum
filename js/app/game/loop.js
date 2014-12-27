@@ -3,7 +3,7 @@
  *
  * The main game loop.
  *
- * @author <a href="mailto:pahund@team.mobile.de">Patrick Hund</a>
+ * @author <a href="https://github.com/pahund">Patrick Hund</a>
  * @since 04/12/14
  */
 define(function (require) {

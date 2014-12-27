@@ -4,7 +4,7 @@
  * Stores all sprites that represent entities on the stage. Provides initialization logic that creates all the sprites
  * from the world and update logic that changes the sprites according to changes in the world.
  *
- * @author <a href="mailto:pahund@team.mobile.de">Patrick Hund</a>
+ * @author <a href="https://github.com/pahund">Patrick Hund</a>
  * @since 14/12/14
  */
 define(function (require) {

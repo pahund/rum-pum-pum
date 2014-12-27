@@ -5,7 +5,7 @@
  * Initialize the grid calculator by passing the width and height of the grid (percentual values in relation to the
  * browser viewport dimensions), and the number of rows and columns.
  *
- * @author <a href="mailto:pahund@team.mobile.de">Patrick Hund</a>
+ * @author <a href="https://github.com/pahund">Patrick Hund</a>
  * @since 22/12/14
  */
 define(function (require) {

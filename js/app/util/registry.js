@@ -3,7 +3,7 @@
  *
  * Returns a function that manages a map of keys and items.
  *
- * @author <a href="mailto:pahund@team.mobile.de">Patrick Hund</a>
+ * @author <a href="https://github.com/pahund">Patrick Hund</a>
  * @since 19/12/14
  */
 define(function () {

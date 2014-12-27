@@ -1,7 +1,7 @@
 /**
  * Gruntfile
  *
- * @author <a href="mailto:pahund@team.mobile.de">Patrick Hund</a>
+ * @author <a href="https://github.com/pahund">Patrick Hund</a>
  * @since 03/12/14
  */(function () {
     "use strict";

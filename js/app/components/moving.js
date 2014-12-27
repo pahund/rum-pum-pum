@@ -3,7 +3,7 @@
  *
  * A component for an entity that is moving.
  *
- * @author <a href="mailto:pahund@team.mobile.de">Patrick Hund</a>
+ * @author <a href="https://github.com/pahund">Patrick Hund</a>
  * @since 14/12/14
  */
 define(function (require) {

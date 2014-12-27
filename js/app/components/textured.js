@@ -3,7 +3,7 @@
  *
  * A component for entities that have a texture.
  *
- * @author <a href="mailto:pahund@team.mobile.de">Patrick Hund</a>
+ * @author <a href="https://github.com/pahund">Patrick Hund</a>
  * @since 11/12/14
  */
 define(function (require) {

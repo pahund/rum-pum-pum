@@ -3,7 +3,7 @@
  *
  * Starting point of the application, does all the initialization and starts the game loop.
  *
- * @author <a href="mailto:pahund@team.mobile.de">Patrick Hund</a>
+ * @author <a href="https://github.com/pahund">Patrick Hund</a>
  * @since 22/10/14
  */
 

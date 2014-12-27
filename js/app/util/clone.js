@@ -1,7 +1,7 @@
 /**
  * clone.js
  *
- * @author <a href="mailto:pahund@team.mobile.de">Patrick Hund</a>
+ * @author <a href="https://github.com/pahund">Patrick Hund</a>
  * @since 19/12/14
  * @see http://stackoverflow.com/questions/728360/most-elegant-way-to-clone-a-javascript-object
  */

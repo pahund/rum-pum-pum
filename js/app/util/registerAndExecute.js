@@ -6,7 +6,7 @@
  * condition function can be used to manage the execution - if the condition returns true, the callback if executed,
  * otherwise it is removed from the map.
  *
- * @author <a href="mailto:pahund@team.mobile.de">Patrick Hund</a>
+ * @author <a href="https://github.com/pahund">Patrick Hund</a>
  * @since 17/12/14
  */
 define(function (require) {

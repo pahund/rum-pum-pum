@@ -4,7 +4,7 @@
  * A system that animates entities that have the animated and textured component by cycling through the frames of their
  * textures in regular intervals.
  *
- * @author <a href="mailto:pahund@team.mobile.de">Patrick Hund</a>
+ * @author <a href="https://github.com/pahund">Patrick Hund</a>
  * @since 14/12/14
  */
 define(function (require) {

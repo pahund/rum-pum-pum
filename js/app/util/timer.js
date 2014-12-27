@@ -1,7 +1,7 @@
 /**
  * timer.js
  *
- * @author <a href="mailto:pahund@team.mobile.de">Patrick Hund</a>
+ * @author <a href="https://github.com/pahund">Patrick Hund</a>
  * @since 20/12/14
  */
 define(function (require) {

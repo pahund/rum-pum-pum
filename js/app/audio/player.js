@@ -1,7 +1,7 @@
 /**
  * player.js
  *
- * @author <a href="mailto:pahund@team.mobile.de">Patrick Hund</a>
+ * @author <a href="https://github.com/pahund">Patrick Hund</a>
  * @since 06/11/14
  */
 
