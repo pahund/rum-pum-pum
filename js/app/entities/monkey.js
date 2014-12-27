@@ -17,10 +17,6 @@ define(function (require) {
         withSequenceAnimation = require("app/components/withSequenceAnimation"),
         playing = require("app/components/playing"),
         scale = 1;
-        /*
-        cyclef = require("app/util/cycle"),
-        cycle;
-        */
 
     return function (input) {
         if (input === undefined) {
@@ -39,19 +35,33 @@ define(function (require) {
             proximityListener({
                 action: function (trigger, listener) {
                     listener.components.withSequenceAnimation.running = true;
+                    listener.components.withSequenceAnimation.currentSequence =
+                            listener.components.withSequenceAnimation.currentSequence === 0 ? 1 : 0;
                     listener.components.playing.triggered = true;
                 }
             }),
             withSequenceAnimation({
-                sequence: [
-                    {
-                        frame: "monkey_left-down.png",
-                        interval: 150
-                    },
-                    {
-                        frame: "monkey_sticks-up.png",
-                        interval: 0
-                    }
+                sequences: [
+                    [
+                        {
+                            frame: "monkey_left-down.png",
+                            interval: 150
+                        },
+                        {
+                            frame: "monkey_sticks-up.png",
+                            interval: 0
+                        }
+                    ],
+                    [
+                        {
+                            frame: "monkey_right-down.png",
+                            interval: 150
+                        },
+                        {
+                            frame: "monkey_sticks-up.png",
+                            interval: 0
+                        }
+                    ]
                 ]
             }),
             playing({

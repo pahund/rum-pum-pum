@@ -39,15 +39,17 @@ define(function (require) {
                 }
             }),
             withSequenceAnimation({
-                sequence: [
-                    {
-                        frame: "bear_beater-down.png",
-                        interval: 150
-                    },
-                    {
-                        frame: "bear_beater-up.png",
-                        interval: 0
-                    }
+                sequences: [
+                    [
+                        {
+                            frame: "bear_beater-down.png",
+                            interval: 150
+                        },
+                        {
+                            frame: "bear_beater-up.png",
+                            interval: 0
+                        }
+                    ]
                 ]
             }),
             playing({

@@ -19,18 +19,18 @@ define(function (require) {
             step = 0;
 
         wsa.running = true;
-        tex.image = wsa.sequence[step].frame;
+        tex.image = wsa.sequences[wsa.currentSequence][step].frame;
         return function () {
-            if (t.duration() < wsa.sequence[step].interval) {
+            if (t.duration() < wsa.sequences[wsa.currentSequence][step].interval) {
                 return;
             }
             step++;
-            if (step === wsa.sequence.length) {
+            if (step === wsa.sequences[wsa.currentSequence].length) {
                 step = 0;
                 wsa.running = false;
                 return;
             }
-            tex.image = wsa.sequence[step].frame;
+            tex.image = wsa.sequences[wsa.currentSequence][step].frame;
             t.reset();
         };
     }

@@ -9,8 +9,12 @@ define(function (require) {
 
     return require("app/components/componentFactory")("withSequenceAnimation", [
         {
-            name: "sequence",
+            name: "sequences",
             mandatory: true
+        },
+        {
+            name: "currentSequence",
+            fallback: 0
         },
         {
             name: "running",
