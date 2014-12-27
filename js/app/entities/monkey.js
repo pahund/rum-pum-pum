@@ -1,10 +1,10 @@
 /**
- * bear.js
+ * monkey.js
  *
- * Blueprint for a drumming bear entity (bass drum).
+ * Blueprint for a drumming monkey entity (snare drum).
  *
  * @author <a href="mailto:pahund@team.mobile.de">Patrick Hund</a>
- * @since 15/12/14
+ * @since 27/12/14
  */
 define(function (require) {
     "use strict";
@@ -24,12 +24,12 @@ define(function (require) {
         }
         return [
             textured({
-                image: "bear_beater-up.png"
+                image: "monkey_sticks-up.png"
             }),
             positioned({
                 coordinates: new PIXI.Point(
-                        input.x === undefined ? dimensions.viewport.w / 2 : input.x,
-                        input.y === undefined ? dimensions.viewport.h / 2 : input.y),
+                    input.x === undefined ? dimensions.viewport.w / 2 : input.x,
+                    input.y === undefined ? dimensions.viewport.h / 2 : input.y),
                 scale: new PIXI.Point(scale, scale)
             }),
             proximityListener({
@@ -41,17 +41,17 @@ define(function (require) {
             withSequenceAnimation({
                 sequence: [
                     {
-                        frame: "bear_beater-down.png",
+                        frame: "monkey_left-down.png",
                         interval: 150
                     },
                     {
-                        frame: "bear_beater-up.png",
+                        frame: "monkey_sticks-up.png",
                         interval: 0
                     }
                 ]
             }),
             playing({
-                sound: "kick"
+                sound: "snare"
             })
         ];
     };

@@ -30,6 +30,7 @@ define(function (require) {
         spriteManager = require("app/systems/spriteManager"),
         bear = require("app/entities/bear"),
         bird = require("app/entities/bird"),
+        monkey = require("app/entities/monkey"),
         loader = new PIXI.AssetLoader(["images/sprites.json"]);
 
     $("body").append(renderer.view);
@@ -39,18 +40,38 @@ define(function (require) {
 
         var grid = gridCalculator({
             rows: 8,
-            columns: 1,
+            columns: 16,
             top: 10,
             left: 10,
             width: 80,
-            height: 90
+            height: 80
         });
-        grid.set.columns(16);
 
-        world.addEntity("bird1", bird());
-        for (var i = 1; i <= 16; i ++) {
-            world.addEntity("bear" + i, bear(grid.get.x(i)));
-        }
+        world.addEntity("bird", bird());
+        world.addEntity("bear1", bear({
+            x: grid.get.x(1),
+            y: grid.get.y(8)
+        }));
+        world.addEntity("bear2", bear({
+            x: grid.get.x(11),
+            y: grid.get.y(8)
+        }));
+        world.addEntity("monkey1", monkey({
+            x: grid.get.x(5),
+            y: grid.get.y(7)
+        }));
+        world.addEntity("monkey2", monkey({
+            x: grid.get.x(13),
+            y: grid.get.y(7)
+        }));
+        world.addEntity("monkey3", monkey({
+            x: grid.get.x(15),
+            y: grid.get.y(7)
+        }));
+        world.addEntity("monkey4", monkey({
+            x: grid.get.x(16),
+            y: grid.get.y(7)
+        }));
 
         spriteManager.init(world);
 

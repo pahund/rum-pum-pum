@@ -30,10 +30,10 @@ define(function (require) {
                 scale: new PIXI.Point(scale, scale)
             }),
             moving({
-                deltaX: 10,
+                deltaX: 15,
                 minX: 0,
                 maxX: dimensions.viewport.w + width,
-                interval: 10
+                interval: 5
             }),
             animated({
                 frames: [
