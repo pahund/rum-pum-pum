@@ -48,30 +48,18 @@ define(function (require) {
         });
 
         world.addEntity("bird", bird());
-        world.addEntity("bear1", bear({
-            x: grid.get.x(1),
-            y: grid.get.y(8)
-        }));
-        world.addEntity("bear2", bear({
-            x: grid.get.x(11),
-            y: grid.get.y(8)
-        }));
-        world.addEntity("monkey1", monkey({
-            x: grid.get.x(5),
-            y: grid.get.y(7)
-        }));
-        world.addEntity("monkey2", monkey({
-            x: grid.get.x(13),
-            y: grid.get.y(7)
-        }));
-        world.addEntity("monkey3", monkey({
-            x: grid.get.x(15),
-            y: grid.get.y(7)
-        }));
-        world.addEntity("monkey4", monkey({
-            x: grid.get.x(16),
-            y: grid.get.y(7)
-        }));
+        $.each([1, 11], function (i, x) {
+            world.addEntity("bear" + i, bear({
+                x: grid.get.x(x),
+                y: grid.get.y(8)
+            }));
+        });
+        $.each([5, 13, 15, 16], function (i, x) {
+            world.addEntity("monkey" + i, bear({
+                x: grid.get.x(x),
+                y: grid.get.y(7)
+            }));
+        });
 
         spriteManager.init(world);
 
