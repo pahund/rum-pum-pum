@@ -41,23 +41,26 @@ define(function (require) {
         var grid = gridCalculator({
             rows: 8,
             columns: 16,
+            height: 95
+            /*
             top: 10,
             left: 10,
             width: 80,
             height: 80
+            */
         });
 
         world.addEntity("bird", bird());
-        $.each([1, 11], function (i, x) {
-            world.addEntity("bear" + i, bear({
-                x: grid.get.x(x),
-                y: grid.get.y(8)
-            }));
-        });
         $.each([5, 13, 15, 16], function (i, x) {
             world.addEntity("monkey" + i, monkey({
                 x: grid.get.x(x),
                 y: grid.get.y(7)
+            }));
+        });
+        $.each([1, 11], function (i, x) {
+            world.addEntity("bear" + i, bear({
+                x: grid.get.x(x),
+                y: grid.get.y(8)
             }));
         });
 
@@ -71,6 +74,18 @@ define(function (require) {
             require("app/systems/soundPlayer"),
             spriteManager.update
         );
+
+        function start() {
+            $("#play").html("Stop").one("click", stop);
+            loop.start();
+        }
+
+        function stop() {
+            $("#play").html("Start").one("click", start);
+            loop.stop();
+        }
+        $("#play").one("click", start);
+
     };
 
     // begin loading

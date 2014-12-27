@@ -15,17 +15,20 @@ define(function (require) {
         config = require("app/config"),
         timer = require("app/util/timer")(),
         actions = [],
-        $monitor = $("#monitor");
+        $monitor = $("#monitor"),
+        running = false;
 
     (function loop() {
-        $.each(actions, function () {
-            this();
-        });
-        if (config.debug) {
-            $monitor.html(timer.average());
+        if (running) {
+            $.each(actions, function () {
+                this();
+            });
+            if (config.debug) {
+                $monitor.html(timer.average());
+            }
+            renderer.render(stage);
         }
         window.requestAnimationFrame(loop);
-        renderer.render(stage);
     })();
 
     return {
@@ -33,6 +36,12 @@ define(function (require) {
             $.each(arguments, function () {
                 actions.push(this);
             });
+        },
+        start: function () {
+            running = true;
+        },
+        stop: function () {
+            running = false;
         }
     };
 });
