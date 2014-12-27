@@ -16,8 +16,8 @@ define(function (require) {
         moving = require("app/components/moving"),
         animated = require("app/components/animated"),
         proximityTrigger = require("app/components/proximityTrigger"),
-        width = 395,
-        height = 419,
+        width = 79,
+        height = 84,
         scale = 1;
 
     return function () {
@@ -26,7 +26,7 @@ define(function (require) {
                 image: "bird_wings-up.png"
             }),
             positioned({
-                coordinates: new PIXI.Point(width * scale * -1, height * scale),
+                coordinates: new PIXI.Point(0, height * scale),
                 scale: new PIXI.Point(scale, scale)
             }),
             moving({

@@ -50,14 +50,14 @@ define(function (require) {
             threshold = ent.components.proximityTrigger.threshold,
             h = 0;
 
-        if (hasH && d1.dir.h !== d2.dir.h && d2.dist.h < threshold) {
+        if (hasH && d1.dir.h !== d2.dir.h && d1.dist.h < threshold && d2.dist.h < threshold) {
             h++;
-            if (hasV && d2.dist.v < threshold) {
+            if (hasV && d1.dist.v < threshold && d2.dist.v < threshold) {
                 h++;
             }
-        } else if (hasV && d1.dir.v !== d2.dir.v && d2.dist.v < threshold) {
+        } else if (hasV && d1.dir.v !== d2.dir.v && d1.dist.v < threshold && d2.dist.v < threshold) {
             h++;
-            if (hasH && d2.dist.h < threshold) {
+            if (hasH && d1.dist.h < threshold && d2.dist.h < threshold) {
                h++;
             }
         }

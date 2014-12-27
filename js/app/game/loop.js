@@ -18,6 +18,8 @@ define(function (require) {
         $monitor = $("#monitor"),
         running = false;
 
+    renderer.render(stage);
+
     (function loop() {
         if (running) {
             $.each(actions, function () {
