@@ -40,24 +40,23 @@ define(function (require) {
 
         var grid = gridCalculator({
             rows: 8,
-            columns: 16,
+            columns: 17,
             height: 95
-            /*
-            top: 10,
-            left: 10,
-            width: 80,
-            height: 80
-            */
         });
 
-        world.addEntity("bird", bird());
+        world.addEntity("bird", bird({
+            x: grid.get.x(1),
+            y: grid.get.y(1),
+            minX: grid.get.x(1),
+            maxX: grid.get.x(17)
+        }));
         $.each([5, 13, 15, 16], function (i, x) {
             world.addEntity("monkey" + i, monkey({
                 x: grid.get.x(x),
                 y: grid.get.y(7)
             }));
         });
-        $.each([1, 11], function (i, x) {
+        $.each([1, 4, 11], function (i, x) {
             world.addEntity("bear" + i, bear({
                 x: grid.get.x(x),
                 y: grid.get.y(8)

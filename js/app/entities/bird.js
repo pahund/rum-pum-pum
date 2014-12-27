@@ -20,19 +20,24 @@ define(function (require) {
         height = 84,
         scale = 1;
 
-    return function () {
+    return function (input) {
+        if (input === undefined) {
+            input = {};
+        }
         return [
             textured({
                 image: "bird_wings-up.png"
             }),
             positioned({
-                coordinates: new PIXI.Point(0, height * scale),
+                coordinates: new PIXI.Point(
+                    input.x === undefined ? 0 : input.x,
+                    input.y === undefined ? height * scale : input.y),
                 scale: new PIXI.Point(scale, scale)
             }),
             moving({
                 deltaX: 15,
-                minX: 0,
-                maxX: dimensions.viewport.w + width,
+                minX: input.minX === undefined ? 0 : input.minX,
+                maxX: input.maxX === undefined ? dimensions.viewport.w + width : input.maxX,
                 interval: 5
             }),
             animated({
