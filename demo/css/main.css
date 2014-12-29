@@ -1,0 +1,26 @@
+/**
+ * main.css
+ *
+ * @author <a href="mailto:pahund@team.mobile.de">Patrick Hund</a>
+ * @since 22/10/14
+ */
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.monitor {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    background-color: #000000;
+    color: lime;
+    font-family: monospace;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+div.drum {
+    display: none
+}
