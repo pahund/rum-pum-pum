@@ -22,6 +22,14 @@ Intallation steps:
 
 Open up [index.html](index.html) in your favorite browser (needs to support Web Audio API).
 
+## Credits and Acknowledgements
+
+### Guica Sounds (Kangaroo)
+
+Copyright (c) 2006 [reinsamba](https://www.freesound.org/people/reinsamba/).
+Published under [Creative Commons CC BY 3.0](http://creativecommons.org/licenses/by/3.0/) license.
+Downloaded from [Freesounds.org](https://www.freesound.org/people/reinsamba/sounds/21727/).
+
 ## The MIT License (MIT)
 
 Copyright (c) 2014 [Patrick Hund](https://github.com/pahund)
