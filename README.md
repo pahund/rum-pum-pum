@@ -6,6 +6,10 @@ Uses [Web Audio API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_
 
 Written in JavaScript, based on the [entity-component-system](http://en.wikipedia.org/wiki/Entity_component_system) architecture pattern.
 
+## Demo
+
+[Early alpha version (in development)](http://pahund.github.io/rum-pum-pum/demo/index.html)
+
 ## Installation
 
 Prerequisites:
