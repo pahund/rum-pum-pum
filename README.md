@@ -1,5 +1,7 @@
 # Rum Pum Pum
 
+![Monkey Logo](images/monkey-logo.png "Monkey Logo")
+
 A browser-based music program for kids.
 
 Uses [Web Audio API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API) and [PIXI.js](http://www.pixijs.com/).
