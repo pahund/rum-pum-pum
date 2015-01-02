@@ -30,11 +30,11 @@ Open up [index.html](index.html) in your favorite browser (needs to support Web 
 
 ## Credits and Acknowledgements
 
-### Guica Sounds (Kangaroo)
+### Cuíca Sounds (Kangaroo)
 
 Copyright (c) 2006 [reinsamba](https://www.freesound.org/people/reinsamba/).
 Published under [Creative Commons CC BY 3.0](http://creativecommons.org/licenses/by/3.0/) license.
-Downloaded from [Freesounds.org](https://www.freesound.org/people/reinsamba/sounds/21727/).
+Downloaded from [Freesounds.org](https://www.freesound.org/people/reinsamba/packs/1339/).
 
 ## The MIT License (MIT)
 
