@@ -64,7 +64,7 @@ define(function (require) {
                     [
                         {
                             frame: "kangaroo_jump.png",
-                            interval: 150
+                            interval: 300
                         },
                         {
                             frame: "kangaroo_down.png",
