@@ -31,6 +31,7 @@ define(function (require) {
         bear = require("app/entities/bear"),
         bird = require("app/entities/bird"),
         monkey = require("app/entities/monkey"),
+        kangaroo = require("app/entities/kangaroo"),
         loader = new PIXI.AssetLoader(["images/sprites.json"]);
 
     $("body").append(renderer.view);
@@ -50,6 +51,12 @@ define(function (require) {
             minX: grid.get.x(1),
             maxX: grid.get.x(17)
         }));
+        $.each([3, 7, 11, 15], function (i, x) {
+            world.addEntity("kangaroo" + i, kangaroo({
+                x: grid.get.x(x),
+                y: grid.get.y(6)
+            }));
+        });
         $.each([5, 13, 15, 16], function (i, x) {
             world.addEntity("monkey" + i, monkey({
                 x: grid.get.x(x),
