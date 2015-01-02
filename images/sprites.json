@@ -2,7 +2,7 @@
 
 "bear_beater-down.png":
 {
-	"frame": {"x":2,"y":621,"w":104,"h":152},
+	"frame": {"x":289,"y":338,"w":104,"h":152},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":6,"y":0,"w":104,"h":152},
@@ -11,7 +11,7 @@
 },
 "bear_beater-up.png":
 {
-	"frame": {"x":2,"y":312,"w":110,"h":152},
+	"frame": {"x":177,"y":338,"w":110,"h":152},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":110,"h":152},
@@ -20,7 +20,7 @@
 },
 "bird_wings-down.png":
 {
-	"frame": {"x":2,"y":847,"w":79,"h":62},
+	"frame": {"x":395,"y":410,"w":79,"h":62},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":0,"y":22,"w":79,"h":62},
@@ -29,7 +29,7 @@
 },
 "bird_wings-middle.png":
 {
-	"frame": {"x":2,"y":911,"w":79,"h":55},
+	"frame": {"x":2,"y":413,"w":79,"h":55},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":0,"y":15,"w":79,"h":55},
@@ -38,16 +38,43 @@
 },
 "bird_wings-up.png":
 {
-	"frame": {"x":2,"y":775,"w":79,"h":70},
+	"frame": {"x":395,"y":338,"w":79,"h":70},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":0,"y":0,"w":79,"h":70},
 	"sourceSize": {"w":79,"h":84},
 	"pivot": {"x":0.5,"y":0.5}
 },
+"kangaroo_bark.png":
+{
+	"frame": {"x":2,"y":234,"w":173,"h":177},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":63,"w":173,"h":177},
+	"sourceSize": {"w":173,"h":240},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"kangaroo_down.png":
+{
+	"frame": {"x":171,"y":2,"w":172,"h":179},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":61,"w":172,"h":179},
+	"sourceSize": {"w":173,"h":240},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"kangaroo_jump.png":
+{
+	"frame": {"x":2,"y":2,"w":167,"h":230},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":167,"h":230},
+	"sourceSize": {"w":173,"h":240},
+	"pivot": {"x":0.5,"y":0.5}
+},
 "monkey_left-down.png":
 {
-	"frame": {"x":2,"y":157,"w":115,"h":153},
+	"frame": {"x":296,"y":183,"w":115,"h":153},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":7,"y":0,"w":115,"h":153},
@@ -56,7 +83,7 @@
 },
 "monkey_right-down.png":
 {
-	"frame": {"x":2,"y":2,"w":117,"h":153},
+	"frame": {"x":177,"y":183,"w":117,"h":153},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":0,"y":0,"w":117,"h":153},
@@ -65,7 +92,7 @@
 },
 "monkey_sticks-up.png":
 {
-	"frame": {"x":2,"y":466,"w":106,"h":153},
+	"frame": {"x":345,"y":2,"w":106,"h":153},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":8,"y":0,"w":106,"h":153},
@@ -77,8 +104,8 @@
 	"version": "1.0",
 	"image": "sprites.png",
 	"format": "RGBA8888",
-	"size": {"w":121,"h":968},
+	"size": {"w":476,"h":492},
 	"scale": "0.2",
-	"smartupdate": "$TexturePacker:SmartUpdate:1edf71091db8798c643a84b48ffbb007:39587a1c8bd1ec7d955fc3bbb81ce48b:1eabdf11f75e3a4fe3147baf7b5be24b$"
+	"smartupdate": "$TexturePacker:SmartUpdate:fe295e38e97bd61a5580c73a5ef0de50:5efbe0b58a7177e19d6461ec113edd21:1eabdf11f75e3a4fe3147baf7b5be24b$"
 }
 }
