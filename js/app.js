@@ -57,6 +57,13 @@ define(function (require) {
                 y: grid.get.y(6)
             }));
         });
+        $.each([13], function (i, x) {
+            world.addEntity("baby-kangaroo" + i, kangaroo({
+                variant: 1,
+                x: grid.get.x(x),
+                y: grid.get.y(6)
+            }));
+        });
         $.each([5, 13, 15, 16], function (i, x) {
             world.addEntity("monkey" + i, monkey({
                 x: grid.get.x(x),

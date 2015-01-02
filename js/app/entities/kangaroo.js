@@ -19,10 +19,17 @@ define(function (require) {
         scale = 1;
 
     return function (input) {
+        var sounds = [
+            "cuica-lo01",
+            "cuica-hi01"
+        ];
         if (input === undefined) {
             input = {
                 variant: 0
             };
+        }
+        if (input.variant === undefined) {
+            input.variant = 0;
         }
         return [
             textured({
@@ -38,7 +45,7 @@ define(function (require) {
                 action: function (trigger, listener) {
                     listener.components.withSequenceAnimation.running = true;
                     listener.components.withSequenceAnimation.currentSequence =
-                            input.variant === undefined ? 0 : input.variant;
+                            input.variant;
                     listener.components.playing.triggered = true;
                 }
             }),
@@ -67,7 +74,7 @@ define(function (require) {
                 ]
             }),
             playing({
-                sound: "cuica-lo01"
+                sound: sounds[input.variant]
             })
         ];
     };
