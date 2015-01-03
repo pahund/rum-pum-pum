@@ -30,7 +30,8 @@ define(function (require) {
                 coordinates: new PIXI.Point(
                     input.x === undefined ? dimensions.viewport.w / 2 : input.x,
                     input.y === undefined ? dimensions.viewport.h / 2 : input.y),
-                scale: new PIXI.Point(scale, scale)
+                scale: new PIXI.Point(scale, scale),
+                anchor: new PIXI.Point(0.5, 0.1)
             }),
             proximityListener({
                 action: function (trigger, listener) {
