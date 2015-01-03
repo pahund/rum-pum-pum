@@ -28,6 +28,7 @@ define(function (require) {
         grid = require("app/game/grid"),
         loop = require("app/game/loop"),
         world = require("app/game/world"),
+        background = require("app/game/background"),
         spriteManager = require("app/systems/spriteManager"),
         bear = require("app/entities/bear"),
         bird = require("app/entities/bird"),
@@ -35,34 +36,22 @@ define(function (require) {
         kangaroo = require("app/entities/kangaroo"),
         loader = new PIXI.AssetLoader(["images/sprites.json"]);
 
+    function start() {
+        $("#play").html("Stop").one("click", stop);
+        loop.start();
+    }
+
+    function stop() {
+        $("#play").html("Start").one("click", start);
+        loop.stop();
+    }
+
     $("body").append(renderer.view);
 
     // use callback
     loader.onComplete = function () {
 
-        var graphics = new PIXI.Graphics(),
-            row,
-            col,
-            x,
-            y,
-            w,
-            h;
-
-        for (row = 1; row <= 4; row++) {
-            for (col = 1; col <= 16; col++) {
-                w = Math.round(grid.get.w());
-                h = Math.round(grid.get.h());
-                x = Math.round(grid.get.x(col) - w / 2);
-                y = Math.round(grid.get.y(row) - h / 2);
-                x += 10;
-                y += 10;
-                w -= 20;
-                h -= 20;
-
-                graphics.beginFill(0xEEEEEE).drawRoundedRect(x, y, w, h, 15).endFill();
-            }
-        }
-        stage.addChild(graphics);
+        stage.addChild(background);
 
         world.addEntity("bird", bird({
             x: grid.get.x(1),
@@ -108,44 +97,16 @@ define(function (require) {
             spriteManager.update
         );
 
-        function start() {
-            $("#play").html("Stop").one("click", stop);
-            loop.start();
-        }
-
-        function stop() {
-            $("#play").html("Start").one("click", start);
-            loop.stop();
-        }
         $("#play").one("click", start);
-
     };
 
     // begin loading
     loader.load();
-    player.load([
-        {
-            id: "kick",
-            path: "sounds/kick.ogg"
-        },
-        {
-            id: "snare",
-            path: "sounds/snare.ogg"
-        },
-        {
-            id: "cuica-hi",
-            path: "sounds/cuica-hi01.ogg"
-        },
-        {
-            id: "cuica-lo",
-            path: "sounds/cuica-lo01.ogg"
-        }
-    ]);
+    player.load(config.sounds);
 
     if (config.debug) {
         $("#monitor").html("debug active").show();
     }
-
 });
 
 

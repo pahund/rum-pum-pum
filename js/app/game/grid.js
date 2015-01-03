@@ -1,6 +1,8 @@
 /**
  * grid.js
  *
+ * Grid calculator for the grid that the entities are placed on.
+ *
  * @author <a href="mailto:pahund@team.mobile.de">Patrick Hund</a>
  * @since 03/01/15
  */
