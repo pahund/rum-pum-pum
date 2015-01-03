@@ -19,7 +19,6 @@ define(function (require) {
         var settings = {},
             defaults,
             init,
-            validate,
             calculate,
             bounds,
             change;
