@@ -83,8 +83,12 @@ define(function (require) {
                 },
                 h: function () {
                     return bounds.height / settings.rows;
+                },
+                column: function (x) {
+                    return Math.floor((x - bounds.left) / this.w()) + 1;
                 }
             },
+
             set: (function () {
                 var setters = {};
                 $.each(settings, function (name) {

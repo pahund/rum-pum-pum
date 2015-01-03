@@ -9,8 +9,21 @@
 define(function (require) {
     "use strict";
 
-    var PIXI = require("pixi.dev"),
-        stage = new PIXI.Stage(0xFFFFFF);
+    var $ = require("jquery"),
+        PIXI = require("pixi.dev"),
+        grid = require("app/game/grid"),
+        config = require("app/config"),
+        stage = new PIXI.Stage(0xFFFFFF, true);
+
+    function interact(data) {
+        var column = grid.get.column(data.global.x);
+        if (config.debug) {
+            $("#monitor").html("col: " + column);
+        }
+    }
+
+    stage.mousedown = interact;
+    stage.touchstart = interact;
 
     return stage;
 });
