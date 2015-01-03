@@ -21,7 +21,7 @@ define(function (require) {
 
     var $ = require("jquery"),
         config = require("app/config"),
-        drums = require("app/audio/drums"),
+        player = require("app/audio/player"),
         PIXI = require("pixi.dev"),
         renderer = require("app/game/renderer"),
         loop = require("app/game/loop"),
@@ -103,7 +103,24 @@ define(function (require) {
 
     // begin loading
     loader.load();
-    drums.init();
+    player.load([
+        {
+            id: "kick",
+            path: "sounds/kick.ogg"
+        },
+        {
+            id: "snare",
+            path: "sounds/snare.ogg"
+        },
+        {
+            id: "cuica-hi",
+            path: "sounds/cuica-hi01.ogg"
+        },
+        {
+            id: "cuica-lo",
+            path: "sounds/cuica-lo01.ogg"
+        }
+    ]);
 
     if (config.debug) {
         $("#monitor").html("debug active").show();

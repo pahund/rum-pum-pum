@@ -20,8 +20,8 @@ define(function (require) {
 
     return function (input) {
         var sounds = [
-            "cuica-lo01",
-            "cuica-hi01"
+            "cuica-lo",
+            "cuica-hi"
         ];
         if (input === undefined) {
             input = {
