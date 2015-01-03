@@ -25,9 +25,9 @@ define(function (require) {
         PIXI = require("pixi.dev"),
         renderer = require("app/game/renderer"),
         stage = require("app/game/stage"),
+        grid = require("app/game/grid"),
         loop = require("app/game/loop"),
         world = require("app/game/world"),
-        gridCalculator = require("app/util/gridCalculator"),
         spriteManager = require("app/systems/spriteManager"),
         bear = require("app/entities/bear"),
         bird = require("app/entities/bird"),
@@ -41,18 +41,12 @@ define(function (require) {
     loader.onComplete = function () {
 
         var graphics = new PIXI.Graphics(),
-            grid,
             row,
             col,
             x,
             y,
             w,
             h;
-
-        grid = gridCalculator({
-            rows: 4,
-            columns: 17
-        });
 
         for (row = 1; row <= 4; row++) {
             for (col = 1; col <= 16; col++) {

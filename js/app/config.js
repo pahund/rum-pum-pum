@@ -10,6 +10,8 @@ define(function (require) {
     var $ = require("jquery");
 
     return {
-        debug: $("#config").data("debug") || false
+        debug: $("#config").data("debug") || false,
+        rows: 4,
+        columns: 17
     };
 });
