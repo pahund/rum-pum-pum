@@ -78,6 +78,7 @@ define(function (require) {
         });
 
         spriteManager.init(world);
+        loop.init();
 
         loop.add(
             require("app/systems/frameAnimator"),

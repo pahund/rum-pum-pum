@@ -18,8 +18,6 @@ define(function (require) {
         $monitor = $("#monitor"),
         running = false;
 
-    renderer.render(stage);
-
     (function loop() {
         if (running) {
             $.each(actions, function () {
@@ -34,6 +32,9 @@ define(function (require) {
     })();
 
     return {
+        init: function () {
+            renderer.render(stage);
+        },
         add: function () {
             $.each(arguments, function () {
                 actions.push(this);
