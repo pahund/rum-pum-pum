@@ -40,9 +40,8 @@ define(function (require) {
     loader.onComplete = function () {
 
         var grid = gridCalculator({
-            rows: 8,
-            columns: 17,
-            height: 95
+            rows: 4,
+            columns: 17
         });
 
         world.addEntity("bird", bird({
@@ -54,26 +53,26 @@ define(function (require) {
         $.each([3, 7, 11, 15], function (i, x) {
             world.addEntity("kangaroo" + i, kangaroo({
                 x: grid.get.x(x),
-                y: grid.get.y(6)
+                y: grid.get.y(2)
             }));
         });
         $.each([13], function (i, x) {
             world.addEntity("baby-kangaroo" + i, kangaroo({
                 variant: 1,
                 x: grid.get.x(x),
-                y: grid.get.y(6)
+                y: grid.get.y(2)
             }));
         });
         $.each([5, 13, 15, 16], function (i, x) {
             world.addEntity("monkey" + i, monkey({
                 x: grid.get.x(x),
-                y: grid.get.y(7)
+                y: grid.get.y(3)
             }));
         });
         $.each([1, 4, 11], function (i, x) {
             world.addEntity("bear" + i, bear({
                 x: grid.get.x(x),
-                y: grid.get.y(8)
+                y: grid.get.y(4)
             }));
         });
 
