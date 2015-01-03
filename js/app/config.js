@@ -14,7 +14,7 @@ define(function (require) {
     return {
         debug: $("#config").data("debug") || false,
         rows: 4,
-        columns: 17,
+        columns: 16,
         sounds: [
             {
                 id: "kick",

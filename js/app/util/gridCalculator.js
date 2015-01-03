@@ -59,23 +59,6 @@ define(function (require) {
             }
         };
 
-        validate = {
-            row: function (row) {
-                if (row > settings.rows) {
-                    throw new Error("attempted to get coordinates for row " + row +
-                            ", but grid only has " + settings.rows + " rows");
-                }
-                return validate;
-            },
-            column: function (column) {
-                if (column > settings.columns) {
-                    throw new Error("attempted to get coordinates for column " + column +
-                            ", but grid only has " + settings.columns + " columns");
-                }
-                return validate;
-            }
-        };
-
         change = {
             setting: function (name, value) {
                 settings[name] = value;
@@ -91,11 +74,9 @@ define(function (require) {
                     return new PIXI.Point(this.getX(column), this.getY(row));
                 },
                 x: function (column) {
-                    validate.column(column);
                     return calculate.position(column, settings.columns, bounds.width, bounds.left);
                 },
                 y: function (row) {
-                    validate.row(row);
                     return calculate.position(row, settings.rows, bounds.height, bounds.top);
                 },
                 w: function () {
