@@ -24,6 +24,7 @@ define(function (require) {
         player = require("app/audio/player"),
         PIXI = require("pixi.dev"),
         renderer = require("app/game/renderer"),
+        stage = require("app/game/stage"),
         loop = require("app/game/loop"),
         world = require("app/game/world"),
         gridCalculator = require("app/util/gridCalculator"),
@@ -39,10 +40,35 @@ define(function (require) {
     // use callback
     loader.onComplete = function () {
 
-        var grid = gridCalculator({
+        var graphics = new PIXI.Graphics(),
+            grid,
+            row,
+            col,
+            x,
+            y,
+            w,
+            h;
+
+        grid = gridCalculator({
             rows: 4,
             columns: 17
         });
+
+        for (row = 1; row <= 4; row++) {
+            for (col = 1; col <= 16; col++) {
+                w = Math.round(grid.get.w());
+                h = Math.round(grid.get.h());
+                x = Math.round(grid.get.x(col) - w / 2);
+                y = Math.round(grid.get.y(row) - h / 2);
+                x += 10;
+                y += 10;
+                w -= 20;
+                h -= 20;
+
+                graphics.beginFill(0xEEEEEE).drawRoundedRect(x, y, w, h, 15).endFill();
+            }
+        }
+        stage.addChild(graphics);
 
         world.addEntity("bird", bird({
             x: grid.get.x(1),

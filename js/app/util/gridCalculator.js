@@ -97,6 +97,12 @@ define(function (require) {
                 y: function (row) {
                     validate.row(row);
                     return calculate.position(row, settings.rows, bounds.height, bounds.top);
+                },
+                w: function () {
+                    return bounds.width / settings.columns;
+                },
+                h: function () {
+                    return bounds.height / settings.rows;
                 }
             },
             set: (function () {
