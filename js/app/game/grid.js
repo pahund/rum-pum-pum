@@ -1,7 +1,8 @@
 /**
  * grid.js
  *
- * Grid calculator for the grid that the entities are placed on.
+ * The grid that the entities are placed on. A singleton composed of a
+ * grid calculator and a grid toggler instance.
  *
  * @author <a href="mailto:pahund@team.mobile.de">Patrick Hund</a>
  * @since 03/01/15
@@ -10,10 +11,17 @@ define(function (require) {
     "use strict";
 
     var config = require("app/config"),
-        gridCalculator = require("app/util/gridCalculator");
+        gridCalculator = require("app/util/gridCalculator"),
+        gridToggler = require("app/util/gridToggler"),
+        calculator,
+        toggler;
 
-    return gridCalculator({
+    calculator = gridCalculator({
         rows: config.rows,
         columns: config.columns
     });
+
+    toggler = gridToggler(config.rows, config.columns);
+
+    return $.extend(true, calculator, toggler);
 });

@@ -12,7 +12,6 @@ define(function (require) {
     "use strict";
 
     var $ = require("jquery"),
-        PIXI = require("pixi.dev"),
         dimensions = require("app/game/dimensions");
 
     return function (options) {
@@ -55,6 +54,9 @@ define(function (require) {
             position: function (index, totalCount, totalSize, offset) {
                 var size = totalSize / totalCount;
                 return offset + (index * size) - (size / 2);
+            },
+            cell: function (pixelCoord, cellSize, offset) {
+                return Math.floor((pixelCoord - offset) / cellSize) + 1;
             }
         };
 
@@ -69,9 +71,6 @@ define(function (require) {
 
         return {
             get: {
-                coordinates: function (row, column) {
-                    return new PIXI.Point(this.getX(column), this.getY(row));
-                },
                 x: function (column) {
                     return calculate.position(column, settings.columns, bounds.width, bounds.left);
                 },
@@ -85,7 +84,10 @@ define(function (require) {
                     return bounds.height / settings.rows;
                 },
                 column: function (x) {
-                    return Math.floor((x - bounds.left) / this.w()) + 1;
+                    return calculate.cell(x, this.w(), bounds.left);
+                },
+                row: function (y) {
+                    return calculate.cell(y, this.h(), bounds.top);
                 }
             },
 

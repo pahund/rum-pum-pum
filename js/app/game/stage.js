@@ -16,9 +16,13 @@ define(function (require) {
         stage = new PIXI.Stage(0xFFFFFF, true);
 
     function interact(data) {
-        var column = grid.get.column(data.global.x);
+        var row = grid.get.row(data.global.y),
+            col = grid.get.column(data.global.x),
+            state = grid.isOccupied(row, col);
         if (config.debug) {
-            $("#monitor").html("col: " + column);
+            $("#monitor").html("row: " + row +
+                    "<br>col: " + col +
+                    "<br>state: " + state);
         }
     }
 

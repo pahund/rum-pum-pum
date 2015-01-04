@@ -59,30 +59,34 @@ define(function (require) {
             minX: grid.get.x(1),
             maxX: grid.get.x(17)
         }));
-        $.each([3, 7, 11, 15], function (i, x) {
+        $.each([3, 7, 11, 15], function (i, col) {
             world.addEntity("kangaroo" + i, kangaroo({
-                x: grid.get.x(x),
+                x: grid.get.x(col),
                 y: grid.get.y(2)
             }));
+            grid.toggle(2, col);
         });
-        $.each([13], function (i, x) {
+        $.each([13], function (i, col) {
             world.addEntity("baby-kangaroo" + i, kangaroo({
                 variant: 1,
-                x: grid.get.x(x),
+                x: grid.get.x(col),
                 y: grid.get.y(2)
             }));
+            grid.toggle(2, col);
         });
-        $.each([5, 13, 15, 16], function (i, x) {
+        $.each([5, 13, 15, 16], function (i, col) {
             world.addEntity("monkey" + i, monkey({
-                x: grid.get.x(x),
+                x: grid.get.x(col),
                 y: grid.get.y(3)
             }));
+            grid.toggle(3, col);
         });
-        $.each([1, 4, 11], function (i, x) {
+        $.each([1, 4, 11], function (i, col) {
             world.addEntity("bear" + i, bear({
-                x: grid.get.x(x),
+                x: grid.get.x(col),
                 y: grid.get.y(4)
             }));
+            grid.toggle(4, col);
         });
 
         spriteManager.init(world);
