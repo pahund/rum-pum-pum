@@ -31,11 +31,10 @@ define(function (require) {
 
                 texture = PIXI.Texture.fromFrame(this.components.textured.image);
                 sprite = new PIXI.Sprite(texture);
-                sprite.anchor.x = 0.5;
-                sprite.anchor.y = 0.5;
                 if (this.components.positioned) {
                     sprite.position = this.components.positioned.coordinates;
                     sprite.scale = this.components.positioned.scale;
+                    sprite.anchor = this.components.positioned.anchor;
                 } else {
                     // if the sprite is not positioned, it is hidden (out of visible viewport)
                     sprite.position = new PIXI.Point(-10000, 0);

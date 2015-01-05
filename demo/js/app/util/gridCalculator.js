@@ -12,14 +12,12 @@ define(function (require) {
     "use strict";
 
     var $ = require("jquery"),
-        PIXI = require("pixi.dev"),
         dimensions = require("app/game/dimensions");
 
     return function (options) {
         var settings = {},
             defaults,
             init,
-            validate,
             calculate,
             bounds,
             change;
@@ -56,23 +54,9 @@ define(function (require) {
             position: function (index, totalCount, totalSize, offset) {
                 var size = totalSize / totalCount;
                 return offset + (index * size) - (size / 2);
-            }
-        };
-
-        validate = {
-            row: function (row) {
-                if (row > settings.rows) {
-                    throw new Error("attempted to get coordinates for row " + row +
-                            ", but grid only has " + settings.rows + " rows");
-                }
-                return validate;
             },
-            column: function (column) {
-                if (column > settings.columns) {
-                    throw new Error("attempted to get coordinates for column " + column +
-                            ", but grid only has " + settings.columns + " columns");
-                }
-                return validate;
+            cell: function (pixelCoord, cellSize, offset) {
+                return Math.floor((pixelCoord - offset) / cellSize) + 1;
             }
         };
 
@@ -87,18 +71,26 @@ define(function (require) {
 
         return {
             get: {
-                coordinates: function (row, column) {
-                    return new PIXI.Point(this.getX(column), this.getY(row));
-                },
                 x: function (column) {
-                    validate.column(column);
                     return calculate.position(column, settings.columns, bounds.width, bounds.left);
                 },
                 y: function (row) {
-                    validate.row(row);
                     return calculate.position(row, settings.rows, bounds.height, bounds.top);
+                },
+                w: function () {
+                    return bounds.width / settings.columns;
+                },
+                h: function () {
+                    return bounds.height / settings.rows;
+                },
+                column: function (x) {
+                    return calculate.cell(x, this.w(), bounds.left);
+                },
+                row: function (y) {
+                    return calculate.cell(y, this.h(), bounds.top);
                 }
             },
+
             set: (function () {
                 var setters = {};
                 $.each(settings, function (name) {

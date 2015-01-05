@@ -9,8 +9,25 @@
 define(function (require) {
     "use strict";
 
-    var PIXI = require("pixi.dev"),
-        stage = new PIXI.Stage(0xFFFFFF);
+    var $ = require("jquery"),
+        PIXI = require("pixi.dev"),
+        grid = require("app/game/grid"),
+        config = require("app/config"),
+        stage = new PIXI.Stage(0xFFFFFF, true);
+
+    function interact(data) {
+        var row = grid.get.row(data.global.y),
+            col = grid.get.column(data.global.x),
+            state = grid.isOccupied(row, col);
+        if (config.debug) {
+            $("#monitor").html("row: " + row +
+                    "<br>col: " + col +
+                    "<br>state: " + state);
+        }
+    }
+
+    stage.mousedown = interact;
+    stage.touchstart = interact;
 
     return stage;
 });

@@ -20,8 +20,8 @@ define(function (require) {
 
     return function (input) {
         var sounds = [
-            "cuica-lo01",
-            "cuica-hi01"
+            "cuica-lo",
+            "cuica-hi"
         ];
         if (input === undefined) {
             input = {
@@ -64,7 +64,7 @@ define(function (require) {
                     [
                         {
                             frame: "kangaroo_jump.png",
-                            interval: 150
+                            interval: 300
                         },
                         {
                             frame: "kangaroo_down.png",

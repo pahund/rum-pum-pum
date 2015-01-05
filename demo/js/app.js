@@ -21,12 +21,14 @@ define(function (require) {
 
     var $ = require("jquery"),
         config = require("app/config"),
-        drums = require("app/audio/drums"),
+        player = require("app/audio/player"),
         PIXI = require("pixi.dev"),
         renderer = require("app/game/renderer"),
+        stage = require("app/game/stage"),
+        grid = require("app/game/grid"),
         loop = require("app/game/loop"),
         world = require("app/game/world"),
-        gridCalculator = require("app/util/gridCalculator"),
+        background = require("app/game/background"),
         spriteManager = require("app/systems/spriteManager"),
         bear = require("app/entities/bear"),
         bird = require("app/entities/bird"),
@@ -34,16 +36,22 @@ define(function (require) {
         kangaroo = require("app/entities/kangaroo"),
         loader = new PIXI.AssetLoader(["images/sprites.json"]);
 
+    function start() {
+        $("#play").html("Stop").one("click", stop);
+        loop.start();
+    }
+
+    function stop() {
+        $("#play").html("Start").one("click", start);
+        loop.stop();
+    }
+
     $("body").append(renderer.view);
 
     // use callback
     loader.onComplete = function () {
 
-        var grid = gridCalculator({
-            rows: 8,
-            columns: 17,
-            height: 95
-        });
+        stage.addChild(background);
 
         world.addEntity("bird", bird({
             x: grid.get.x(1),
@@ -51,33 +59,38 @@ define(function (require) {
             minX: grid.get.x(1),
             maxX: grid.get.x(17)
         }));
-        $.each([3, 7, 11, 15], function (i, x) {
+        $.each([3, 7, 11, 15], function (i, col) {
             world.addEntity("kangaroo" + i, kangaroo({
-                x: grid.get.x(x),
-                y: grid.get.y(6)
+                x: grid.get.x(col),
+                y: grid.get.y(2)
             }));
+            grid.toggle(2, col);
         });
-        $.each([13], function (i, x) {
+        $.each([13], function (i, col) {
             world.addEntity("baby-kangaroo" + i, kangaroo({
                 variant: 1,
-                x: grid.get.x(x),
-                y: grid.get.y(6)
+                x: grid.get.x(col),
+                y: grid.get.y(2)
             }));
+            grid.toggle(2, col);
         });
-        $.each([5, 13, 15, 16], function (i, x) {
+        $.each([5, 13, 15, 16], function (i, col) {
             world.addEntity("monkey" + i, monkey({
-                x: grid.get.x(x),
-                y: grid.get.y(7)
+                x: grid.get.x(col),
+                y: grid.get.y(3)
             }));
+            grid.toggle(3, col);
         });
-        $.each([1, 4, 11], function (i, x) {
+        $.each([1, 4, 11], function (i, col) {
             world.addEntity("bear" + i, bear({
-                x: grid.get.x(x),
-                y: grid.get.y(8)
+                x: grid.get.x(col),
+                y: grid.get.y(4)
             }));
+            grid.toggle(4, col);
         });
 
         spriteManager.init(world);
+        loop.init();
 
         loop.add(
             require("app/systems/frameAnimator"),
@@ -88,27 +101,16 @@ define(function (require) {
             spriteManager.update
         );
 
-        function start() {
-            $("#play").html("Stop").one("click", stop);
-            loop.start();
-        }
-
-        function stop() {
-            $("#play").html("Start").one("click", start);
-            loop.stop();
-        }
         $("#play").one("click", start);
-
     };
 
     // begin loading
     loader.load();
-    drums.init();
+    player.load(config.sounds);
 
     if (config.debug) {
         $("#monitor").html("debug active").show();
     }
-
 });
 
 

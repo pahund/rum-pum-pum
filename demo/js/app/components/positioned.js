@@ -19,6 +19,10 @@ define(function (require) {
         {
             name: "scale",
             fallback: new PIXI.Point(1, 1)
+        },
+        {
+            name: "anchor",
+            fallback: new PIXI.Point(0.5, 0.5)
         }
     ]);
 });
