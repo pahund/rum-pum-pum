@@ -51,9 +51,12 @@ define(function (require) {
             percentage: function (value, percentage) {
                 return value * percentage / 100;
             },
-            position: function (index, totalCount, totalSize, offset) {
+            position: function (index, totalCount, totalSize, offset, anchorOffset) {
                 var size = totalSize / totalCount;
-                return offset + (index * size) - (size / 2);
+                if (anchorOffset === undefined) {
+                    anchorOffset = 0;
+                }
+                return offset + (index * size) - size + (size * anchorOffset);
             },
             cell: function (pixelCoord, cellSize, offset) {
                 return Math.floor((pixelCoord - offset) / cellSize) + 1;
@@ -71,11 +74,11 @@ define(function (require) {
 
         return {
             get: {
-                x: function (column) {
-                    return calculate.position(column, settings.columns, bounds.width, bounds.left);
+                x: function (column, anchorOffset) {
+                    return calculate.position(column, settings.columns, bounds.width, bounds.left, anchorOffset);
                 },
-                y: function (row) {
-                    return calculate.position(row, settings.rows, bounds.height, bounds.top);
+                y: function (row, anchorOffset) {
+                    return calculate.position(row, settings.rows, bounds.height, bounds.top, anchorOffset);
                 },
                 w: function () {
                     return bounds.width / settings.columns;

@@ -54,37 +54,37 @@ define(function (require) {
         stage.addChild(background);
 
         world.addEntity("bird", bird({
-            x: grid.get.x(1),
-            y: grid.get.y(1),
-            minX: grid.get.x(1),
-            maxX: grid.get.x(17)
+            x: grid.get.x(1, 0.5),
+            y: grid.get.y(1, 0.5),
+            minX: grid.get.x(1, 0.5),
+            maxX: grid.get.x(17, 0.5)
         }));
         $.each([3, 7, 11, 15], function (i, col) {
             world.addEntity("kangaroo" + i, kangaroo({
-                x: grid.get.x(col),
-                y: grid.get.y(2)
+                x: grid.get.x(col, 0.5),
+                y: grid.get.y(2, 1)
             }));
             grid.toggle(2, col);
         });
         $.each([13], function (i, col) {
             world.addEntity("baby-kangaroo" + i, kangaroo({
                 variant: 1,
-                x: grid.get.x(col),
-                y: grid.get.y(2)
+                x: grid.get.x(col, 0.5),
+                y: grid.get.y(2, 1)
             }));
             grid.toggle(2, col);
         });
         $.each([5, 13, 15, 16], function (i, col) {
             world.addEntity("monkey" + i, monkey({
-                x: grid.get.x(col),
-                y: grid.get.y(3)
+                x: grid.get.x(col, 0.5),
+                y: grid.get.y(3, 1)
             }));
             grid.toggle(3, col);
         });
         $.each([1, 4, 11], function (i, col) {
             world.addEntity("bear" + i, bear({
-                x: grid.get.x(col),
-                y: grid.get.y(4)
+                x: grid.get.x(col, 0.5),
+                y: grid.get.y(4, 1)
             }));
             grid.toggle(4, col);
         });

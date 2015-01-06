@@ -23,8 +23,8 @@ define(function (require) {
         for (col = 1; col <= 16; col++) {
             w = Math.round(grid.get.w());
             h = Math.round(grid.get.h());
-            x = Math.round(grid.get.x(col) - w / 2);
-            y = Math.round(grid.get.y(row) - h / 2);
+            x = Math.round(grid.get.x(col));
+            y = Math.round(grid.get.y(row));
             x += 10;
             y += 10;
             w -= 20;
