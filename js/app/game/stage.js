@@ -13,16 +13,21 @@ define(function (require) {
         PIXI = require("app/util/pixi.dev.patched"),
         grid = require("app/game/grid"),
         config = require("app/config"),
+        entityManager = require("app/systems/entityManager"),
         stage = new PIXI.Stage(0xFFFFFF, true);
 
     function interact(data) {
         var row = grid.get.row(data.global.y),
             col = grid.get.column(data.global.x),
-            state = grid.isOccupied(row, col);
+            occupied = grid.isOccupied(row, col),
+            type = config.animalForRow[row];
         if (config.debug) {
             $("#monitor").html("row: " + row +
                     "<br>col: " + col +
-                    "<br>state: " + state);
+                    "<br>occupied: " + occupied);
+        }
+        if (!occupied && type !== undefined) {
+            entityManager.add(type, col);
         }
     }
 
