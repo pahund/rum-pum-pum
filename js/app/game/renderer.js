@@ -9,7 +9,7 @@
 define(function (require) {
     "use strict";
 
-    var PIXI = require("pixi.dev"),
+    var PIXI = require("app/util/pixi.dev.patched"),
         dimensions = require("app/game/dimensions"),
         renderer = PIXI.autoDetectRenderer(dimensions.viewport.w, dimensions.viewport.h);
 

@@ -10,7 +10,7 @@
 define(function (require) {
     "use strict";
 
-    var PIXI = require("pixi.dev"),
+    var PIXI = require("app/util/pixi.dev.patched"),
         stage = require("app/game/stage"),
         world = require("app/game/world"),
         sprites = {};

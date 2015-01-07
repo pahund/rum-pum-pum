@@ -9,7 +9,7 @@
 define(function (require) {
     "use strict";
 
-    var PIXI = require("pixi.dev"),
+    var PIXI = require("app/util/pixi.dev.patched"),
         dimensions = require("app/game/dimensions"),
         textured = require("app/components/textured"),
         positioned = require("app/components/positioned"),

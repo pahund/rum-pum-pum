@@ -10,7 +10,7 @@ define(function (require) {
     "use strict";
 
     var $ = require("jquery"),
-        PIXI = require("pixi.dev"),
+        PIXI = require("app/util/pixi.dev.patched"),
         grid = require("app/game/grid"),
         config = require("app/config"),
         stage = new PIXI.Stage(0xFFFFFF, true);

@@ -10,7 +10,7 @@ define(function (require) {
     "use strict";
 
     var grid = require("app/game/grid"),
-        PIXI = require("pixi.dev"),
+        PIXI = require("app/util/pixi.dev.patched"),
         background = new PIXI.Graphics(),
         row,
         col,
