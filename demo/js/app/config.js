@@ -32,6 +32,13 @@ define(function (require) {
                 id: "cuica-lo",
                 path: "sounds/cuica-lo01.ogg"
             }
-        ]
+        ],
+        rowForAnimal: {
+            "bird": 1,
+            "kangaroo": 2,
+            "baby-kangaroo": 2,
+            "monkey": 3,
+            "bear": 4
+        }
     };
 });

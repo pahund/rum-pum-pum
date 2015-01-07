@@ -9,7 +9,7 @@
 define(function (require) {
     "use strict";
 
-    var PIXI = require("pixi.dev"),
+    var PIXI = require("app/util/pixi.dev.patched"),
         dimensions = require("app/game/dimensions"),
         textured = require("app/components/textured"),
         positioned = require("app/components/positioned"),
@@ -31,7 +31,7 @@ define(function (require) {
                     input.x === undefined ? dimensions.viewport.w / 2 : input.x,
                     input.y === undefined ? dimensions.viewport.h / 2 : input.y),
                 scale: new PIXI.Point(scale, scale),
-                anchor: new PIXI.Point(0.5, 0.1)
+                anchor: new PIXI.Point(0.5, 1)
             }),
             proximityListener({
                 action: function (trigger, listener) {
