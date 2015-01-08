@@ -36,6 +36,7 @@ define(function () {
     "use strict";
 
     return function iterate() {
+
         var slice = Array.prototype.slice,
             items = [],
             i;

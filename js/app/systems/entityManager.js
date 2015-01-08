@@ -12,13 +12,21 @@ define(function (require) {
         grid = require("app/game/grid"),
         bear = require("app/entities/bear"),
         monkey = require("app/entities/monkey"),
-        kangaroo = require("app/entities/kangaroo");
+        kangaroo = require("app/entities/kangaroo"),
+        idGenerator;
+
+    function idGeneratorFactory() {
+        var id = 0;
+        return function () {
+            return id++;
+        };
+    }
 
     function addEntity(type, col) {
         var row = config.rowForAnimal[type],
             x = grid.get.x(col, 0.5),
             y = grid.get.y(row, 1),
-            id = type + col;
+            id = type + idGenerator();
 
         if (grid.isOccupied(row)) {
             throw new Error("attempted to add " + type + " to row " + row + ", column " + col + ", " +
@@ -27,33 +35,32 @@ define(function (require) {
         grid.turnOn(row, col);
         switch (type) {
             case "kangaroo":
-                world.addEntity(id, kangaroo({
-                    x: x,
-                    y: y
-                }));
+                world.addEntity(id, kangaroo({ x: x, y: y }));
                 break;
             case "baby-kangaroo":
-                world.addEntity(id, kangaroo({
-                    variant: 1,
-                    x: x,
-                    y: y
-                }));
+                world.addEntity(id, kangaroo({ variant: 1, x: x, y: y }));
                 break;
             case "monkey":
-                world.addEntity(id, monkey({
-                    x: x,
-                    y: y
-                }));
+                world.addEntity(id, monkey({ x: x, y: y }));
                 break;
             case "bear":
-                world.addEntity(id, bear({
-                    x: x,
-                    y: y
-                }));
+                world.addEntity(id, bear({ x: x, y: y }));
                 break;
         }
         return id;
     }
+
+    function removeEntity(type, col) {
+        var row = config.rowForAnimal[type],
+            x = grid.get.x(col, 0.5),
+            y = grid.get.y(row, 1),
+            id = world.getEntityIdByCoordinates(x, y);
+
+        world.removeEntity(id);
+        grid.turnOff(row, col);
+    }
+
+    idGenerator = idGeneratorFactory();
 
     return {
         /**
@@ -63,6 +70,13 @@ define(function (require) {
          * @return The ID of the new entity
          */
         add: addEntity,
+
+        /**
+         * Removes a music animal entity from the world and the grid.
+         * @param type The type of entity: kangaroo, baby-kangaroo, monkey or bear (birds are not managed by this component)
+         * @col The column of the grid to display the entity in
+         */
+        remove: removeEntity,
 
         /**
          * Adds a kangaroo entity (low cuica) to the world and the grid.

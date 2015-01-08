@@ -12,10 +12,7 @@ define(function (require) {
     var $ = require("jquery"),
         renderer = require("app/game/renderer"),
         stage = require("app/game/stage"),
-        config = require("app/config"),
-        timer = require("app/util/timer")(),
         actions = [],
-        $monitor = $("#monitor"),
         running = false;
 
     (function loop() {
@@ -23,9 +20,6 @@ define(function (require) {
             $.each(actions, function () {
                 this();
             });
-            if (config.debug) {
-                $monitor.html(timer.average());
-            }
             renderer.render(stage);
         }
         window.requestAnimationFrame(loop);

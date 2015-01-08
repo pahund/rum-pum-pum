@@ -47,6 +47,11 @@ define(function (require) {
         return sprite;
     }
 
+    function removeSprite(id) {
+        stage.removeChild(sprites[id]);
+        delete sprites[id];
+    }
+
     function updateFrame(sprite, comp) {
         sprite.setTexture(PIXI.Texture.fromFrame(comp.textured.image));
     }
@@ -72,6 +77,11 @@ define(function (require) {
                 }
                 updateFrame(sprite, comp);
                 updatePosition(sprite, comp);
+            });
+            $.each(sprites, function (id) {
+                if (!world.hasEntity(id)) {
+                    removeSprite(id);
+                }
             });
         }
     };

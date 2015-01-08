@@ -1,7 +1,7 @@
 /**
  * stage.js
  *
- * Initialization logic for the Pixi stage. Creates and returns the stage as a singleton.
+ * Initialization and interaction logic for the Pixi stage. Creates and returns the stage as a singleton.
  *
  * @author <a href="https://github.com/pahund">Patrick Hund</a>
  * @since 04/12/14
@@ -26,9 +26,15 @@ define(function (require) {
                     "<br>col: " + col +
                     "<br>occupied: " + occupied);
         }
-        if (!occupied && type !== undefined) {
-            entityManager.add(type, col);
+        if (type === undefined) {
+            return;
         }
+        if (!occupied) {
+            entityManager.add(type, col);
+        } else {
+            entityManager.remove(type, col);
+        }
+
     }
 
     stage.mousedown = interact;
