@@ -12,12 +12,21 @@ define(function (require) {
         grid = require("app/game/grid"),
         bear = require("app/entities/bear"),
         monkey = require("app/entities/monkey"),
-        kangaroo = require("app/entities/kangaroo");
+        kangaroo = require("app/entities/kangaroo"),
+        idGenerator;
+
+    function idGeneratorFactory() {
+        var id = 0;
+        return function () {
+            return id++;
+        };
+    }
 
     function addEntity(type, col) {
         var row = config.rowForAnimal[type],
             x = grid.get.x(col, 0.5),
-            y = grid.get.y(row, 1);
+            y = grid.get.y(row, 1),
+            id = type + idGenerator();
 
         if (grid.isOccupied(row)) {
             throw new Error("attempted to add " + type + " to row " + row + ", column " + col + ", " +
@@ -26,48 +35,83 @@ define(function (require) {
         grid.turnOn(row, col);
         switch (type) {
             case "kangaroo":
-                world.addEntity("kangaroo" + col, kangaroo({
-                    x: x,
-                    y: y
-                }));
+                world.addEntity(id, kangaroo({ x: x, y: y }));
                 break;
             case "baby-kangaroo":
-                world.addEntity("baby-kangaroo" + col, kangaroo({
-                    variant: 1,
-                    x: x,
-                    y: y
-                }));
+                world.addEntity(id, kangaroo({ variant: 1, x: x, y: y }));
                 break;
             case "monkey":
-                world.addEntity("monkey" + col, monkey({
-                    x: x,
-                    y: y
-                }));
+                world.addEntity(id, monkey({ x: x, y: y }));
                 break;
             case "bear":
-                world.addEntity("bear" + col, bear({
-                    x: x,
-                    y: y
-                }));
+                world.addEntity(id, bear({ x: x, y: y }));
                 break;
-            default:
-                throw new Error("invalid type: " + type);
         }
+        return id;
     }
 
+    function removeEntity(type, col) {
+        var row = config.rowForAnimal[type],
+            x = grid.get.x(col, 0.5),
+            y = grid.get.y(row, 1),
+            id = world.getEntityIdByCoordinates(x, y);
+
+        world.removeEntity(id);
+        grid.turnOff(row, col);
+    }
+
+    idGenerator = idGeneratorFactory();
+
     return {
+        /**
+         * Adds an music animal entity to the world and the grid.
+         * @param type The type of entity: kangaroo, baby-kangaroo, monkey or bear (birds are not managed by this component)
+         * @col The column of the grid to display the entity in
+         * @return The ID of the new entity
+         */
         add: addEntity,
+
+        /**
+         * Removes a music animal entity from the world and the grid.
+         * @param type The type of entity: kangaroo, baby-kangaroo, monkey or bear (birds are not managed by this component)
+         * @col The column of the grid to display the entity in
+         */
+        remove: removeEntity,
+
+        /**
+         * Adds a kangaroo entity (low cuica) to the world and the grid.
+         * @col The column of the grid to display the kangaroo in
+         * @return The ID of the new entity
+         */
         addKangaroo: function () {
-            addEntity("kangaroo", arguments[arguments.length - 1]);
+            return addEntity("kangaroo", arguments[arguments.length - 1]);
         },
+
+        /**
+         * Adds a baby kangaroo entity (high cuica) to the world and the grid.
+         * @col The column of the grid to display the baby kangaroo in
+         * @return The ID of the new entity
+         */
         addBabyKangaroo: function () {
-            addEntity("baby-kangaroo", arguments[arguments.length - 1]);
+            return addEntity("baby-kangaroo", arguments[arguments.length - 1]);
         },
+
+        /**
+         * Adds a monkey entity (snare drum) to the world and the grid.
+         * @col The column of the grid to display the monkey in
+         * @return The ID of the new entity
+         */
         addMonkey: function () {
-            addEntity("monkey", arguments[arguments.length - 1]);
+            return addEntity("monkey", arguments[arguments.length - 1]);
         },
+
+        /**
+         * Adds a bear entity (bass drum) to the world and the grid.
+         * @col The column of the grid to display the bear in
+         * @return The ID of the new entity
+         */
         addBear: function () {
-            addEntity("bear", arguments[arguments.length - 1]);
+            return addEntity("bear", arguments[arguments.length - 1]);
         }
     };
 });

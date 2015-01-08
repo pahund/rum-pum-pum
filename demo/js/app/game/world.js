@@ -45,6 +45,13 @@ define(function (require) {
             });
         },
 
+        removeEntity: function (entityId) {
+            if (entities[entityId] === undefined) {
+                throw new Error("Attempted to remove entity " + entityId + ", which is not registered");
+            }
+            delete entities[entityId];
+        },
+
         addComponent: function (entityId, component) {
             var components = entities[entityId];
             if (components === undefined) {
@@ -77,6 +84,10 @@ define(function (require) {
 
         hasComponent: function (entityId, componentId) {
             return entities[entityId][componentId] !== undefined;
+        },
+
+        hasEntity: function (entityId) {
+            return entities[entityId] !== undefined;
         },
 
         getEntity: function (entityId) {
@@ -139,6 +150,21 @@ define(function (require) {
                 };
             });
 
+        },
+
+        getEntityIdByCoordinates: function (x, y) {
+            var entityId;
+            $.each(entities, function (id, components) {
+                var positioned = components.positioned;
+                if (positioned === undefined) {
+                    return true; // continue iteration
+                }
+                if (positioned.coordinates.x === x && positioned.coordinates.y === y) {
+                    entityId = id;
+                    return false; // break iteration
+                }
+            });
+            return entityId;
         }
     };
 });

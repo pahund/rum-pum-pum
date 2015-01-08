@@ -39,6 +39,12 @@ define(function (require) {
             "baby-kangaroo": 2,
             "monkey": 3,
             "bear": 4
+        },
+        animalForRow: {
+            1: "bird",
+            2: "kangaroo",
+            3: "monkey",
+            4: "bear"
         }
     };
 });

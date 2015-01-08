@@ -15,6 +15,43 @@ define(function (require) {
         world = require("app/game/world"),
         sprites = {};
 
+    function addSprite() {
+        var texture,
+            sprite,
+            id,
+            components;
+
+        if (arguments.length === 1) {
+            id = arguments[0].id;
+            components = arguments[1].components;
+        }
+        else if (arguments.length === 2) {
+            id = arguments[0];
+            components = arguments[1];
+        }
+        else {
+            throw new Error("invalid number of arguments for addSprite function: " + arguments.length);
+        }
+
+        texture = PIXI.Texture.fromFrame(components.textured.image);
+        sprite = new PIXI.Sprite(texture);
+        if (components.positioned) {
+            sprite.position = components.positioned.coordinates;
+            sprite.scale = components.positioned.scale;
+            sprite.anchor = components.positioned.anchor;
+        } else {
+            // if the sprite is not positioned, it is hidden (out of visible viewport)
+            sprite.position = new PIXI.Point(-10000, 0);
+        }
+        sprites[id] = stage.addChild(sprite);
+        return sprite;
+    }
+
+    function removeSprite(id) {
+        stage.removeChild(sprites[id]);
+        delete sprites[id];
+    }
+
     function updateFrame(sprite, comp) {
         sprite.setTexture(PIXI.Texture.fromFrame(comp.textured.image));
     }
@@ -25,29 +62,26 @@ define(function (require) {
 
     return {
         init: function () {
-            world.forEachEntityWithComponents("textured")(function () {
-                var texture,
-                    sprite;
+            world.forEachEntityWithComponents("textured")(addSprite);
+        },
 
-                texture = PIXI.Texture.fromFrame(this.components.textured.image);
-                sprite = new PIXI.Sprite(texture);
-                if (this.components.positioned) {
-                    sprite.position = this.components.positioned.coordinates;
-                    sprite.scale = this.components.positioned.scale;
-                    sprite.anchor = this.components.positioned.anchor;
-                } else {
-                    // if the sprite is not positioned, it is hidden (out of visible viewport)
-                    sprite.position = new PIXI.Point(-10000, 0);
-                }
-                sprites[this.id] = stage.addChild(sprite);
-            });
+        add: function (id) {
+            addSprite(world.getEntity(id));
         },
 
         update: function () {
             world.forEachEntityWithComponents("textured", "positioned")(function (id, comp) {
                 var sprite = sprites[id];
+                if (sprite === undefined) {
+                    sprite = addSprite(id, comp);
+                }
                 updateFrame(sprite, comp);
                 updatePosition(sprite, comp);
+            });
+            $.each(sprites, function (id) {
+                if (!world.hasEntity(id)) {
+                    removeSprite(id);
+                }
             });
         }
     };
