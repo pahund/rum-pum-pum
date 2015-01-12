@@ -9,8 +9,7 @@
 define(function (require) {
     "use strict";
 
-    var $ = require("jquery"),
-        PIXI = require("app/util/pixi.dev.patched"),
+    var PIXI = require("app/util/pixi.dev.patched"),
         grid = require("app/game/grid"),
         config = require("app/config"),
         entityManager = require("app/systems/entityManager"),
