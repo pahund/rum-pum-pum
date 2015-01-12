@@ -45,6 +45,7 @@ define(function (require) {
             2: "kangaroo",
             3: "monkey",
             4: "bear"
-        }
+        },
+        maxRegistryItems: 15
     };
 });

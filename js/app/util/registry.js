@@ -6,18 +6,36 @@
  * @author <a href="https://github.com/pahund">Patrick Hund</a>
  * @since 19/12/14
  */
-define(function () {
+define(function (require) {
     "use strict";
 
-    return function registry() {
-        var reg = {};
+    var config = require("app/config");
+
+
+    return function registry(maxItems, garbageCollect) {
+        var reg = {},
+            count = 0;
+
+        function addItem(key, constructor) {
+            var item = constructor();
+            reg[key] = item;
+            count++;
+            if (count > maxItems && typeof garbageCollect === "function") {
+                garbageCollect(reg);
+                count = Object.keys(reg).length;
+            }
+            return item;
+        }
+
+        if (maxItems === undefined) {
+            maxItems = 100;
+        }
+
         return {
             get: function (key, constructor) {
-
-                var item = reg[key];
-                if (item === undefined) {
-                    item = constructor();
-                    reg[key] = item;
+                var item = reg[key] || addItem(key, constructor);
+                if (config.debug && key.indexOf(">") > -1) {
+                    $("#monitor").html("reg size: " + count);
                 }
                 return item;
             },

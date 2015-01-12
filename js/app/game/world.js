@@ -165,6 +165,19 @@ define(function (require) {
                 }
             });
             return entityId;
+        },
+
+        /**
+         * Removes properties from the specified object if they names do not correspond to the ID of an entity.
+         *
+         * @param o The object to collect garbage from
+         */
+        garbageCollect: function (o) {
+            $.each(o, function (key) {
+                if (entities[key] === undefined) {
+                    delete o[key];
+                }
+            });
         }
     };
 });

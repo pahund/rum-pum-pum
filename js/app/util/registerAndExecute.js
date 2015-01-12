@@ -12,7 +12,8 @@
 define(function (require) {
     "use strict";
 
-    var $ = require("jquery");
+    var $ = require("jquery"),
+        registryf = require("app/util/registry");
 
     /**
      * Creates the register and execute function.
@@ -24,7 +25,7 @@ define(function (require) {
      */
     return function () {
         var slice = Array.prototype.slice,
-            registry = require("app/util/registry")(),
+            registry = registryf(),
             callback = arguments[0],
             hasCondition = typeof arguments[1] === "function",
             condition = hasCondition ? arguments[1] : function () { return true; },

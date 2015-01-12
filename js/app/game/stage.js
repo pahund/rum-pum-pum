@@ -21,11 +21,6 @@ define(function (require) {
             col = grid.get.column(data.global.x),
             occupied = grid.isOccupied(row, col),
             type = config.animalForRow[row];
-        if (config.debug) {
-            $("#monitor").html("row: " + row +
-                    "<br>col: " + col +
-                    "<br>occupied: " + occupied);
-        }
         if (type === undefined) {
             return;
         }
