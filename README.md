@@ -28,6 +28,13 @@ Intallation steps:
 
 Open up [index.html](index.html) in your favorite browser (needs to support Web Audio API).
 
+## Creating Optimized Distribution Version
+
+Rum Pum Pum uses [webpack](http://webpack.github.io/) to optimize and bundle its resources. To create a distribution,
+use this command (after the steps listed above):
+
+    grunt dist
+
 ## Credits and Acknowledgements
 
 ### Cuíca Sounds (Kangaroo)
