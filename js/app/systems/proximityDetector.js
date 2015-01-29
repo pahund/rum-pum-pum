@@ -11,10 +11,8 @@ define(function (require) {
     "use strict";
 
     var world = require("app/game/world"),
-        config = require("app/config"),
         nest = require("app/util/nest"),
         iterate = require("app/util/iterate"),
-        registryf = require("app/util/registry"),
         registry;
 
     function getDistance(ent1, ent2) {
@@ -86,7 +84,7 @@ define(function (require) {
         };
     }
 
-    registry = registryf(config.maxRegistryItems, world.garbageCollect);
+    registry = world.getWorldRegistry();
 
     return function () {
         var triggerIt = iterate(world.getEntitiesByComponents("proximityTrigger", "positioned")),

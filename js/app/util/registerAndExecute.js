@@ -13,7 +13,7 @@ define(function (require) {
     "use strict";
 
     var $ = require("jquery"),
-        registryf = require("app/util/registry");
+        world = require("app/game/world");
 
     /**
      * Creates the register and execute function.
@@ -25,7 +25,7 @@ define(function (require) {
      */
     return function () {
         var slice = Array.prototype.slice,
-            registry = registryf(),
+            registry = world.getWorldRegistry(),
             callback = arguments[0],
             hasCondition = typeof arguments[1] === "function",
             condition = hasCondition ? arguments[1] : function () { return true; },

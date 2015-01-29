@@ -10,6 +10,8 @@ define(function (require) {
     "use strict";
 
     var $ = require("jquery"),
+        config = require("app/config"),
+        registryf = require("app/util/registry"),
         entities = {};
 
     return {
@@ -178,6 +180,16 @@ define(function (require) {
                     delete o[key];
                 }
             });
+        },
+
+        /**
+         * Creates a registry that uses the world's garbageCollect function to purge obsolete items.
+         *
+         * @see app/util/registry
+         * @returns {*} The registry
+         */
+        getWorldRegistry: function () {
+            return registryf(config.maxRegistryItems, this.garbageCollect);
         }
     };
 });

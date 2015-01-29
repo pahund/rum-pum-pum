@@ -6,11 +6,8 @@
  * @author <a href="https://github.com/pahund">Patrick Hund</a>
  * @since 19/12/14
  */
-define(function (require) {
+define(function () {
     "use strict";
-
-    var config = require("app/config");
-
 
     return function registry(maxItems, garbageCollect) {
         var reg = {},
@@ -34,9 +31,6 @@ define(function (require) {
         return {
             get: function (key, constructor) {
                 var item = reg[key] || addItem(key, constructor);
-                if (config.debug && key.indexOf(">") > -1) {
-                    $("#monitor").html("reg size: " + count);
-                }
                 return item;
             },
 
