@@ -43,9 +43,18 @@ Copyright (c) 2006 [reinsamba](https://www.freesound.org/people/reinsamba/).
 Published under [Creative Commons CC BY 3.0](http://creativecommons.org/licenses/by/3.0/) license.
 Downloaded from [Freesounds.org](https://www.freesound.org/people/reinsamba/packs/1339/).
 
+### Third Party Libraries
+
+* [jQuery](http://jquery.com/) &mdash; Copyright (C) 2015 The jQuery Foundation. 
+  [jQuery License](https://jquery.org/license/)
+* [jasmine](https://github.com/velesin/jasmine-jquery) &mdash; Copyright (C) 2010-2014 Wojciech Zawistowski, Travis Jeffery.
+  [MIT License](https://github.com/velesin/jasmine-jquery/blob/master/MIT.LICENSE)
+* [RequireJS](http://requirejs.org/) &mdash; Copyright (C) 2010-2015, The Dojo Foundation. 
+  [New BSD or MIT License](https://github.com/jrburke/requirejs/blob/master/LICENSE)
+  
 ## The MIT License (MIT)
 
-Copyright (c) 2014 [Patrick Hund](https://github.com/pahund)
+Copyright (C) 2015 [Patrick Hund](https://github.com/pahund)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -65,11 +74,4 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
-## Third Party Libraries
 
-* [jQuery](http://jquery.com/) &mdash; Copyright (C) 2015 The jQuery Foundation. 
-  [jQuery License](https://jquery.org/license/)
-* [jasmine](https://github.com/velesin/jasmine-jquery) &mdash; Copyright (C) 2010-2014 Wojciech Zawistowski, Travis Jeffery.
-  [MIT License](https://github.com/velesin/jasmine-jquery/blob/master/MIT.LICENSE)
-* [RequireJS](http://requirejs.org/) &mdash; Copyright (C) 2010-2015, The Dojo Foundation. 
-  [New BSD or MIT License](https://github.com/jrburke/requirejs/blob/master/LICENSE)
