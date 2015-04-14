@@ -6,8 +6,10 @@
  */
 /* global describe, beforeEach, spyOn, it, expect */
 define([
+    "jquery",
     "app/util/registry"
 ], function (
+    $,
     registry
 ) {
     "use strict";
@@ -83,6 +85,78 @@ define([
                         this.registry.call("foo" + i);
                         expect(this.spies[i].executed).toHaveBeenCalled();
                     }
+                });
+            });
+        });
+    });
+
+    describe("When I instantiate the registry with maxItems = 3 and a garbage collector that removes every second item", function () {
+        beforeEach(function () {
+            var spy = makeSpy("gc");
+            this.gcSpy = spy;
+            this.registry = registry(3, function (reg) {
+                var flag = false;
+                spy.executed();
+                $.each(reg, function (key) {
+                    if (flag) {
+                        delete reg[key];
+                    }
+                    flag = !flag;
+                });
+            });
+        });
+        describe("and I get 4 items", function () {
+            beforeEach(function () {
+                var i;
+                this.spies = new Array(4);
+                this.mocks = new Array(4);
+                for (i = 0; i < 4; i++) {
+                    this.spies[i] = makeSpy("bar" + i);
+                    this.mocks[i] = makeMock(this.spies[i]);
+                    this.registry.get("foo" + i, this.mocks[i]);
+                }
+            });
+            describe("the garbage collector", function () {
+                it("was invoked", function () {
+                    expect(this.gcSpy.executed).toHaveBeenCalled();
+                });
+            });
+            describe("and I call the first item, the registry", function () {
+                it("invokes the item function", function () {
+                    this.registry.call("foo0");
+                    expect(this.spies[0].executed).toHaveBeenCalled();
+                });
+            });
+            describe("and I call the second item, the registry", function () {
+                it("throws an exception", function () {
+                    expect(function () {
+                        this.registry.call("foo1");
+                    }).toThrow();
+                });
+                it("does not invoke the item function", function () {
+                    try {
+                        this.registry.call("foo1");
+                    } catch (e) {}
+                    expect(this.spies[1].executed).not.toHaveBeenCalled();
+                });
+            });
+            describe("and I call the third item, the registry", function () {
+                it("invokes the item function", function () {
+                    this.registry.call("foo2");
+                    expect(this.spies[2].executed).toHaveBeenCalled();
+                });
+            });
+            describe("and I call the fourth item, the registry", function () {
+                it("throws an exception", function () {
+                    expect(function () {
+                        this.registry.call("foo3");
+                    }).toThrow();
+                });
+                it("does not invoke the item function", function () {
+                    try {
+                        this.registry.call("foo3");
+                    } catch (e) {}
+                    expect(this.spies[3].executed).not.toHaveBeenCalled();
                 });
             });
         });
