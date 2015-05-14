@@ -15,9 +15,9 @@ define(function (require) {
         entityManager = require("../systems/entityManager"),
         stage = new PIXI.Stage(0xFFFFFF, true);
 
-    function interact(data) {
-        var row = grid.get.row(data.global.y),
-            col = grid.get.column(data.global.x),
+    function interact(event) {
+        var row = grid.get.row(event.data.global.y),
+            col = grid.get.column(event.data.global.x),
             occupied = grid.isOccupied(row, col),
             type = config.animalForRow[row];
         if (type === undefined) {
@@ -28,9 +28,9 @@ define(function (require) {
         } else {
             entityManager.remove(type, col);
         }
-
     }
 
+    stage.interactive = true;
     stage.mousedown = interact;
     stage.touchstart = interact;
 
