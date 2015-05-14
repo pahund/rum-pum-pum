@@ -10,7 +10,6 @@
 define(function (require) {
     "use strict";
 
-    console.log("[PH_LOG] instantiating sequence animator"); // PH_TODO: REMOVE
     var world = require("../game/world"),
         timer = require("../util/timer"),
         rex;

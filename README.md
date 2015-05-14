@@ -23,8 +23,6 @@ Prerequisites:
 Intallation steps:
 
 * `npm install`
-* `bower install`
-* `grunt install`
 
 Start the webpack server like so:
 

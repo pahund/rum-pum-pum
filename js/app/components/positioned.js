@@ -9,7 +9,7 @@
 define(function (require) {
     "use strict";
 
-    var PIXI = require("../../lib/pixi");
+    var PIXI = require("pixi");
 
     return require("./componentFactory")("positioned", [
         {

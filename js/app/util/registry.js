@@ -9,25 +9,17 @@
 define(function () {
     "use strict";
 
-    var registryId = 0;
-
     return function registry(maxItems, garbageCollect) {
         var reg = {},
-            count = 0,
-            id = registryId++;
-
-        console.log("[PH_LOG] instantiated registry " + id); // PH_TODO: REMOVE
+            count = 0;
 
         function addItem(key, constructor) {
             var item = constructor();
             reg[key] = item;
-            console.log("[PH_LOG] item was added to registry " + id + ": " + key); // PH_TODO: REMOVE
             count++;
-            console.log("[PH_LOG] registry " + id + " has " + count + " items"); // PH_TODO: REMOVE
             if (count > maxItems && typeof garbageCollect === "function") {
                 garbageCollect(reg);
                 count = Object.keys(reg).length;
-                console.log("[PH_LOG] registry " + id + " has " + count + " items after GC"); // PH_TODO: REMOVE
             }
             return item;
         }

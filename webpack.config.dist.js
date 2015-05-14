@@ -19,7 +19,8 @@ module.exports = {
         chunkFilename: "[chunkhash].bundle.js"
     },
     externals: {
-        jquery: "jQuery"
+        jquery: "jQuery",
+        pixi: "PIXI"
     },
     plugins: [
         new webpack.optimize.UglifyJsPlugin(),

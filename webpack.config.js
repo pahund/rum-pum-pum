@@ -18,7 +18,8 @@ module.exports = {
         filename: "bundle.js"
     },
     externals: {
-        jquery: "jQuery"
+        jquery: "jQuery",
+        pixi: "PIXI"
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin()

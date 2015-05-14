@@ -13,7 +13,7 @@ var $ = require("jquery"),
     config = require("./app/config"),
     player = require("./app/audio/player"),
     entityManager = require("./app/systems/entityManager"),
-    PIXI = require("./lib/pixi"),
+    PIXI = require("pixi"),
     renderer = require("./app/game/renderer"),
     stage = require("./app/game/stage"),
     grid = require("./app/game/grid"),
@@ -22,18 +22,19 @@ var $ = require("jquery"),
     background = require("./app/game/background"),
     spriteManager = require("./app/systems/spriteManager"),
     bird = require("./app/entities/bird"),
-    //loader = new PIXI.AssetLoader(["images/sprites.json"]);
-    loader = PIXI.loader;
+    loader = PIXI.loader,
+    start,
+    stop;
 
-function start() {
+start = function () {
     $("#play").html("Stop").one("click", stop);
     loop.start();
-}
+};
 
-function stop() {
+stop = function () {
     $("#play").html("Start").one("click", start);
     loop.stop();
-}
+};
 
 function onAssetsLoaded() {
 

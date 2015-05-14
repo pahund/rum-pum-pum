@@ -10,7 +10,6 @@
 define(function (require) {
     "use strict";
 
-    console.log("[PH_LOG] instantiatinc proximity detector"); // PH_TODO: REMOVE
     var world = require("../game/world"),
         nest = require("../util/nest"),
         iterate = require("../util/iterate"),

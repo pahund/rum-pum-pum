@@ -9,7 +9,7 @@
 define(function (require) {
     "use strict";
 
-    var PIXI = require("../../lib/pixi"),
+    var PIXI = require("pixi"),
         grid = require("./grid"),
         config = require("../config"),
         entityManager = require("../systems/entityManager"),

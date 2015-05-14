@@ -10,7 +10,6 @@
 define(function (require) {
     "use strict";
 
-    console.log("[PH_LOG] instantiating mover"); // PH_TODO: REMOVE
     var world = require("../game/world"),
         getTimestamp = require("../util/getTimestamp"),
         rex;

@@ -10,7 +10,7 @@
 define(function (require) {
     "use strict";
 
-    var PIXI = require("../../lib/pixi"),
+    var PIXI = require("pixi"),
         stage = require("../game/stage"),
         world = require("../game/world"),
         sprites = {};
@@ -53,7 +53,7 @@ define(function (require) {
     }
 
     function updateFrame(sprite, comp) {
-        sprite.setTexture(PIXI.Texture.fromFrame(comp.textured.image));
+        sprite.texture = PIXI.Texture.fromFrame(comp.textured.image);
     }
 
     function updatePosition(sprite, comp) {
