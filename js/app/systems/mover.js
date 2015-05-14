@@ -10,8 +10,9 @@
 define(function (require) {
     "use strict";
 
-    var world = require("app/game/world"),
-        getTimestamp = require("app/util/getTimestamp"),
+    console.log("[PH_LOG] instantiating mover"); // PH_TODO: REMOVE
+    var world = require("../game/world"),
+        getTimestamp = require("../util/getTimestamp"),
         rex;
 
     function calc(current, delta, min, max) {
@@ -38,7 +39,7 @@ define(function (require) {
         };
     }
 
-    rex = require("app/util/registerAndExecute")(motion, "moving", "positioned");
+    rex = require("../util/registerAndExecute")(motion, "moving", "positioned");
 
     return function () {
         world.forEachEntityWithComponents("moving", "positioned")(rex);

@@ -9,13 +9,13 @@
 define(function (require) {
     "use strict";
 
-    var PIXI = require("app/util/pixi.dev.patched"),
-        dimensions = require("app/game/dimensions"),
-        textured = require("app/components/textured"),
-        positioned = require("app/components/positioned"),
-        moving = require("app/components/moving"),
-        animated = require("app/components/animated"),
-        proximityTrigger = require("app/components/proximityTrigger"),
+    var PIXI = require("../../lib/pixi"),
+        dimensions = require("../game/dimensions"),
+        textured = require("../components/textured"),
+        positioned = require("../components/positioned"),
+        moving = require("../components/moving"),
+        animated = require("../components/animated"),
+        proximityTrigger = require("../components/proximityTrigger"),
         width = 79,
         height = 84,
         scale = 1;

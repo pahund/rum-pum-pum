@@ -9,7 +9,7 @@
 define(function (require) {
     "use strict";
 
-    return require("app/components/componentFactory")("animated", [
+    return require("./componentFactory")("animated", [
         {
             name: "frames",
             mandatory: true

@@ -9,10 +9,10 @@
 define(function (require) {
     "use strict";
 
-    var PIXI = require("app/util/pixi.dev.patched"),
-        grid = require("app/game/grid"),
-        config = require("app/config"),
-        entityManager = require("app/systems/entityManager"),
+    var PIXI = require("../../lib/pixi"),
+        grid = require("./grid"),
+        config = require("../config"),
+        entityManager = require("../systems/entityManager"),
         stage = new PIXI.Stage(0xFFFFFF, true);
 
     function interact(data) {

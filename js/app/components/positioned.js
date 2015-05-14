@@ -9,9 +9,9 @@
 define(function (require) {
     "use strict";
 
-    var PIXI = require("app/util/pixi.dev.patched");
+    var PIXI = require("../../lib/pixi");
 
-    return require("app/components/componentFactory")("positioned", [
+    return require("./componentFactory")("positioned", [
         {
             name: "coordinates",
             fallback: new PIXI.Point(0, 0)

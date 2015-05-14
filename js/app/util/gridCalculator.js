@@ -12,7 +12,7 @@ define(function (require) {
     "use strict";
 
     var $ = require("jquery"),
-        dimensions = require("app/game/dimensions");
+        dimensions = require("../game/dimensions");
 
     return function (options) {
         var settings = {},

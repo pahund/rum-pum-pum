@@ -7,7 +7,7 @@
 define(function (require) {
     "use strict";
 
-    return require("app/components/componentFactory")("withSequenceAnimation", [
+    return require("./componentFactory")("withSequenceAnimation", [
         {
             name: "sequences",
             mandatory: true

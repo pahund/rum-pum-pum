@@ -10,8 +10,9 @@
 define(function (require) {
     "use strict";
 
-    var world = require("app/game/world"),
-        timer = require("app/util/timer"),
+    console.log("[PH_LOG] instantiating sequence animator"); // PH_TODO: REMOVE
+    var world = require("../game/world"),
+        timer = require("../util/timer"),
         rex;
 
     function animation(wsa, tex) {
@@ -39,7 +40,7 @@ define(function (require) {
         return wsa.running;
     }
 
-    rex = require("app/util/registerAndExecute")(animation, condition, "withSequenceAnimation", "textured");
+    rex = require("../util/registerAndExecute")(animation, condition, "withSequenceAnimation", "textured");
 
     return function () {
         world.forEachEntityWithComponents("withSequenceAnimation", "textured")(rex);

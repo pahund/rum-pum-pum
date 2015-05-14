@@ -10,9 +10,10 @@
 define(function (require) {
     "use strict";
 
-    var world = require("app/game/world"),
-        nest = require("app/util/nest"),
-        iterate = require("app/util/iterate"),
+    console.log("[PH_LOG] instantiatinc proximity detector"); // PH_TODO: REMOVE
+    var world = require("../game/world"),
+        nest = require("../util/nest"),
+        iterate = require("../util/iterate"),
         registry;
 
     function getDistance(ent1, ent2) {

@@ -26,6 +26,10 @@ Intallation steps:
 * `bower install`
 * `grunt install`
 
+Start the webpack server like so:
+
+* `webpack-dev-server`
+
 Open up [index.html](index.html) in your favorite browser (needs to support Web Audio API).
 
 ## Creating Optimized Distribution Version
@@ -43,14 +47,18 @@ Copyright (c) 2006 [reinsamba](https://www.freesound.org/people/reinsamba/).
 Published under [Creative Commons CC BY 3.0](http://creativecommons.org/licenses/by/3.0/) license.
 Downloaded from [Freesounds.org](https://www.freesound.org/people/reinsamba/packs/1339/).
 
-### Third Party Libraries
+### Third Party Libraries and Tools
 
+* [pixi.js](https://github.com/GoodBoyDigital/pixi.js/) &mdash; Copyright (C) 2013-2015 Mathew Groves.
+  [MIT License](https://github.com/GoodBoyDigital/pixi.js/blob/master/LICENSE)
+* [webpack](http://webpack.github.io/) &mdash; Copyright (C) 2012-2015 Tobias Koppers.
+  [MIT License](https://github.com/webpack/webpack/blob/master/LICENSE)
+* [Grunt](http://gruntjs.com/) &mdash; Copyright (C) 2015 "Cowboy" Ben Alman.
+  [MIT License](https://github.com/gruntjs/grunt/blob/master/LICENSE-MIT)
 * [jQuery](http://jquery.com/) &mdash; Copyright (C) 2015 The jQuery Foundation. 
   [jQuery License](https://jquery.org/license/)
 * [jasmine](https://github.com/velesin/jasmine-jquery) &mdash; Copyright (C) 2010-2014 Wojciech Zawistowski, Travis Jeffery.
   [MIT License](https://github.com/velesin/jasmine-jquery/blob/master/MIT.LICENSE)
-* [RequireJS](http://requirejs.org/) &mdash; Copyright (C) 2010-2015, The Dojo Foundation. 
-  [New BSD or MIT License](https://github.com/jrburke/requirejs/blob/master/LICENSE)
   
 ## The MIT License (MIT)
 

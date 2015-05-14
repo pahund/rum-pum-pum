@@ -9,81 +9,70 @@
 
 "use strict";
 
-/* global require */
-require.config({
-    baseUrl: "js/lib",
-    paths: {
-        app: "../app"
-    }
-});
+var $ = require("jquery"),
+    config = require("./app/config"),
+    player = require("./app/audio/player"),
+    entityManager = require("./app/systems/entityManager"),
+    PIXI = require("./lib/pixi"),
+    renderer = require("./app/game/renderer"),
+    stage = require("./app/game/stage"),
+    grid = require("./app/game/grid"),
+    loop = require("./app/game/loop"),
+    world = require("./app/game/world"),
+    background = require("./app/game/background"),
+    spriteManager = require("./app/systems/spriteManager"),
+    bird = require("./app/entities/bird"),
+    //loader = new PIXI.AssetLoader(["images/sprites.json"]);
+    loader = PIXI.loader;
 
-define(function (require) {
+function start() {
+    $("#play").html("Stop").one("click", stop);
+    loop.start();
+}
 
-    var $ = require("jquery"),
-        config = require("app/config"),
-        player = require("app/audio/player"),
-        entityManager = require("app/systems/entityManager"),
-        PIXI = require("app/util/pixi.dev.patched"),
-        renderer = require("app/game/renderer"),
-        stage = require("app/game/stage"),
-        grid = require("app/game/grid"),
-        loop = require("app/game/loop"),
-        world = require("app/game/world"),
-        background = require("app/game/background"),
-        spriteManager = require("app/systems/spriteManager"),
-        bird = require("app/entities/bird"),
-        loader = new PIXI.AssetLoader(["images/sprites.json"]);
+function stop() {
+    $("#play").html("Start").one("click", start);
+    loop.stop();
+}
 
-    function start() {
-        $("#play").html("Stop").one("click", stop);
-        loop.start();
-    }
+function onAssetsLoaded() {
 
-    function stop() {
-        $("#play").html("Start").one("click", start);
-        loop.stop();
-    }
+    stage.addChild(background);
 
-    $("body").append(renderer.view);
+    world.addEntity("bird", bird({
+        x: grid.get.x(1, 0.5),
+        y: grid.get.y(1, 0.5),
+        minX: grid.get.x(1, 0.5),
+        maxX: grid.get.x(17, 0.5)
+    }));
+    $.each([3, 7, 11, 15], entityManager.addKangaroo);
+    $.each([13], entityManager.addBabyKangaroo);
+    $.each([5, 13, 15, 16], entityManager.addMonkey);
+    $.each([1, 4, 11], entityManager.addBear);
 
-    // use callback
-    loader.onComplete = function () {
+    spriteManager.init(world);
+    loop.init();
 
-        stage.addChild(background);
+    loop.add(
+        require("./app/systems/frameAnimator"),
+        require("./app/systems/mover"),
+        require("./app/systems/proximityDetector"),
+        require("./app/systems/sequenceAnimator"),
+        require("./app/systems/soundPlayer"),
+        spriteManager.update
+    );
 
-        world.addEntity("bird", bird({
-            x: grid.get.x(1, 0.5),
-            y: grid.get.y(1, 0.5),
-            minX: grid.get.x(1, 0.5),
-            maxX: grid.get.x(17, 0.5)
-        }));
-        $.each([3, 7, 11, 15], entityManager.addKangaroo);
-        $.each([13], entityManager.addBabyKangaroo);
-        $.each([5, 13, 15, 16], entityManager.addMonkey);
-        $.each([1, 4, 11], entityManager.addBear);
+    $("#play").one("click", start);
+}
 
-        spriteManager.init(world);
-        loop.init();
+$("body").append(renderer.view);
 
-        loop.add(
-            require("app/systems/frameAnimator"),
-            require("app/systems/mover"),
-            require("app/systems/proximityDetector"),
-            require("app/systems/sequenceAnimator"),
-            require("app/systems/soundPlayer"),
-            spriteManager.update
-        );
+loader.add("images/sprites.json").load(onAssetsLoaded);
 
-        $("#play").one("click", start);
-    };
+player.load(config.sounds);
 
-    // begin loading
-    loader.load();
-    player.load(config.sounds);
-
-    if (config.debug) {
-        $("#monitor").html("debug active").show();
-    }
-});
+if (config.debug) {
+    $("#monitor").html("debug active").show();
+}
 
 

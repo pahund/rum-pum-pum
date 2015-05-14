@@ -10,9 +10,9 @@
 define(function (require) {
     "use strict";
 
-    var config = require("app/config"),
-        gridCalculator = require("app/util/gridCalculator"),
-        gridToggler = require("app/util/gridToggler"),
+    var config = require("../config"),
+        gridCalculator = require("../util/gridCalculator"),
+        gridToggler = require("../util/gridToggler"),
         calculator,
         toggler;
 

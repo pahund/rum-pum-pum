@@ -9,7 +9,7 @@
 define(function (require) {
     "use strict";
 
-    return require("app/components/componentFactory")("moving", [
+    return require("./componentFactory")("moving", [
         {
             name: "deltaX",
             fallback: 0

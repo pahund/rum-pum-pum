@@ -10,8 +10,8 @@ define(function (require) {
     "use strict";
 
     var $ = require("jquery"),
-        config = require("app/config"),
-        registryf = require("app/util/registry"),
+        config = require("../config"),
+        registryf = require("../util/registry"),
         entities = {};
 
     return {

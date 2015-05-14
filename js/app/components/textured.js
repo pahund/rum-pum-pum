@@ -9,7 +9,7 @@
 define(function (require) {
     "use strict";
 
-    return require("app/components/componentFactory")("textured", [
+    return require("./componentFactory")("textured", [
         {
             name: "image",
             mandatory: true

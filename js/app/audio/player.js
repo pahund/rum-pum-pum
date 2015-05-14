@@ -9,8 +9,8 @@
 
 define(function (require) {
 
-    var context = require("app/audio/context"),
-        load = require("app/audio/load"),
+    var context = require("./context"),
+        load = require("./load"),
         buffers = {};
 
     function getSoundsFromInput(input) {

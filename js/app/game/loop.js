@@ -10,8 +10,8 @@ define(function (require) {
     "use strict";
 
     var $ = require("jquery"),
-        renderer = require("app/game/renderer"),
-        stage = require("app/game/stage"),
+        renderer = require("./renderer"),
+        stage = require("./stage"),
         actions = [],
         running = false;
 

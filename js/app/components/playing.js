@@ -7,7 +7,7 @@
 define(function (require) {
     "use strict";
 
-    return require("app/components/componentFactory")("playing", [
+    return require("./componentFactory")("playing", [
         {
             name: "sound",
             mandatory: true

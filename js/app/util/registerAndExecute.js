@@ -13,7 +13,7 @@ define(function (require) {
     "use strict";
 
     var $ = require("jquery"),
-        world = require("app/game/world");
+        world = require("../game/world");
 
     /**
      * Creates the register and execute function.

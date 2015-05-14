@@ -10,8 +10,9 @@
 define(function (require) {
     "use strict";
 
-    var world = require("app/game/world"),
-        timer = require("app/util/timer"),
+    console.log("[PH_LOG] instantiating frame animator"); // PH_TODO: REMOVE
+    var world = require("../game/world"),
+        timer = require("../util/timer"),
         rex;
 
     function animation(animatedc, texturedc) {
@@ -30,7 +31,7 @@ define(function (require) {
         };
     }
 
-    rex = require("app/util/registerAndExecute")(animation, "animated", "textured");
+    rex = require("../util/registerAndExecute")(animation, "animated", "textured");
 
     return function () {
         world.forEachEntityWithComponents("animated", "textured")(rex);

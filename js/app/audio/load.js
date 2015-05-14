@@ -7,7 +7,7 @@
 
 define(function (require) {
 
-    var context = require("app/audio/context");
+    var context = require("./context");
 
     return function (url, callback) {
 

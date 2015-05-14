@@ -7,7 +7,7 @@
 define(function (require) {
     "use strict";
 
-    var getTimestamp = require("app/util/getTimestamp");
+    var getTimestamp = require("../util/getTimestamp");
 
     return function () {
         var time = getTimestamp(),

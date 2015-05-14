@@ -7,12 +7,12 @@
 define(function (require) {
     "use strict";
 
-    var world = require("app/game/world"),
-        config = require("app/config"),
-        grid = require("app/game/grid"),
-        bear = require("app/entities/bear"),
-        monkey = require("app/entities/monkey"),
-        kangaroo = require("app/entities/kangaroo"),
+    var world = require("../game/world"),
+        config = require("../config"),
+        grid = require("../game/grid"),
+        bear = require("../entities/bear"),
+        monkey = require("../entities/monkey"),
+        kangaroo = require("../entities/kangaroo"),
         idGenerator;
 
     function idGeneratorFactory() {

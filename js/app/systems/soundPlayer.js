@@ -9,8 +9,8 @@
 define(function (require) {
     "use strict";
 
-    var world = require("app/game/world"),
-        player = require("app/audio/player");
+    var world = require("../game/world"),
+        player = require("../audio/player");
 
     return function () {
         world.forEachEntityWithComponents("playing")(function (id, components) {

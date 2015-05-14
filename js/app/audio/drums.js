@@ -8,7 +8,7 @@ define(function (require) {
     "use strict";
 
     var $ = require("jquery"),
-        player = require("app/audio/player"),
+        player = require("./player"),
         kick;
 
     function playFactory(name) {
