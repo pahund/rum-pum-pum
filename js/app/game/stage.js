@@ -13,7 +13,7 @@ define(function (require) {
         grid = require("./grid"),
         config = require("../config"),
         entityManager = require("../systems/entityManager"),
-        stage = new PIXI.Stage(0xFFFFFF, true);
+        stage = new PIXI.Container();
 
     function interact(event) {
         var row = grid.get.row(event.data.global.y),

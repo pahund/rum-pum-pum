@@ -11,6 +11,7 @@ define(function (require) {
 
     var grid = require("./grid"),
         PIXI = require("pixi"),
+        dimensions = require("./dimensions"),
         background = new PIXI.Graphics(),
         row,
         col,
@@ -18,6 +19,8 @@ define(function (require) {
         y,
         w,
         h;
+
+    background.beginFill(0xFFFFFF).drawRect(0, 0, dimensions.viewport.w, dimensions.viewport.h).endFill();
 
     for (row = 1; row <= 4; row++) {
         for (col = 1; col <= 16; col++) {

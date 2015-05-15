@@ -10,8 +10,9 @@ define(function (require) {
     "use strict";
 
     var PIXI = require("pixi"),
-        dimensions = require("./dimensions"),
-        renderer = PIXI.autoDetectRenderer(dimensions.viewport.w, dimensions.viewport.h);
+        dimensions = require("./dimensions");
 
-    return renderer;
+    return PIXI.autoDetectRenderer(dimensions.viewport.w, dimensions.viewport.h, {
+        antialias: true
+    });
 });
