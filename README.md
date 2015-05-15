@@ -36,6 +36,18 @@ use this command (after the steps listed above):
 
     grunt dist
 
+## Running Tests
+
+The unit tests of Rum Pum Pum are based on [jasmine](https://github.com/velesin/jasmine-jquery) and meant to be run
+with the [Wallaby.js](http://wallabyjs.com/) test runner plugin for JetBrains IDEs 
+([WebStorm](https://www.jetbrains.com/webstorm/) or [IntelliJ IDEA](https://www.jetbrains.com/idea/)).
+
+Prior to running the tests, install dev dependencies using Bower:
+  
+    bower install
+    
+You can then create a Wallaby.js run configuration, pointing to the [wallaby.js](wallaby.js) configuration file.
+
 ## Credits and Acknowledgements
 
 ### Cuíca Sounds (Kangaroo)
