@@ -32,29 +32,17 @@
  * @author <a href="https://github.com/pahund">Patrick Hund</a>
  * @since 18/12/14
  */
-define(function () {
-    "use strict";
-
-    return function iterate() {
-
-        let slice = Array.prototype.slice,
-            items = [],
-            i;
-
-        for (i = 0; i < arguments.length; i++) {
-            items = items.concat(arguments[i]);
-        }
-
-        return function (callback) {
-            return function() {
-                let prev = slice.apply(arguments),
-                    i;
-                for (i = 0; i < items.length; i++) {
-                    if (typeof callback === "function") {
-                        callback.apply(null, prev.concat(items[i]));
-                    }
+function iterate(...items) {
+    items = items.reduce((prev, curr) => prev.concat(curr), []);
+    return callback => {
+        return (...prev) => {
+            items.forEach(item => {
+                if (typeof callback === "function") {
+                    callback(...prev.concat(item));
                 }
-            };
+            });
         };
     };
-});
+}
+
+export default iterate;

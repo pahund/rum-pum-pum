@@ -7,39 +7,37 @@
  * @author <a href="mailto:pahund@team.mobile.de">Patrick Hund</a>
  * @since 04/01/15
  */
-define(function () {
-    "use strict";
+function gridToggler(rows, cols) {
 
-    return function (rows, cols) {
+    let toggles = [],
+        row,
+        col;
 
-        let toggles = [],
-            row,
-            col;
-
-        for (row = 1; row <= rows; row++) {
-            toggles[row] = [];
-            for (col = 1; col <= cols; col++) {
-                toggles[row][col] = false;
-            }
+    for (row = 1; row <= rows; row++) {
+        toggles[row] = [];
+        for (col = 1; col <= cols; col++) {
+            toggles[row][col] = false;
         }
+    }
 
-        return {
-            isOccupied: function (row, col) {
-                return toggles[row][col];
-            },
+    return {
+        isOccupied(row, col) {
+            return toggles[row][col];
+        },
 
-            turnOn: function (row, col) {
-                toggles[row][col] = true;
-            },
+        turnOn(row, col) {
+            toggles[row][col] = true;
+        },
 
-            turnOff: function (row, col) {
-                toggles[row][col] = false;
-            },
+        turnOff(row, col) {
+            toggles[row][col] = false;
+        },
 
-            toggle: function (row, col) {
-                toggles[row][col] = !toggles[row][col];
-                return toggles[row][col];
-            }
-        };
+        toggle(row, col) {
+            toggles[row][col] = !toggles[row][col];
+            return toggles[row][col];
+        }
     };
-});
+}
+
+export default gridToggler;

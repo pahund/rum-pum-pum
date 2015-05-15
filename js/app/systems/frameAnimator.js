@@ -7,32 +7,29 @@
  * @author <a href="https://github.com/pahund">Patrick Hund</a>
  * @since 14/12/14
  */
-define(function (require) {
-    "use strict";
+import world from "../game/world";
+import timer from "../util/timer";
+import registerAndExecute from "../util/registerAndExecute";
 
-    let world = require("../game/world"),
-        timer = require("../util/timer"),
-        rex;
-
-    function animation(animatedc, texturedc) {
-        let t = timer(),
+function animation(animatedc, texturedc) {
+    let t = timer(),
+        step = 0;
+    texturedc.image = animatedc.frames[step];
+    return () => {
+        if (t.duration() <= animatedc.interval) {
+            return;
+        }
+        step++;
+        if (step === animatedc.frames.length) {
             step = 0;
+        }
         texturedc.image = animatedc.frames[step];
-        return function () {
-            if (t.duration() > animatedc.interval) {
-                step++;
-                if (step === animatedc.frames.length) {
-                    step = 0;
-                }
-                texturedc.image = animatedc.frames[step];
-                t.reset();
-            }
-        };
-    }
-
-    rex = require("../util/registerAndExecute")(animation, "animated", "textured");
-
-    return function () {
-        world.forEachEntityWithComponents("animated", "textured")(rex);
+        t.reset();
     };
-});
+}
+
+const rex = registerAndExecute(animation, "animated", "textured");
+
+export default () => {
+    world.forEachEntityWithComponents("animated", "textured")(rex);
+};

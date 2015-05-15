@@ -7,17 +7,8 @@
  * @author <a href="https://github.com/pahund">Patrick Hund</a>
  * @since 18/12/14
  */
-define(function () {
-    "use strict";
+function nest(...functions) {
+    functions.reduceRight((prev, curr) => curr(prev))();
+}
 
-    return function nest() {
-        let functions = arguments,
-            findex = functions.length - 1,
-            f = functions[findex];
-
-        while (--findex >= 0) {
-            f = functions[findex](f);
-        }
-        f();
-    };
-});
+export default nest;

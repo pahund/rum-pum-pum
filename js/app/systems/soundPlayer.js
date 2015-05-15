@@ -6,20 +6,16 @@
  * @author <a href="https://github.com/pahund">Patrick Hund</a>
  * @since 16/12/14
  */
-define(function (require) {
-    "use strict";
+import world from "../game/world";
+import player from "../audio/player";
 
-    let world = require("../game/world"),
-        player = require("../audio/player");
-
-    return function () {
-        world.forEachEntityWithComponents("playing")(function (id, components) {
-            let pc = components.playing;
-            if (!pc.triggered) {
-                return;
-            }
-            player.play(pc.sound);
-            pc.triggered = false;
-        });
-    };
-});
+export default () => {
+    world.forEachEntityWithComponents("playing")((id, components) => {
+        let pc = components.playing;
+        if (!pc.triggered) {
+            return;
+        }
+        player.play(pc.sound);
+        pc.triggered = false;
+    });
+};

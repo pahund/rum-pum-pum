@@ -4,21 +4,21 @@
  * @author <a href="https://github.com/pahund">Patrick Hund</a>
  * @since 15/12/14
  */
-define(function (require) {
-    "use strict";
+import componentFactory from "./componentFactory";
 
-    return require("./componentFactory")("proximityTrigger", [
-        {
-            name: "vertical",
-            fallback: false
-        },
-        {
-            name: "horizontal",
-            fallback: false
-        },
-        {
-            name: "threshold",
-            fallback: 100
-        }
-    ]);
-});
+const proximityTrigger = componentFactory("proximityTrigger", [
+    {
+        name: "vertical",
+        fallback: false
+    },
+    {
+        name: "horizontal",
+        fallback: false
+    },
+    {
+        name: "threshold",
+        fallback: 100
+    }
+]);
+
+export default proximityTrigger;

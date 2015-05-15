@@ -1,8 +1,8 @@
-var wallabyWebpack = require("wallaby-webpack"),
+const wallabyWebpack = require("wallaby-webpack"),
     babel = require("babel"),
-    webpackPostprocessor = wallabyWebpack({});
+    webpackPostprocessor = wallabyWebpack();
 
-module.exports = function () {
+module.exports = () => {
     return {
         files: [
             {

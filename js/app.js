@@ -9,21 +9,23 @@
 
 "use strict";
 
-let $ = require("jquery"),
-    config = require("./app/config"),
-    player = require("./app/audio/player"),
-    entityManager = require("./app/systems/entityManager"),
-    PIXI = require("pixi"),
-    renderer = require("./app/game/renderer"),
-    stage = require("./app/game/stage"),
-    grid = require("./app/game/grid"),
-    loop = require("./app/game/loop"),
-    world = require("./app/game/world"),
-    background = require("./app/game/background"),
-    spriteManager = require("./app/systems/spriteManager"),
-    bird = require("./app/entities/bird"),
-    loader = PIXI.loader,
-    start,
+import $ from "jquery";
+import config from "./app/config";
+import player from "./app/audio/player";
+import entityManager from "./app/systems/entityManager";
+import PIXI from "pixi";
+import renderer from "./app/game/renderer";
+import stage from "./app/game/stage";
+import grid from "./app/game/grid";
+import loop from "./app/game/loop";
+import world from "./app/game/world";
+import background from "./app/game/background";
+import spriteManager from "./app/systems/spriteManager";
+import bird from "./app/entities/bird";
+
+const loader = PIXI.loader;
+
+let start,
     stop;
 
 start = function () {

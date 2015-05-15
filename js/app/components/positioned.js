@@ -6,23 +6,22 @@
  * @author <a href="https://github.com/pahund">Patrick Hund</a>
  * @since 11/12/14
  */
-define(function (require) {
-    "use strict";
+import componentFactory from "./componentFactory";
+import PIXI from "pixi";
 
-    let PIXI = require("pixi");
+const positioned = componentFactory("positioned", [
+    {
+        name: "coordinates",
+        fallback: new PIXI.Point(0, 0)
+    },
+    {
+        name: "scale",
+        fallback: new PIXI.Point(1, 1)
+    },
+    {
+        name: "anchor",
+        fallback: new PIXI.Point(0.5, 0.5)
+    }
+]);
 
-    return require("./componentFactory")("positioned", [
-        {
-            name: "coordinates",
-            fallback: new PIXI.Point(0, 0)
-        },
-        {
-            name: "scale",
-            fallback: new PIXI.Point(1, 1)
-        },
-        {
-            name: "anchor",
-            fallback: new PIXI.Point(0.5, 0.5)
-        }
-    ]);
-});
+export default positioned;

@@ -7,40 +7,35 @@
  * @author <a href="https://github.com/pahund">Patrick Hund</a>
  * @since 14/12/14
  */
-define(function (require) {
-    "use strict";
+import world from "../game/world";
+import getTimestamp from "../util/getTimestamp";
+import registerAndExecute from "../util/registerAndExecute";
 
-    let world = require("../game/world"),
-        getTimestamp = require("../util/getTimestamp"),
-        rex;
-
-    function calc(current, delta, min, max) {
-        let val = current + delta;
-        if (min === undefined || max === undefined) {
-            return val;
-        }
-        if (val <= min) {
-            val = max;
-        } else if (val >= max) {
-            val = min;
-        }
+function calc(current, delta, min, max) {
+    let val = current + delta;
+    if (min === undefined || max === undefined) {
         return val;
     }
-
-    function motion(movingc, positionedc) {
-        let timestamp = getTimestamp();
-        return function () {
-            if (getTimestamp() > timestamp + movingc.interval) {
-                positionedc.coordinates.x = calc(positionedc.coordinates.x, movingc.deltaX, movingc.minX, movingc.maxX);
-                positionedc.coordinates.y = calc(positionedc.coordinates.y, movingc.deltaY, movingc.minY, movingc.maxY);
-                timestamp = getTimestamp();
-            }
-        };
+    if (val <= min) {
+        val = max;
+    } else if (val >= max) {
+        val = min;
     }
+    return val;
+}
 
-    rex = require("../util/registerAndExecute")(motion, "moving", "positioned");
-
-    return function () {
-        world.forEachEntityWithComponents("moving", "positioned")(rex);
+function motion(movingc, positionedc) {
+    let timestamp = getTimestamp();
+    return () => {
+        if (getTimestamp() <= timestamp + movingc.interval) {
+            return;
+        }
+        positionedc.coordinates.x = calc(positionedc.coordinates.x, movingc.deltaX, movingc.minX, movingc.maxX);
+        positionedc.coordinates.y = calc(positionedc.coordinates.y, movingc.deltaY, movingc.minY, movingc.maxY);
+        timestamp = getTimestamp();
     };
-});
+}
+
+const rex = registerAndExecute(motion, "moving", "positioned");
+
+export default () => world.forEachEntityWithComponents("moving", "positioned")(rex);

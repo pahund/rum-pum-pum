@@ -6,17 +6,17 @@
  * @author <a href="https://github.com/pahund">Patrick Hund</a>
  * @since 14/12/14
  */
-define(function (require) {
-    "use strict";
+import componentFactory from "./componentFactory";
 
-    return require("./componentFactory")("animated", [
-        {
-            name: "frames",
-            mandatory: true
-        },
-        {
-            name: "interval",
-            fallback: 0
-        }
-    ]);
-});
+const animated = componentFactory("animated", [
+    {
+        name: "frames",
+        mandatory: true
+    },
+    {
+        name: "interval",
+        fallback: 0
+    }
+]);
+
+export default animated;

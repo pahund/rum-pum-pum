@@ -9,40 +9,36 @@
  * @author <a href="https://github.com/pahund">Patrick Hund</a>
  * @since 17/12/14
  */
-define(function (require) {
-    "use strict";
+import $ from "jquery";
+import world from "../game/world";
 
-    let $ = require("jquery"),
-        world = require("../game/world");
+/**
+ * Creates the register and execute function.
+ *
+ * @param {function} Callback function (required)
+ * @param {function} Condition function (optional)
+ * @param {string} Component IDs (variable number of arguments, at least 1)
+ * @return {function} The register and execute function, which accepts an entity ID and map of components as arguments
+ */
+function registerAndExecute() {
+    const slice = Array.prototype.slice,
+        registry = world.getWorldRegistry(),
+        callback = arguments[0],
+        hasCondition = typeof arguments[1] === "function",
+        condition = hasCondition ? arguments[1] : () => true,
+        compIds = slice.call(arguments, hasCondition ? 2 : 1);
 
-    /**
-     * Creates the register and execute function.
-     *
-     * @param {function} Callback function (required)
-     * @param {function} Condition function (optional)
-     * @param {string} Component IDs (variable number of arguments, at least 1)
-     * @return {function} The register and execute function, which accepts an entity ID and map of components as arguments
-     */
-    return function () {
-        let slice = Array.prototype.slice,
-            registry = world.getWorldRegistry(),
-            callback = arguments[0],
-            hasCondition = typeof arguments[1] === "function",
-            condition = hasCondition ? arguments[1] : function () { return true; },
-            compIds = slice.call(arguments, hasCondition ? 2 : 1);
-
-        return function (id, comp) {
-            let c = [];
-            $.each(compIds, function () {
-                c.push(comp[this]);
-            });
-            if (!condition.apply(null, c)) {
-                registry.remove(id);
-                return;
-            }
-            registry.call(id, function () {
-                return callback.apply(null, c);
-            });
-        };
+    return (id, comp) => {
+        let c = [];
+        $.each(compIds, (index, compId) => {
+            c.push(comp[compId]);
+        });
+        if (!condition.apply(null, c)) {
+            registry.remove(id);
+            return;
+        }
+        registry.call(id, () => callback.apply(null, c));
     };
-});
+}
+
+export default registerAndExecute;
