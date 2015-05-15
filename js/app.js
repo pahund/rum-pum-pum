@@ -7,83 +7,78 @@
  * @since 22/10/14
  */
 
-"use strict";
+import $ from "jquery";
+import config from "./app/config";
+import player from "./app/audio/player";
+import entityManager from "./app/systems/entityManager";
+import PIXI from "pixi";
+import renderer from "./app/game/renderer";
+import stage from "./app/game/stage";
+import grid from "./app/game/grid";
+import loop from "./app/game/loop";
+import world from "./app/game/world";
+import background from "./app/game/background";
+import spriteManager from "./app/systems/spriteManager";
+import bird from "./app/entities/bird";
+import frameAnimator from "./app/systems/frameAnimator";
+import mover from "./app/systems/mover";
+import proximityDetector from "./app/systems/proximityDetector";
+import sequenceAnimator from "./app/systems/sequenceAnimator";
+import soundPlayer from "./app/systems/soundPlayer";
 
-/* global require */
-require.config({
-    baseUrl: "js/lib",
-    paths: {
-        app: "../app"
-    }
-});
+const loader = PIXI.loader;
 
-define(function (require) {
+let start,
+    stop;
 
-    var $ = require("jquery"),
-        config = require("app/config"),
-        player = require("app/audio/player"),
-        entityManager = require("app/systems/entityManager"),
-        PIXI = require("app/util/pixi.dev.patched"),
-        renderer = require("app/game/renderer"),
-        stage = require("app/game/stage"),
-        grid = require("app/game/grid"),
-        loop = require("app/game/loop"),
-        world = require("app/game/world"),
-        background = require("app/game/background"),
-        spriteManager = require("app/systems/spriteManager"),
-        bird = require("app/entities/bird"),
-        loader = new PIXI.AssetLoader(["images/sprites.json"]);
+start = function () {
+    $("#play").html("Stop").one("click", stop);
+    loop.start();
+};
 
-    function start() {
-        $("#play").html("Stop").one("click", stop);
-        loop.start();
-    }
+stop = function () {
+    $("#play").html("Start").one("click", start);
+    loop.stop();
+};
 
-    function stop() {
-        $("#play").html("Start").one("click", start);
-        loop.stop();
-    }
+function onAssetsLoaded() {
 
-    $("body").append(renderer.view);
+    stage.addChild(background);
 
-    // use callback
-    loader.onComplete = function () {
+    world.addEntity("bird", bird({
+        x: grid.get.x(1, 0.5),
+        y: grid.get.y(1, 0.5),
+        minX: grid.get.x(1, 0.5),
+        maxX: grid.get.x(17, 0.5)
+    }));
+    $.each([3, 7, 11, 15], entityManager.addKangaroo);
+    $.each([13], entityManager.addBabyKangaroo);
+    $.each([5, 13, 15, 16], entityManager.addMonkey);
+    $.each([1, 4, 11], entityManager.addBear);
 
-        stage.addChild(background);
+    spriteManager.init(world);
+    loop.init();
 
-        world.addEntity("bird", bird({
-            x: grid.get.x(1, 0.5),
-            y: grid.get.y(1, 0.5),
-            minX: grid.get.x(1, 0.5),
-            maxX: grid.get.x(17, 0.5)
-        }));
-        $.each([3, 7, 11, 15], entityManager.addKangaroo);
-        $.each([13], entityManager.addBabyKangaroo);
-        $.each([5, 13, 15, 16], entityManager.addMonkey);
-        $.each([1, 4, 11], entityManager.addBear);
+    loop.add(
+        frameAnimator,
+        mover,
+        proximityDetector,
+        sequenceAnimator,
+        soundPlayer,
+        spriteManager.update
+    );
 
-        spriteManager.init(world);
-        loop.init();
+    $("#play").one("click", start);
+}
 
-        loop.add(
-            require("app/systems/frameAnimator"),
-            require("app/systems/mover"),
-            require("app/systems/proximityDetector"),
-            require("app/systems/sequenceAnimator"),
-            require("app/systems/soundPlayer"),
-            spriteManager.update
-        );
+$("body").append(renderer.view);
 
-        $("#play").one("click", start);
-    };
+loader.add("images/sprites.json").load(onAssetsLoaded);
 
-    // begin loading
-    loader.load();
-    player.load(config.sounds);
+player.load(config.sounds);
 
-    if (config.debug) {
-        $("#monitor").html("debug active").show();
-    }
-});
+if (config.debug) {
+    $("#monitor").html("debug active").show();
+}
 
 

@@ -8,7 +8,7 @@
  * and invokes the callback, passing the current item as arguments to the callback. This is handy for using in
  * conjunction with the nest function, like this:
  *
- * var fruits = iterate("apples", "oranges"),
+ * let fruits = iterate("apples", "oranges"),
  *     vegs = iterate("carrots", "broccoli");
  *
  * function fav(fruit, veg) {
@@ -32,29 +32,17 @@
  * @author <a href="https://github.com/pahund">Patrick Hund</a>
  * @since 18/12/14
  */
-define(function () {
-    "use strict";
-
-    return function iterate() {
-
-        var slice = Array.prototype.slice,
-            items = [],
-            i;
-
-        for (i = 0; i < arguments.length; i++) {
-            items = items.concat(arguments[i]);
-        }
-
-        return function (callback) {
-            return function() {
-                var prev = slice.apply(arguments),
-                    i;
-                for (i = 0; i < items.length; i++) {
-                    if (typeof callback === "function") {
-                        callback.apply(null, prev.concat(items[i]));
-                    }
+function iterate(...items) {
+    items = items.reduce((prev, curr) => prev.concat(curr), []);
+    return callback => {
+        return (...prev) => {
+            items.forEach(item => {
+                if (typeof callback === "function") {
+                    callback(...prev.concat(item));
                 }
-            };
+            });
         };
     };
-});
+}
+
+export default iterate;

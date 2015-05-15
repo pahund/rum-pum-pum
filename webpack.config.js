@@ -1,44 +1,42 @@
 /**
  * webpack.config.js
  *
- * Production configuration for webpack optimization tool. Used by grunt for optimize job.
+ * Local development configuration for webpack optimization tool. Used by webpack dev server.
  *
  * @author <a href="https://github.com/pahund">Patrick Hund</a>
- * @since 10/01/15
+ * @since 05/14/15
  */
-var webpack = require("webpack"),
-    HtmlWebpackPlugin = require("html-webpack-plugin");
+var webpack = require("webpack");
 
 module.exports = {
-    progress: false,
-    context: __dirname + "/js",
-    entry: "./app.js",
+    entry: [
+        "webpack/hot/dev-server",
+        "./js/app.js"
+    ],
     output: {
-        path: __dirname + "/dist/js",
         publicPath: "js/",
-        filename: "[chunkhash].bundle.js",
-        chunkFilename: "[chunkhash].bundle.js"
-    },
-    resolve: {
-        alias: {
-            app$: "./app"
-        },
-        modulesDirectories: [
-            ".",
-            "app",
-            "lib"
-        ]
+        filename: "bundle.js"
     },
     externals: {
-        jquery: "jQuery"
+        jquery: "jQuery",
+        pixi: "PIXI"
+    },
+    module: {
+        loaders: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: "babel-loader?optional=runtime"
+            },
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: "eslint-loader"
+            }
+        ]
     },
     plugins: [
-        new webpack.optimize.UglifyJsPlugin(),
-        new webpack.optimize.OccurenceOrderPlugin(),
-        new webpack.optimize.DedupePlugin(),
-        new HtmlWebpackPlugin({
-            template: "index-optimized.html",
-            filename: "../index.html"
-        })
-    ]
+        new webpack.HotModuleReplacementPlugin()
+    ],
+    devtool: "#source-map"
 };

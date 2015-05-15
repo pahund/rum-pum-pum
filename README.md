@@ -18,13 +18,14 @@ Prerequisites:
 
 * [NodeJS and npm](http://nodejs.org/)
 * [Grunt](http://gruntjs.com/)
-* [Bower](http://bower.io/)
 
 Intallation steps:
 
 * `npm install`
-* `bower install`
-* `grunt install`
+
+Start the webpack server like so:
+
+* `webpack-dev-server`
 
 Open up [index.html](index.html) in your favorite browser (needs to support Web Audio API).
 
@@ -35,6 +36,18 @@ use this command (after the steps listed above):
 
     grunt dist
 
+## Running Tests
+
+The unit tests of Rum Pum Pum are based on [jasmine](https://github.com/velesin/jasmine-jquery) and meant to be run
+with the [Wallaby.js](http://wallabyjs.com/) test runner plugin for JetBrains IDEs 
+([WebStorm](https://www.jetbrains.com/webstorm/) or [IntelliJ IDEA](https://www.jetbrains.com/idea/)).
+
+Prior to running the tests, install dev dependencies using Bower:
+  
+    bower install
+    
+You can then create a Wallaby.js run configuration, pointing to the [wallaby.js](wallaby.js) configuration file.
+
 ## Credits and Acknowledgements
 
 ### Cuíca Sounds (Kangaroo)
@@ -43,14 +56,18 @@ Copyright (c) 2006 [reinsamba](https://www.freesound.org/people/reinsamba/).
 Published under [Creative Commons CC BY 3.0](http://creativecommons.org/licenses/by/3.0/) license.
 Downloaded from [Freesounds.org](https://www.freesound.org/people/reinsamba/packs/1339/).
 
-### Third Party Libraries
+### Third Party Libraries and Tools
 
+* [pixi.js](https://github.com/GoodBoyDigital/pixi.js/) &mdash; Copyright (C) 2013-2015 Mathew Groves.
+  [MIT License](https://github.com/GoodBoyDigital/pixi.js/blob/master/LICENSE)
+* [webpack](http://webpack.github.io/) &mdash; Copyright (C) 2012-2015 Tobias Koppers.
+  [MIT License](https://github.com/webpack/webpack/blob/master/LICENSE)
+* [Grunt](http://gruntjs.com/) &mdash; Copyright (C) 2015 "Cowboy" Ben Alman.
+  [MIT License](https://github.com/gruntjs/grunt/blob/master/LICENSE-MIT)
 * [jQuery](http://jquery.com/) &mdash; Copyright (C) 2015 The jQuery Foundation. 
   [jQuery License](https://jquery.org/license/)
 * [jasmine](https://github.com/velesin/jasmine-jquery) &mdash; Copyright (C) 2010-2014 Wojciech Zawistowski, Travis Jeffery.
   [MIT License](https://github.com/velesin/jasmine-jquery/blob/master/MIT.LICENSE)
-* [RequireJS](http://requirejs.org/) &mdash; Copyright (C) 2010-2015, The Dojo Foundation. 
-  [New BSD or MIT License](https://github.com/jrburke/requirejs/blob/master/LICENSE)
   
 ## The MIT License (MIT)
 
@@ -73,5 +90,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-
-

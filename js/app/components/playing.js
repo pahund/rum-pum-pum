@@ -4,17 +4,17 @@
  * @author <a href="https://github.com/pahund">Patrick Hund</a>
  * @since 16/12/14
  */
-define(function (require) {
-    "use strict";
+import componentFactory from "./componentFactory";
 
-    return require("app/components/componentFactory")("playing", [
-        {
-            name: "sound",
-            mandatory: true
-        },
-        {
-            name: "triggered",
-            fallback: false
-        }
-    ]);
-});
+const playing = componentFactory("playing", [
+    {
+        name: "sound",
+        mandatory: true
+    },
+    {
+        name: "triggered",
+        fallback: false
+    }
+]);
+
+export default playing;

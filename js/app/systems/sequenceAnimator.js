@@ -7,41 +7,35 @@
  * @author <a href="https://github.com/pahund">Patrick Hund</a>
  * @since 16/12/14
  */
-define(function (require) {
-    "use strict";
+import world from "../game/world";
+import timer from "../util/timer";
+import registerAndExecute from "../util/registerAndExecute";
 
-    var world = require("app/game/world"),
-        timer = require("app/util/timer"),
-        rex;
+function animation(wsa, tex) {
+    let t = timer(),
+        step = 0;
 
-    function animation(wsa, tex) {
-        var t = timer(),
+    wsa.running = true;
+    tex.image = wsa.sequences[wsa.currentSequence][step].frame;
+    return () => {
+        if (t.duration() < wsa.sequences[wsa.currentSequence][step].interval) {
+            return;
+        }
+        step++;
+        if (step === wsa.sequences[wsa.currentSequence].length) {
             step = 0;
-
-        wsa.running = true;
+            wsa.running = false;
+            return;
+        }
         tex.image = wsa.sequences[wsa.currentSequence][step].frame;
-        return function () {
-            if (t.duration() < wsa.sequences[wsa.currentSequence][step].interval) {
-                return;
-            }
-            step++;
-            if (step === wsa.sequences[wsa.currentSequence].length) {
-                step = 0;
-                wsa.running = false;
-                return;
-            }
-            tex.image = wsa.sequences[wsa.currentSequence][step].frame;
-            t.reset();
-        };
-    }
-
-    function condition(wsa) {
-        return wsa.running;
-    }
-
-    rex = require("app/util/registerAndExecute")(animation, condition, "withSequenceAnimation", "textured");
-
-    return function () {
-        world.forEachEntityWithComponents("withSequenceAnimation", "textured")(rex);
+        t.reset();
     };
-});
+}
+
+function condition(wsa) {
+    return wsa.running;
+}
+
+const rex = registerAndExecute(animation, condition, "withSequenceAnimation", "textured");
+
+export default () => world.forEachEntityWithComponents("withSequenceAnimation", "textured")(rex);

@@ -6,13 +6,13 @@
  * @author <a href="https://github.com/pahund">Patrick Hund</a>
  * @since 11/12/14
  */
-define(function (require) {
-    "use strict";
+import componentFactory from "./componentFactory";
 
-    return require("app/components/componentFactory")("textured", [
-        {
-            name: "image",
-            mandatory: true
-        }
-    ]);
-});
+const textured = componentFactory("textured", [
+    {
+        name: "image",
+        mandatory: true
+    }
+]);
+
+export default textured;

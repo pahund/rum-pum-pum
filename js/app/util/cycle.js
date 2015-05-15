@@ -8,18 +8,16 @@
  * @author <a href="mailto:pahund@team.mobile.de">Patrick Hund</a>
  * @since 27/12/14
  */
-define(function () {
-    "use strict";
+function cycle() {
+    let funcs = arguments,
+        current = 0;
 
-    return function () {
-        var funcs = arguments,
+    return () => {
+        if (current === funcs.length) {
             current = 0;
-
-        return function () {
-            if (current === funcs.length) {
-                current = 0;
-            }
-            return funcs[current++].apply(null, arguments);
-        };
+        }
+        return funcs[current++].apply(null, arguments);
     };
-});
+}
+
+export default cycle;

@@ -4,24 +4,18 @@
  * @author <a href="https://github.com/pahund">Patrick Hund</a>
  * @since 16/12/14
  */
-define(function (require) {
-    "use strict";
-
-    var $ = require("jquery");
-
-    return function(id, properties) {
-        return function (input) {
-            var component = {
-                id: id
-            };
-            $.each(properties, function () {
-                if (this.mandatory && input[this.name] === undefined) {
-                    throw new Error("Attempted to create component \"" + id +
-                            "\" without mandatory property \"" + this.name + "\"");
-                }
-                component[this.name] = input[this.name] === undefined ? this.fallback : input[this.name];
-            });
-            return component;
-        };
+function componentFactory(id, properties) {
+    return input => {
+        let component = { id };
+        properties.forEach(property => {
+            if (property.mandatory && input[property.name] === undefined) {
+                throw new Error("Attempted to create component \"" + id +
+                        "\" without mandatory property \"" + property.name + "\"");
+            }
+            component[property.name] = input[property.name] === undefined ? property.fallback : input[property.name];
+        });
+        return component;
     };
-});
+}
+
+export default componentFactory;

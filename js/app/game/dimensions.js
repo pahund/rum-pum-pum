@@ -6,15 +6,13 @@
  * @author <a href="https://github.com/pahund">Patrick Hund</a>
  * @since 04/12/14
  */
-define(function (require) {
-    "use strict";
+import $ from "jquery";
 
-    var $ = require("jquery");
+const dimensions = {
+    viewport: {
+        w: $(window).width(),
+        h: $(window).height()
+    }
+};
 
-    return {
-        viewport: {
-            w: $(window).width(),
-            h: $(window).height()
-        }
-    };
-});
+export default dimensions;

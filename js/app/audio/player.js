@@ -7,67 +7,65 @@
  * @since 06/11/14
  */
 
-define(function (require) {
+import context from "./context";
+import loadSound from "./loadSound";
 
-    var context = require("app/audio/context"),
-        load = require("app/audio/load"),
-        buffers = {};
+let buffers = {};
 
-    function getSoundsFromInput(input) {
-        var sounds = [];
-        if ($.isArray(input[0])) {
-            if (input.length > 1) {
-                throw new Error("error loading sound: " +
-                        "if first argument is an array, it is expected to be the only argument");
-            }
-            sounds = input[0];
-        } else {
-            if (input.length !== 2) {
-                throw new Error("error loading sound: " +
-                        "either pass an array of id/path values, or one ID and one path");
-            }
-            sounds.push({
-                id: input[0],
-                path: input[1]
-            });
+function getSoundsFromInput(input) {
+    let sounds = [];
+    if ($.isArray(input[0])) {
+        if (input.length > 1) {
+            throw new Error("error loading sound: " +
+                    "if first argument is an array, it is expected to be the only argument");
         }
-        return sounds;
+        sounds = input[0];
+    } else {
+        if (input.length !== 2) {
+            throw new Error("error loading sound: " +
+                    "either pass an array of id/path values, or one ID and one path");
+        }
+        sounds.push({
+            id: input[0],
+            path: input[1]
+        });
     }
+    return sounds;
+}
 
-    return {
-        /**
-         * Loads sounds and stores them in the player's buffer.
-         *
-         * Variable arguments, variant 1:
-         *
-         * @param id The sound's ID used to reference when invoking the play method
-         * @param path The path of the sound file, relative to the project root
-         *
-         * Variant 2:
-         *
-         * @param sounds Array of objects, each containing an id and path property
-         */
-        load: function () {
-            $.each(getSoundsFromInput(arguments), function (index, sound) {
-                load(sound.path, function (data) {
-                    buffers[sound.id] = data;
-                });
-            });
-        },
+function load() {
+    $.each(getSoundsFromInput(arguments), (index, sound) => loadSound(sound.path, data => buffers[sound.id] = data));
+}
 
-        /**
-         * Plays a sound.
-         *
-         * @param id The ID of the sound to play
-         */
-        play: function (id) {
-            var source = context.createBufferSource(),
-                gain = context.createGain();
+function play(id) {
+    let source = context.createBufferSource(),
+        gain = context.createGain();
 
-            source.connect(gain);
-            gain.connect(context.destination);
-            source.buffer = buffers[id];
-            source.start(0);
-        }
-    };
-});
+    source.connect(gain);
+    gain.connect(context.destination);
+    source.buffer = buffers[id];
+    source.start(0);
+}
+
+export default {
+    /**
+     * Loads sounds and stores them in the player's buffer.
+     *
+     * Variable arguments, variant 1:
+     *
+     * @param id The sound's ID used to reference when invoking the play method
+     * @param path The path of the sound file, relative to the project root
+     *
+     * Variant 2:
+     *
+     * @param sounds Array of objects, each containing an id and path property
+     */
+    load,
+
+    /**
+     * Plays a sound.
+     *
+     * @param id The ID of the sound to play
+     */
+    play
+};

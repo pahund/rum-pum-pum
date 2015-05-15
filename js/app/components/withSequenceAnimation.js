@@ -4,21 +4,21 @@
  * @author <a href="https://github.com/pahund">Patrick Hund</a>
  * @since 16/12/14
  */
-define(function (require) {
-    "use strict";
+import componentFactory from "./componentFactory";
 
-    return require("app/components/componentFactory")("withSequenceAnimation", [
-        {
-            name: "sequences",
-            mandatory: true
-        },
-        {
-            name: "currentSequence",
-            fallback: 0
-        },
-        {
-            name: "running",
-            fallback: false
-        }
-    ]);
-});
+const withSequenceAnimation = componentFactory("withSequenceAnimation", [
+    {
+        name: "sequences",
+        mandatory: true
+    },
+    {
+        name: "currentSequence",
+        fallback: 0
+    },
+    {
+        name: "running",
+        fallback: false
+    }
+]);
+
+export default withSequenceAnimation;

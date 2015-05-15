@@ -4,34 +4,31 @@
  * @author <a href="https://github.com/pahund">Patrick Hund</a>
  * @since 20/12/14
  */
-define(function (require) {
-    "use strict";
+import getTimestamp from "../util/getTimestamp";
 
-    var getTimestamp = require("app/util/getTimestamp");
+function timer() {
+    let time = getTimestamp(),
+        startTime = time,
+        calls = 0;
 
-    return function () {
-        var time = getTimestamp(),
-            startTime = time,
-            calls = 0;
-
-        return {
-            interval: function () {
-                var t = getTimestamp(),
-                    ms = t - time;
-                time = t;
-                return ms;
-            },
-            duration: function () {
-                return getTimestamp() - startTime;
-            },
-            reset: function () {
-                time = getTimestamp();
-                startTime = time;
-            },
-            average: function () {
-                return Math.round((getTimestamp() - startTime) * 10 / ++calls) / 10;
-            }
-        };
+    return {
+        interval() {
+            let t = getTimestamp(),
+                ms = t - time;
+            time = t;
+            return ms;
+        },
+        duration() {
+            return getTimestamp() - startTime;
+        },
+        reset() {
+            time = getTimestamp();
+            startTime = time;
+        },
+        average() {
+            return Math.round((getTimestamp() - startTime) * 10 / ++calls) / 10;
+        }
     };
+}
 
-});
+export default timer;

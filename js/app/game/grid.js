@@ -7,21 +7,19 @@
  * @author <a href="mailto:pahund@team.mobile.de">Patrick Hund</a>
  * @since 03/01/15
  */
-define(function (require) {
-    "use strict";
+import $ from "jquery";
+import config from "../config";
+import gridCalculator from "../util/gridCalculator";
+import gridToggler from "../util/gridToggler";
 
-    var config = require("app/config"),
-        gridCalculator = require("app/util/gridCalculator"),
-        gridToggler = require("app/util/gridToggler"),
-        calculator,
-        toggler;
+let calculator,
+    toggler;
 
-    calculator = gridCalculator({
-        rows: config.rows,
-        columns: config.columns
-    });
-
-    toggler = gridToggler(config.rows, config.columns);
-
-    return $.extend(true, calculator, toggler);
+calculator = gridCalculator({
+    rows: config.rows,
+    columns: config.columns
 });
+
+toggler = gridToggler(config.rows, config.columns);
+
+export default $.extend(true, calculator, toggler);
