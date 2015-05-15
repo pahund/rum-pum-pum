@@ -1,76 +1,169 @@
 <!DOCTYPE html>
 <html>
-<head>
+
+  <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="description" content="Rum-pum-pum : A Music program for kids, based on Web Audio API and PIXI.js.">
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-    <link rel="apple-touch-icon" href="touch-icon-iphone.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="touch-icon-ipad.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="touch-icon-iphone-retina.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="touch-icon-ipad-retina.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="touch-icon-iphone-6-plus.png">
 
-    <title>Rum Pum Pum</title>
-</head>
+    <title>Rum-pum-pum</title>
+  </head>
 
-<body>
+  <body>
 
-<!-- HEADER -->
-<div id="header_wrap" class="outer">
-    <header class="inner">
-        <a id="forkme_banner" href="https://github.com/pahund/rum-pum-pum">View on GitHub</a>
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/pahund/rum-pum-pum">View on GitHub</a>
 
-        <h1 id="project_title">Rum Pum Pum</h1>
+          <h1 id="project_title">Rum-pum-pum</h1>
+          <h2 id="project_tagline">A Music program for kids, based on Web Audio API and PIXI.js.</h2>
 
-        <h2 id="project_tagline">A Music program for kids, based on Web Audio API and PIXI.js.</h2>
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/pahund/rum-pum-pum/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/pahund/rum-pum-pum/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
 
-        <section id="downloads">
-            <a class="zip_download_link" href="https://github.com/pahund/rum-pum-pum/zipball/master">Download this
-                project as a .zip file</a>
-            <a class="tar_download_link" href="https://github.com/pahund/rum-pum-pum/tarball/master">Download this
-                project as a tar.gz file</a>
-        </section>
-    </header>
-</div>
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a id="rum-pum-pum" class="anchor" href="#rum-pum-pum" aria-hidden="true"><span class="octicon octicon-link"></span></a>Rum Pum Pum</h1>
 
-<!-- MAIN CONTENT -->
-<div id="main_content_wrap" class="outer">
-    <section id="main_content" class="inner">
-        <p><a href="demo/index.html"><img src="images/monkey-logo.png" alt="Rum Pum Pum Monkey - click to view demo"
-                                          title="Rum Pum Pum Monkey - click to view demo"></a></p>
+<p><img src="images/monkey-logo.png" alt="Monkey Logo" title="Monkey Logo"></p>
 
-        <p>Rum Pum Pum is currently work in progress.</p>
+<p>A browser-based music program for kids.</p>
 
-        <p><strong><a href="demo/index.html">Check out the current demo here</a></strong></p>
+<p>Uses <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API">Web Audio API</a> and <a href="http://www.pixijs.com/">PIXI.js</a>.</p>
 
-        <h3>
-            <a id="user-content-credits-and-acknowledgements" class="anchor" href="#credits-and-acknowledgements"
-               aria-hidden="true"><span class="octicon octicon-link"></span></a>Credits and Acknowledgements</h3>
+<p>Written in JavaScript, based on the <a href="http://en.wikipedia.org/wiki/Entity_component_system">entity-component-system</a> architecture pattern.</p>
 
-        <h4>
-            <a id="user-content-cuica-sounds-kangaroo" class="anchor" href="#cuica-sounds-kangaroo"
-               aria-hidden="true"><span class="octicon octicon-link"></span></a>Cuíca Sounds (Kangaroo)</h4>
+<h2>
+<a id="demo" class="anchor" href="#demo" aria-hidden="true"><span class="octicon octicon-link"></span></a>Demo</h2>
 
-        <p>Copyright (c) 2006 <a href="https://www.freesound.org/people/reinsamba/">reinsamba</a>.
-            Published under <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons CC BY 3.0</a>
-            license.
-            Downloaded from <a href="https://www.freesound.org/people/reinsamba/packs/1339/">Freesounds.org</a>.</p>
+<p><a href="http://pahund.github.io/rum-pum-pum/demo/index.html">Early alpha version (in development)</a></p>
 
-    </section>
-</div>
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
 
-<!-- FOOTER  -->
-<div id="footer_wrap" class="outer">
-    <footer class="inner">
+<p>Prerequisites:</p>
+
+<ul>
+<li><a href="http://nodejs.org/">NodeJS and npm</a></li>
+<li><a href="http://gruntjs.com/">Grunt</a></li>
+</ul>
+
+<p>Intallation steps:</p>
+
+<ul>
+<li><code>npm install</code></li>
+</ul>
+
+<p>Start the webpack server like so:</p>
+
+<ul>
+<li><code>webpack-dev-server</code></li>
+</ul>
+
+<p>Open up <a href="index.html">index.html</a> in your favorite browser (needs to support Web Audio API).</p>
+
+<h2>
+<a id="creating-optimized-distribution-version" class="anchor" href="#creating-optimized-distribution-version" aria-hidden="true"><span class="octicon octicon-link"></span></a>Creating Optimized Distribution Version</h2>
+
+<p>Rum Pum Pum uses <a href="http://webpack.github.io/">webpack</a> to optimize and bundle its resources. To create a distribution,
+use this command (after the steps listed above):</p>
+
+<pre><code>grunt dist
+</code></pre>
+
+<h2>
+<a id="running-tests" class="anchor" href="#running-tests" aria-hidden="true"><span class="octicon octicon-link"></span></a>Running Tests</h2>
+
+<p>The unit tests of Rum Pum Pum are based on <a href="https://github.com/velesin/jasmine-jquery">jasmine</a> and meant to be run
+with the <a href="http://wallabyjs.com/">Wallaby.js</a> test runner plugin for JetBrains IDEs 
+(<a href="https://www.jetbrains.com/webstorm/">WebStorm</a> or <a href="https://www.jetbrains.com/idea/">IntelliJ IDEA</a>).</p>
+
+<p>Prior to running the tests, install dev dependencies using Bower:</p>
+
+<pre><code>bower install
+</code></pre>
+
+<p>You can then create a Wallaby.js run configuration, pointing to the <a href="wallaby.js">wallaby.js</a> configuration file.</p>
+
+<h2>
+<a id="credits-and-acknowledgements" class="anchor" href="#credits-and-acknowledgements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Credits and Acknowledgements</h2>
+
+<h3>
+<a id="cuíca-sounds-kangaroo" class="anchor" href="#cu%C3%ADca-sounds-kangaroo" aria-hidden="true"><span class="octicon octicon-link"></span></a>Cuíca Sounds (Kangaroo)</h3>
+
+<p>Copyright (c) 2006 <a href="https://www.freesound.org/people/reinsamba/">reinsamba</a>.
+Published under <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons CC BY 3.0</a> license.
+Downloaded from <a href="https://www.freesound.org/people/reinsamba/packs/1339/">Freesounds.org</a>.</p>
+
+<h3>
+<a id="third-party-libraries-and-tools" class="anchor" href="#third-party-libraries-and-tools" aria-hidden="true"><span class="octicon octicon-link"></span></a>Third Party Libraries and Tools</h3>
+
+<ul>
+<li>
+<a href="https://github.com/GoodBoyDigital/pixi.js/">pixi.js</a> — Copyright (C) 2013-2015 Mathew Groves.
+<a href="https://github.com/GoodBoyDigital/pixi.js/blob/master/LICENSE">MIT License</a>
+</li>
+<li>
+<a href="http://webpack.github.io/">webpack</a> — Copyright (C) 2012-2015 Tobias Koppers.
+<a href="https://github.com/webpack/webpack/blob/master/LICENSE">MIT License</a>
+</li>
+<li>
+<a href="http://gruntjs.com/">Grunt</a> — Copyright (C) 2015 "Cowboy" Ben Alman.
+<a href="https://github.com/gruntjs/grunt/blob/master/LICENSE-MIT">MIT License</a>
+</li>
+<li>
+<a href="http://jquery.com/">jQuery</a> — Copyright (C) 2015 The jQuery Foundation. 
+<a href="https://jquery.org/license/">jQuery License</a>
+</li>
+<li>
+<a href="https://github.com/velesin/jasmine-jquery">jasmine</a> — Copyright (C) 2010-2014 Wojciech Zawistowski, Travis Jeffery.
+<a href="https://github.com/velesin/jasmine-jquery/blob/master/MIT.LICENSE">MIT License</a>
+</li>
+</ul>
+
+<h2>
+<a id="the-mit-license-mit" class="anchor" href="#the-mit-license-mit" aria-hidden="true"><span class="octicon octicon-link"></span></a>The MIT License (MIT)</h2>
+
+<p>Copyright (C) 2015 <a href="https://github.com/pahund">Patrick Hund</a></p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
         <p class="copyright">Rum-pum-pum maintained by <a href="https://github.com/pahund">pahund</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
 
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-    </footer>
-</div>
+    
 
-
-</body>
+  </body>
 </html>
