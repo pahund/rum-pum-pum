@@ -1,34 +1,35 @@
+var wallabyWebpack = require("wallaby-webpack"),
+    webpackPostprocessor = wallabyWebpack({});
+
 module.exports = function () {
     return {
         files: [
             {
-                pattern: "js/lib/require.js",
+                pattern: "bower_components/jquery/dist/jquery.js",
                 instrument: false
             },
             {
-                pattern: "js/lib/jquery.js",
-                instrument: false
-            },
-            {
-                pattern: "js/lib/jasmine-jquery.js",
+                pattern: "bower_components/jasmine-jquery/lib/jasmine-jquery.js",
                 instrument: false,
                 load: false
             },
             {
-                pattern: "test/app-wallaby.js",
-                instrument: false
-            },
-            {
-                pattern: "js/app/**/*.js",
+                pattern: "js/**/*.js",
                 load: false
             }
         ],
 
         tests: [
             {
-                pattern: "test/specs/**/*.js",
+                pattern: "test/*.js",
                 load: false
             }
-        ]
+        ],
+
+        postprocessor: webpackPostprocessor,
+
+        bootstrap: function () {
+            window.__moduleBundler.loadTests();
+        }
     };
 };

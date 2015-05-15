@@ -1,0 +1,22 @@
+{
+  "name": "rum-pum-pum",
+  "version": "0.0.3",
+  "homepage": "https://github.com/pahund/rum-pum-pum",
+  "authors": [
+    "Patrick Hund <wiekatz@gmail.com>"
+  ],
+  "description": "Music program for kids, based on Web Audio API and PIXI.js",
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "jquery": "~2.1.4",
+    "jasmine-jquery": "~2.1.0"
+  }
+}

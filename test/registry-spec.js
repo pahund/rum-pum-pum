@@ -5,14 +5,11 @@
  * @since 14 Apr 2015
  */
 /* global describe, beforeEach, spyOn, it, expect */
+
 define([
     "jquery",
-    "app/util/registry"
-], function (
-    $,
-    registry
-) {
-    "use strict";
+    "../js/app/util/registry"
+], function ($, registry) {
 
     describe("When I instantiate a registry with no arguments", function () {
         beforeEach(function () {
@@ -183,3 +180,4 @@ define([
         };
     }
 });
+
