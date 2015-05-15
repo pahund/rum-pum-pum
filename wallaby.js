@@ -1,4 +1,5 @@
 var wallabyWebpack = require("wallaby-webpack"),
+    babel = require("babel"),
     webpackPostprocessor = wallabyWebpack({});
 
 module.exports = function () {
@@ -25,6 +26,12 @@ module.exports = function () {
                 load: false
             }
         ],
+
+        preprocessors: {
+            "**/*.js": file => babel.transform(file.content, {
+                sourceMap: true
+            })
+        },
 
         postprocessor: webpackPostprocessor,
 
