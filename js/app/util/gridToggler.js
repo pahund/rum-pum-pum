@@ -10,13 +10,13 @@
 function gridToggler(rows, cols) {
 
     let toggles = [],
-        row,
-        col;
+        rowIt,
+        colIt;
 
-    for (row = 1; row <= rows; row++) {
-        toggles[row] = [];
-        for (col = 1; col <= cols; col++) {
-            toggles[row][col] = false;
+    for (rowIt = 1; rowIt <= rows; rowIt++) {
+        toggles[rowIt] = [];
+        for (colIt = 1; colIt <= cols; colIt++) {
+            toggles[rowIt][colIt] = false;
         }
     }
 

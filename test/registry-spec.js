@@ -6,10 +6,29 @@
  */
 /* global describe, beforeEach, spyOn, it, expect */
 
-"use strict";
-
 import $ from "jquery";
 import registry from "../js/app/util/registry";
+
+function makeSpy(id) {
+    let spy = {
+        id: id,
+        constructed: () => {},
+        executed: () => {}
+    };
+    spyOn(spy, "constructed");
+    spyOn(spy, "executed");
+    return spy;
+}
+
+function makeMock(spy) {
+    return () => {
+        spy.constructed();
+        return () => {
+            spy.executed();
+            return spy.id;
+        };
+    };
+}
 
 describe("When I instantiate a registry with no arguments", () => {
     beforeEach(function () {
@@ -29,13 +48,13 @@ describe("When I instantiate a registry with no arguments", () => {
         describe("and I get the item again", () => {
             describe("the registry", () => {
                 it("returns a function", function () {
-                    var item = this.registry.get("foo");
+                    let item = this.registry.get("foo");
                     expect(typeof item).toBe("function");
                 });
             });
             describe("the function returned by the registry", () => {
                 it("returns the correct identity", function () {
-                    var item = this.registry.get("foo");
+                    let item = this.registry.get("foo");
                     expect(item()).toBe("bar");
                 });
             });
@@ -49,7 +68,7 @@ describe("When I instantiate a registry with no arguments", () => {
     });
     describe("and I get 101 items that have not been registered", () => {
         beforeEach(function () {
-            var i;
+            let i;
             this.spies = new Array(101);
             this.mocks = new Array(101);
             for (i = 0; i < 101; i++) {
@@ -60,7 +79,7 @@ describe("When I instantiate a registry with no arguments", () => {
         });
         describe("the registry", () => {
             it("invokes each item's constructor", function () {
-                for (var i = 0; i < 101; i++) {
+                for (let i = 0; i < 101; i++) {
                     expect(this.spies[i].constructed).toHaveBeenCalled();
                 }
             });
@@ -68,7 +87,7 @@ describe("When I instantiate a registry with no arguments", () => {
         describe("and I get each item again", () => {
             describe("the function returned by the registry", () => {
                 it("returns the correct identity", function () {
-                    var item, i;
+                    let item, i;
                     for (i = 0; i < 101; i++) {
                         item = this.registry.get("foo" + i);
                         expect(item()).toBe("bar" + i);
@@ -78,7 +97,7 @@ describe("When I instantiate a registry with no arguments", () => {
         });
         describe("and I call each item, the registry", () => {
             it("invokes each item function", function () {
-                for (var i = 0; i < 101; i++) {
+                for (let i = 0; i < 101; i++) {
                     this.registry.call("foo" + i);
                     expect(this.spies[i].executed).toHaveBeenCalled();
                 }
@@ -89,10 +108,10 @@ describe("When I instantiate a registry with no arguments", () => {
 
 describe("When I instantiate the registry with maxItems = 3 and a garbage collector that removes every second item", () => {
     beforeEach(function () {
-        var spy = makeSpy("gc");
+        let spy = makeSpy("gc");
         this.gcSpy = spy;
         this.registry = registry(3, reg => {
-            var flag = false;
+            let flag = false;
             spy.executed();
             $.each(reg, function (key) {
                 if (flag) {
@@ -104,7 +123,7 @@ describe("When I instantiate the registry with maxItems = 3 and a garbage collec
     });
     describe("and I get 4 items", () => {
         beforeEach(function () {
-            var i;
+            let i;
             this.spies = new Array(4);
             this.mocks = new Array(4);
             for (i = 0; i < 4; i++) {
@@ -133,7 +152,9 @@ describe("When I instantiate the registry with maxItems = 3 and a garbage collec
             it("does not invoke the item function", function () {
                 try {
                     this.registry.call("foo1");
-                } catch (e) {}
+                } catch (e) {
+                    // empty
+                }
                 expect(this.spies[1].executed).not.toHaveBeenCalled();
             });
         });
@@ -152,31 +173,13 @@ describe("When I instantiate the registry with maxItems = 3 and a garbage collec
             it("does not invoke the item function", function () {
                 try {
                     this.registry.call("foo3");
-                } catch (e) {}
+                } catch (e) {
+                    // empty
+                }
                 expect(this.spies[3].executed).not.toHaveBeenCalled();
             });
         });
     });
 });
 
-function makeSpy(id) {
-    var spy = {
-        id: id,
-        constructed: () => {},
-        executed: () => {}
-    };
-    spyOn(spy, "constructed");
-    spyOn(spy, "executed");
-    return spy;
-}
-
-function makeMock(spy) {
-    return () => {
-        spy.constructed();
-        return () => {
-            spy.executed();
-            return spy.id;
-        };
-    };
-}
 

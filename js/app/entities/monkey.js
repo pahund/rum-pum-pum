@@ -29,7 +29,7 @@ function monkey(input = {}) {
             anchor: new PIXI.Point(0.5, 1)
         }),
         proximityListener({
-            action: function (trigger, listener) {
+            action(trigger, listener) {
                 listener.components.withSequenceAnimation.running = true;
                 listener.components.withSequenceAnimation.currentSequence =
                         listener.components.withSequenceAnimation.currentSequence === 0 ? 1 : 0;

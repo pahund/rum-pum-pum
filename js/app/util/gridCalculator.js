@@ -95,7 +95,7 @@ function gridCalculator(options) {
             let setters = {};
             $.each(settings, name => setters[name] = value => change.setting(name, value));
             return setters;
-        }())
+        })()
     };
 }
 

@@ -56,7 +56,7 @@ function getActualHits(ent, d1, d2) {
     } else if (hasV && d1.dir.v !== d2.dir.v && d1.dist.v < threshold && d2.dist.v < threshold) {
         h++;
         if (hasH && d1.dist.h < threshold && d2.dist.h < threshold) {
-           h++;
+            h++;
         }
     }
     return h;

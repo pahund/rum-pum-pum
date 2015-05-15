@@ -31,16 +31,16 @@ function addEntity(type, col) {
     grid.turnOn(row, col);
     switch (type) {
         case "kangaroo":
-            world.addEntity(id, kangaroo({ x: x, y: y }));
+            world.addEntity(id, kangaroo({ x, y }));
             break;
         case "baby-kangaroo":
-            world.addEntity(id, kangaroo({ variant: 1, x: x, y: y }));
+            world.addEntity(id, kangaroo({ variant: 1, x, y }));
             break;
         case "monkey":
-            world.addEntity(id, monkey({ x: x, y: y }));
+            world.addEntity(id, monkey({ x, y }));
             break;
         case "bear":
-            world.addEntity(id, bear({ x: x, y: y }));
+            world.addEntity(id, bear({ x, y }));
             break;
     }
     return id;

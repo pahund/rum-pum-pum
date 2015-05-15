@@ -7,8 +7,6 @@
  * @since 22/10/14
  */
 
-"use strict";
-
 import $ from "jquery";
 import config from "./app/config";
 import player from "./app/audio/player";
@@ -22,6 +20,11 @@ import world from "./app/game/world";
 import background from "./app/game/background";
 import spriteManager from "./app/systems/spriteManager";
 import bird from "./app/entities/bird";
+import frameAnimator from "./app/systems/frameAnimator";
+import mover from "./app/systems/mover";
+import proximityDetector from "./app/systems/proximityDetector";
+import sequenceAnimator from "./app/systems/sequenceAnimator";
+import soundPlayer from "./app/systems/soundPlayer";
 
 const loader = PIXI.loader;
 
@@ -57,11 +60,11 @@ function onAssetsLoaded() {
     loop.init();
 
     loop.add(
-        require("./app/systems/frameAnimator"),
-        require("./app/systems/mover"),
-        require("./app/systems/proximityDetector"),
-        require("./app/systems/sequenceAnimator"),
-        require("./app/systems/soundPlayer"),
+        frameAnimator,
+        mover,
+        proximityDetector,
+        sequenceAnimator,
+        soundPlayer,
         spriteManager.update
     );
 

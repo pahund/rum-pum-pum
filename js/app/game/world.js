@@ -6,10 +6,11 @@
  * @author <a href="https://github.com/pahund">Patrick Hund</a>
  * @since 14/12/14
  */
-let $ = require("jquery"),
-    config = require("../config"),
-    registryf = require("../util/registry"),
-    entities = {};
+import $ from "jquery";
+import config from "../config";
+import registryf from "../util/registry";
+
+let entities = {};
 
 const world = {
     forEachEntityWithComponents(...needles) {
@@ -26,7 +27,7 @@ const world = {
                     return;
                 }
                 callback.call({
-                    id: id,
+                    id,
                     components: haystack
                 }, id, haystack);
             });
@@ -89,7 +90,7 @@ const world = {
         }
         return {
             id: entityId,
-            components: components
+            components
         };
     },
 
@@ -114,7 +115,7 @@ const world = {
     getEntitiesByComponent(componentId) {
         return $.map(entities, (components, entityId) => {
             if (components[componentId] === undefined) {
-                return;
+                return undefined;
             }
             return {
                 id: entityId,
@@ -133,11 +134,11 @@ const world = {
                 }
             });
             if (!applicable) {
-                return;
+                return undefined;
             }
             return {
                 id: entityId,
-                components: components
+                components
             };
         });
     },

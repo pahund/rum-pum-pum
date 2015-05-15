@@ -6,7 +6,7 @@
  * @author <a href="https://github.com/pahund">Patrick Hund</a>
  * @since 04/12/14
  */
-import  PIXI from "pixi";
+import PIXI from "pixi";
 import grid from "./grid";
 import config from "../config";
 import entityManager from "../systems/entityManager";
