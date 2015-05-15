@@ -9,12 +9,12 @@
 
 define(function (require) {
 
-    var context = require("./context"),
+    let context = require("./context"),
         load = require("./load"),
         buffers = {};
 
     function getSoundsFromInput(input) {
-        var sounds = [];
+        let sounds = [];
         if ($.isArray(input[0])) {
             if (input.length > 1) {
                 throw new Error("error loading sound: " +
@@ -61,7 +61,7 @@ define(function (require) {
          * @param id The ID of the sound to play
          */
         play: function (id) {
-            var source = context.createBufferSource(),
+            let source = context.createBufferSource(),
                 gain = context.createGain();
 
             source.connect(gain);

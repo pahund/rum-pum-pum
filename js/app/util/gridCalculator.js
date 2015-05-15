@@ -11,11 +11,11 @@
 define(function (require) {
     "use strict";
 
-    var $ = require("jquery"),
+    let $ = require("jquery"),
         dimensions = require("../game/dimensions");
 
     return function (options) {
-        var settings = {},
+        let settings = {},
             defaults,
             init,
             calculate,
@@ -52,7 +52,7 @@ define(function (require) {
                 return value * percentage / 100;
             },
             position: function (index, totalCount, totalSize, offset, anchorOffset) {
-                var size = totalSize / totalCount;
+                let size = totalSize / totalCount;
                 if (anchorOffset === undefined) {
                     anchorOffset = 0;
                 }
@@ -95,7 +95,7 @@ define(function (require) {
             },
 
             set: (function () {
-                var setters = {};
+                let setters = {};
                 $.each(settings, function (name) {
                     setters[name] = function (value) {
                         change.setting(name, value);

@@ -10,13 +10,13 @@
 define(function (require) {
     "use strict";
 
-    var world = require("../game/world"),
+    let world = require("../game/world"),
         nest = require("../util/nest"),
         iterate = require("../util/iterate"),
         registry;
 
     function getDistance(ent1, ent2) {
-        var h = ent2.components.positioned.coordinates.x - ent1.components.positioned.coordinates.x,
+        let h = ent2.components.positioned.coordinates.x - ent1.components.positioned.coordinates.x,
             v = ent2.components.positioned.coordinates.y - ent1.components.positioned.coordinates.y;
         return {
             dist: {
@@ -31,7 +31,7 @@ define(function (require) {
     }
 
     function getRequiredHits(ent) {
-        var hasH = ent.components.proximityTrigger.horizontal,
+        let hasH = ent.components.proximityTrigger.horizontal,
             hasV = ent.components.proximityTrigger.vertical,
             h = 0;
 
@@ -45,7 +45,7 @@ define(function (require) {
     }
 
     function getActualHits(ent, d1, d2) {
-        var hasH = ent.components.proximityTrigger.horizontal,
+        let hasH = ent.components.proximityTrigger.horizontal,
             hasV = ent.components.proximityTrigger.vertical,
             threshold = ent.components.proximityTrigger.threshold,
             h = 0;
@@ -65,9 +65,9 @@ define(function (require) {
     }
 
     function proximity(trigger, listener) {
-        var d1 = getDistance(trigger, listener);
+        let d1 = getDistance(trigger, listener);
         return function () {
-            var d2 = getDistance(trigger, listener),
+            let d2 = getDistance(trigger, listener),
                 requiredHits = getRequiredHits(trigger),
                 actualHits = getActualHits(trigger, d1, d2);
 
@@ -87,11 +87,11 @@ define(function (require) {
     registry = world.getWorldRegistry();
 
     return function () {
-        var triggerIt = iterate(world.getEntitiesByComponents("proximityTrigger", "positioned")),
+        let triggerIt = iterate(world.getEntitiesByComponents("proximityTrigger", "positioned")),
             listenerIt = iterate(world.getEntitiesByComponent("proximityListener", "positioned"));
 
         nest(triggerIt, listenerIt, function (trigger, listener) {
-            var key = trigger.id + ">" + listener.id,
+            let key = trigger.id + ">" + listener.id,
                 constructor;
 
             constructor = function () {

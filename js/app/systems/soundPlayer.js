@@ -9,12 +9,12 @@
 define(function (require) {
     "use strict";
 
-    var world = require("../game/world"),
+    let world = require("../game/world"),
         player = require("../audio/player");
 
     return function () {
         world.forEachEntityWithComponents("playing")(function (id, components) {
-            var pc = components.playing;
+            let pc = components.playing;
             if (!pc.triggered) {
                 return;
             }

@@ -7,16 +7,16 @@
 define(function (require) {
     "use strict";
 
-    var getTimestamp = require("../util/getTimestamp");
+    let getTimestamp = require("../util/getTimestamp");
 
     return function () {
-        var time = getTimestamp(),
+        let time = getTimestamp(),
             startTime = time,
             calls = 0;
 
         return {
             interval: function () {
-                var t = getTimestamp(),
+                let t = getTimestamp(),
                     ms = t - time;
                 time = t;
                 return ms;

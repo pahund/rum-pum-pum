@@ -7,11 +7,11 @@
 define(function (require) {
     "use strict";
 
-    var $ = require("jquery");
+    let $ = require("jquery");
 
     return function(id, properties) {
         return function (input) {
-            var component = {
+            let component = {
                 id: id
             };
             $.each(properties, function () {

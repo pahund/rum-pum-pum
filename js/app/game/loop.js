@@ -9,7 +9,7 @@
 define(function (require) {
     "use strict";
 
-    var $ = require("jquery"),
+    let $ = require("jquery"),
         renderer = require("./renderer"),
         stage = require("./stage"),
         actions = [],

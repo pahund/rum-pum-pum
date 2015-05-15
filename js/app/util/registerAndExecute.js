@@ -12,7 +12,7 @@
 define(function (require) {
     "use strict";
 
-    var $ = require("jquery"),
+    let $ = require("jquery"),
         world = require("../game/world");
 
     /**
@@ -24,7 +24,7 @@ define(function (require) {
      * @return {function} The register and execute function, which accepts an entity ID and map of components as arguments
      */
     return function () {
-        var slice = Array.prototype.slice,
+        let slice = Array.prototype.slice,
             registry = world.getWorldRegistry(),
             callback = arguments[0],
             hasCondition = typeof arguments[1] === "function",
@@ -32,7 +32,7 @@ define(function (require) {
             compIds = slice.call(arguments, hasCondition ? 2 : 1);
 
         return function (id, comp) {
-            var c = [];
+            let c = [];
             $.each(compIds, function () {
                 c.push(comp[this]);
             });

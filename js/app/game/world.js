@@ -9,17 +9,17 @@
 define(function (require) {
     "use strict";
 
-    var $ = require("jquery"),
+    let $ = require("jquery"),
         config = require("../config"),
         registryf = require("../util/registry"),
         entities = {};
 
     return {
         forEachEntityWithComponents: function () {
-            var needles = arguments;
+            let needles = arguments;
             return function(callback) {
                 $.each(entities, function (id, haystack) {
-                    var applicable = true;
+                    let applicable = true;
                     $.each(needles, function () {
                         if (haystack[this] === undefined) {
                             applicable = false;
@@ -55,7 +55,7 @@ define(function (require) {
         },
 
         addComponent: function (entityId, component) {
-            var components = entities[entityId];
+            let components = entities[entityId];
             if (components === undefined) {
                 throw new Error("Attempted to add component " + component.id + " to unknown entity " + entityId);
             }
@@ -73,7 +73,7 @@ define(function (require) {
         },
 
         setComponent: function (entityId, component) {
-            var components = entities[entityId];
+            let components = entities[entityId];
             if (components === undefined) {
                 throw new Error("Attempted to set component " + component.id + " of unknown entity " + entityId);
             }
@@ -93,7 +93,7 @@ define(function (require) {
         },
 
         getEntity: function (entityId) {
-            var components = entities[entityId];
+            let components = entities[entityId];
             if (components === undefined) {
                 throw new Error("Attempted to get entity " + entityId + ", which does not exist");
             }
@@ -104,7 +104,7 @@ define(function (require) {
         },
 
         getComponentOfEntity: function (entityId, componentId) {
-            var component = entities[entityId][componentId];
+            let component = entities[entityId][componentId];
             if (component === undefined) {
                 throw new Error("Attempted to get component " + componentId + " from entity " + entityId + ", which the " +
                         "entity does not have");
@@ -114,7 +114,7 @@ define(function (require) {
 
         getComponentsById: function (componentId) {
             return $.map(entities, function (components) {
-                var component = components[componentId];
+                let component = components[componentId];
                 if (component !== undefined) {
                     return component;
                 }
@@ -134,9 +134,9 @@ define(function (require) {
         },
 
         getEntitiesByComponents: function () {
-            var args = arguments;
+            let args = arguments;
             return $.map(entities, function (components, entityId) {
-                var applicable = true;
+                let applicable = true;
                 $.each(args, function () {
                     if (components[this] === undefined) {
                         applicable = false;
@@ -155,9 +155,9 @@ define(function (require) {
         },
 
         getEntityIdByCoordinates: function (x, y) {
-            var entityId;
+            let entityId;
             $.each(entities, function (id, components) {
-                var positioned = components.positioned;
+                let positioned = components.positioned;
                 if (positioned === undefined) {
                     return true; // continue iteration
                 }

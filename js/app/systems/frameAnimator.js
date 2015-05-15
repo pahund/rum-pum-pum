@@ -10,12 +10,12 @@
 define(function (require) {
     "use strict";
 
-    var world = require("../game/world"),
+    let world = require("../game/world"),
         timer = require("../util/timer"),
         rex;
 
     function animation(animatedc, texturedc) {
-        var t = timer(),
+        let t = timer(),
             step = 0;
         texturedc.image = animatedc.frames[step];
         return function () {

@@ -7,11 +7,11 @@
 
 define(function (require) {
 
-    var context = require("./context");
+    let context = require("./context");
 
     return function (url, callback) {
 
-        var request = new XMLHttpRequest();
+        let request = new XMLHttpRequest();
         request.open("GET", url, true);
         request.responseType = "arraybuffer";
 

@@ -10,12 +10,12 @@
 define(function (require) {
     "use strict";
 
-    var world = require("../game/world"),
+    let world = require("../game/world"),
         timer = require("../util/timer"),
         rex;
 
     function animation(wsa, tex) {
-        var t = timer(),
+        let t = timer(),
             step = 0;
 
         wsa.running = true;

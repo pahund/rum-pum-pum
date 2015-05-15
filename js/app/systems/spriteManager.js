@@ -10,13 +10,13 @@
 define(function (require) {
     "use strict";
 
-    var PIXI = require("pixi"),
+    let PIXI = require("pixi"),
         stage = require("../game/stage"),
         world = require("../game/world"),
         sprites = {};
 
     function addSprite() {
-        var texture,
+        let texture,
             sprite,
             id,
             components;
@@ -71,7 +71,7 @@ define(function (require) {
 
         update: function () {
             world.forEachEntityWithComponents("textured", "positioned")(function (id, comp) {
-                var sprite = sprites[id];
+                let sprite = sprites[id];
                 if (sprite === undefined) {
                     sprite = addSprite(id, comp);
                 }

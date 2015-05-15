@@ -8,7 +8,7 @@
 define(function () {
     "use strict";
 
-    var Context = window.AudioContext ||
+    let Context = window.AudioContext ||
         window.webkitAudioContext ||
         window.mozAudioContext ||
         window.oAudioContext ||

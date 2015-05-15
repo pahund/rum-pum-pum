@@ -9,7 +9,7 @@
 define(function (require) {
     "use strict";
 
-    var PIXI = require("pixi"),
+    let PIXI = require("pixi"),
         dimensions = require("./dimensions");
 
     return PIXI.autoDetectRenderer(dimensions.viewport.w, dimensions.viewport.h, {

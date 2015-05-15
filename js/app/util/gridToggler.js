@@ -12,7 +12,7 @@ define(function () {
 
     return function (rows, cols) {
 
-        var toggles = [],
+        let toggles = [],
             row,
             col;
 

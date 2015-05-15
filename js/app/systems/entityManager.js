@@ -7,7 +7,7 @@
 define(function (require) {
     "use strict";
 
-    var world = require("../game/world"),
+    let world = require("../game/world"),
         config = require("../config"),
         grid = require("../game/grid"),
         bear = require("../entities/bear"),
@@ -16,14 +16,14 @@ define(function (require) {
         idGenerator;
 
     function idGeneratorFactory() {
-        var id = 0;
+        let id = 0;
         return function () {
             return id++;
         };
     }
 
     function addEntity(type, col) {
-        var row = config.rowForAnimal[type],
+        let row = config.rowForAnimal[type],
             x = grid.get.x(col, 0.5),
             y = grid.get.y(row, 1),
             id = type + idGenerator();
@@ -51,7 +51,7 @@ define(function (require) {
     }
 
     function removeEntity(type, col) {
-        var row = config.rowForAnimal[type],
+        let row = config.rowForAnimal[type],
             x = grid.get.x(col, 0.5),
             y = grid.get.y(row, 1),
             id = world.getEntityIdByCoordinates(x, y);

@@ -9,14 +9,14 @@
 define(function (require) {
     "use strict";
 
-    var PIXI = require("pixi"),
+    let PIXI = require("pixi"),
         grid = require("./grid"),
         config = require("../config"),
         entityManager = require("../systems/entityManager"),
         stage = new PIXI.Container();
 
     function interact(event) {
-        var row = grid.get.row(event.data.global.y),
+        let row = grid.get.row(event.data.global.y),
             col = grid.get.column(event.data.global.x),
             occupied = grid.isOccupied(row, col),
             type = config.animalForRow[row];

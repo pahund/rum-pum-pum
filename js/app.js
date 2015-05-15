@@ -9,7 +9,7 @@
 
 "use strict";
 
-var $ = require("jquery"),
+let $ = require("jquery"),
     config = require("./app/config"),
     player = require("./app/audio/player"),
     entityManager = require("./app/systems/entityManager"),

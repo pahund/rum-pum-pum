@@ -10,7 +10,7 @@
 define(function (require) {
     "use strict";
 
-    var config = require("../config"),
+    let config = require("../config"),
         gridCalculator = require("../util/gridCalculator"),
         gridToggler = require("../util/gridToggler"),
         calculator,

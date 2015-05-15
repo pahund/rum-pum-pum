@@ -7,7 +7,7 @@
 define(function (require) {
     "use strict";
 
-    var $ = require("jquery"),
+    let $ = require("jquery"),
         player = require("./player"),
         kick;
 
@@ -27,7 +27,7 @@ define(function (require) {
         },
         init: function () {
             $(".drum").each(function () {
-                var $button = $(this),
+                let $button = $(this),
                     name = $button.data("name"),
                     file = "sounds/" + name + ".ogg";
                 player.load(name, file);

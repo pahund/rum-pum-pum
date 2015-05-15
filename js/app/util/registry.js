@@ -10,11 +10,11 @@ define(function () {
     "use strict";
 
     return function registry(maxItems, garbageCollect) {
-        var reg = {},
+        let reg = {},
             count = 0;
 
         function addItem(key, constructor) {
-            var item = constructor();
+            let item = constructor();
             reg[key] = item;
             count++;
             if (count > maxItems && typeof garbageCollect === "function") {
@@ -30,7 +30,7 @@ define(function () {
 
         return {
             get: function (key, constructor) {
-                var item = reg[key] || addItem(key, constructor);
+                let item = reg[key] || addItem(key, constructor);
                 return item;
             },
 

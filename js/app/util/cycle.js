@@ -12,7 +12,7 @@ define(function () {
     "use strict";
 
     return function () {
-        var funcs = arguments,
+        let funcs = arguments,
             current = 0;
 
         return function () {

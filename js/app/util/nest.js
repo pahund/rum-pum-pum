@@ -11,7 +11,7 @@ define(function () {
     "use strict";
 
     return function nest() {
-        var functions = arguments,
+        let functions = arguments,
             findex = functions.length - 1,
             f = functions[findex];
 

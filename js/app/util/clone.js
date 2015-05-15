@@ -8,10 +8,10 @@
 define(function (require) {
     "use strict";
 
-    var $ = require("jquery");
+    let $ = require("jquery");
 
     return function clone(obj) {
-        var copy;
+        let copy;
 
         // Handle the 3 simple types, and null or undefined
         if (obj === null || typeof obj !== "object") {

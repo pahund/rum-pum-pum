@@ -9,7 +9,7 @@
 define(function (require) {
     "use strict";
 
-    var grid = require("./grid"),
+    let grid = require("./grid"),
         PIXI = require("pixi"),
         dimensions = require("./dimensions"),
         background = new PIXI.Graphics(),

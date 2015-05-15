@@ -10,12 +10,12 @@
 define(function (require) {
     "use strict";
 
-    var world = require("../game/world"),
+    let world = require("../game/world"),
         getTimestamp = require("../util/getTimestamp"),
         rex;
 
     function calc(current, delta, min, max) {
-        var val = current + delta;
+        let val = current + delta;
         if (min === undefined || max === undefined) {
             return val;
         }
@@ -28,7 +28,7 @@ define(function (require) {
     }
 
     function motion(movingc, positionedc) {
-        var timestamp = getTimestamp();
+        let timestamp = getTimestamp();
         return function () {
             if (getTimestamp() > timestamp + movingc.interval) {
                 positionedc.coordinates.x = calc(positionedc.coordinates.x, movingc.deltaX, movingc.minX, movingc.maxX);
