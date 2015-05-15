@@ -22,6 +22,15 @@ module.exports = {
         jquery: "jQuery",
         pixi: "PIXI"
     },
+    module: {
+        loaders: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: "babel-loader?optional=runtime"
+            }
+        ]
+    },
     plugins: [
         new webpack.optimize.UglifyJsPlugin(),
         new webpack.optimize.OccurenceOrderPlugin(),
