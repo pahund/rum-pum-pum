@@ -5,8 +5,8 @@
  * @since 16 Dec 2014
  */
 function componentFactory(id, properties) {
-    return input => {
-        let component = { id };
+    return (input = {}) => {
+        const component = { id };
         properties.forEach(property => {
             if (property.mandatory && input[property.name] === undefined) {
                 throw new Error("Attempted to create component \"" + id +

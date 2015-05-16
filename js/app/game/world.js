@@ -7,8 +7,17 @@
  * @since 14 Dec 2014
  */
 import $ from "jquery";
+import futureEvents from "../util/futureEvents";
 
 let entities = {};
+
+function hasEntity(entityId) {
+    return entities.hasOwnProperty(entityId);
+}
+
+function hasComponent(entityId, componentId) {
+    return entities[entityId].hasOwnProperty(componentId);
+}
 
 const world = {
     forEachEntityWithComponents(...needles) {
@@ -33,28 +42,31 @@ const world = {
     },
 
     addEntity(entityId, components) {
-        if (entities[entityId] !== undefined) {
+        if (hasEntity(entityId)) {
             throw new Error("Attempted to add entity " + entityId + ", which is already registered");
         }
-        entities[entityId] = {};
+        let entity = {};
         $.each(components, (index, component) => {
-            entities[entityId][component.id] = component;
+            entity[component.id] = component;
         });
+        entity.cleanup = futureEvents.on("cleanup-" + entityId);
+        entities[entityId] = entity;
     },
 
     removeEntity(entityId) {
-        if (entities[entityId] === undefined) {
+        if (!hasEntity(entityId)) {
             throw new Error("Attempted to remove entity " + entityId + ", which is not registered");
         }
+        futureEvents.fire("cleanup-" + entityId);
         delete entities[entityId];
     },
 
     addComponent(entityId, component) {
-        let components = entities[entityId];
-        if (components === undefined) {
+        if (!hasEntity(entityId)) {
             throw new Error("Attempted to add component " + component.id + " to unknown entity " + entityId);
         }
-        if (components[component.id] !== undefined) {
+        let components = entities[entityId];
+        if (hasComponent(entityId, component.id)) {
             throw new Error("Attempted to add component " + component.id + " to entity " + entityId + ", which " +
                     "has already been added to that entity");
         }
@@ -62,43 +74,38 @@ const world = {
     },
 
     setComponent(entityId, component) {
-        let components = entities[entityId];
-        if (components === undefined) {
+        if (!hasEntity(entityId)) {
             throw new Error("Attempted to set component " + component.id + " of unknown entity " + entityId);
         }
-        if (components[component.id] === undefined) {
+        let components = entities[entityId];
+        if (!hasComponent(entityId, component.id)) {
             throw new Error("Attempted to set component " + component.id + " of entity " + entityId + ", which " +
                     "does not have that component");
         }
         components[component.id] = component;
     },
 
-    hasComponent(entityId, componentId) {
-        return entities[entityId][componentId] !== undefined;
-    },
+    hasComponent,
 
-    hasEntity(entityId) {
-        return entities[entityId] !== undefined;
-    },
+    hasEntity,
 
-    getEntity(entityId) {
-        let components = entities[entityId];
-        if (components === undefined) {
-            throw new Error("Attempted to get entity " + entityId + ", which does not exist");
+    getEntity(id) {
+        if (!hasEntity(id)) {
+            throw new Error("Attempted to get entity " + id + ", which does not exist");
         }
-        return {
-            id: entityId,
-            components
-        };
+        let components = entities[id];
+        return { id, components };
     },
 
     getComponentOfEntity(entityId, componentId) {
-        let component = entities[entityId][componentId];
-        if (component === undefined) {
+        if (!hasEntity(entityId)) {
+            throw new Error("Attempted to get component " + componentId + " from non-existent entity " + entityId);
+        }
+        if (!hasComponent(componentId)) {
             throw new Error("Attempted to get component " + componentId + " from entity " + entityId + ", which the " +
                     "entity does not have");
         }
-        return component;
+        return entities[entityId][componentId];
     },
 
     getComponentsById(componentId) {

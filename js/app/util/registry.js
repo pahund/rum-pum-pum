@@ -9,30 +9,50 @@
 function registry() {
     const reg = {};
 
-    function addItem(key, constructor) {
+    /**
+     * Removes an item from the registry.
+     * @param key The key under which the item is registered
+     */
+    function removeItem(key) {
+        delete reg[key];
+    }
+
+    /**
+     * Adds a new item to the registry.
+     * @param key The key under which the item is registered
+     * @param constructor A factory function that creates the item
+     * @param cleanup A promise that causes the item to be removed from the registry when the promise is resolved (optional)
+     * @returns {*}
+     */
+    function addItem(key, constructor, cleanup) {
         if (constructor === undefined) {
             throw new Error("key " + key + " is not registered and no constructor was provided to create it");
         }
         let item = constructor();
         reg[key] = item;
+        if (cleanup !== undefined) {
+            cleanup.then(() => removeItem(key));
+        }
         return item;
     }
 
     return {
-        get(key, constructor) {
-            return reg[key] || addItem(key, constructor);
+        get(key, constructor, cleanup) {
+            return reg[key] || addItem(key, constructor, cleanup);
         },
 
-        call(key, constructor) {
-            this.get(key, constructor)();
+        call(key, constructor, cleanup) {
+            this.get(key, constructor, cleanup)();
         },
 
-        remove(key) {
-            delete reg[key];
-        },
+        remove: removeItem,
 
         getSize() {
             return Object.keys(reg).length;
+        },
+
+        has(key) {
+            return reg.hasOwnProperty(key);
         }
     };
 }

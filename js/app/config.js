@@ -42,8 +42,7 @@ const config = {
         2: "kangaroo",
         3: "monkey",
         4: "bear"
-    },
-    maxRegistryItems: 15
+    }
 };
 
 export default config;

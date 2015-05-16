@@ -23,12 +23,9 @@ function addSprite() {
         id = arguments[0].id;
         components = arguments[1].components;
     }
-    else if (arguments.length === 2) {
+    else {
         id = arguments[0];
         components = arguments[1];
-    }
-    else {
-        throw new Error("invalid number of arguments for addSprite function: " + arguments.length);
     }
 
     texture = PIXI.Texture.fromFrame(components.textured.image);

@@ -37,7 +37,7 @@ function registerAndExecute() {
             registry.remove(id);
             return;
         }
-        registry.call(id, () => callback.apply(null, c));
+        registry.call(id, () => callback.apply(null, c), comp.cleanup);
     };
 }
 

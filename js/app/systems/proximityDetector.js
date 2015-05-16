@@ -91,6 +91,6 @@ export default () => {
         let key = trigger.id + ">" + listener.id,
             constructor = () => proximity(trigger, listener);
 
-        registry.call(key, constructor);
+        registry.call(key, constructor, listener.components.cleanup);
     });
 };
