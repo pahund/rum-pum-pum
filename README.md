@@ -19,11 +19,11 @@ Prerequisites:
 * [NodeJS and npm](http://nodejs.org/)
 * [Grunt](http://gruntjs.com/)
 
-Intallation steps:
+Installation steps:
 
 * `npm install`
 
-Start the webpack server like so:
+Start the webpack dev server like so:
 
 * `webpack-dev-server`
 
