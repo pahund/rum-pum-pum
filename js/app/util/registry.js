@@ -1,34 +1,26 @@
 /**
  * registry.js
  *
- * Returns a function that manages a map of keys and items.
+ * Returns a function that manages a map of keys and functions.
  *
  * @author <a href="https://github.com/pahund">Patrick Hund</a>
  * @since 19/12/14
  */
-function registry(maxItems, garbageCollect) {
-    let reg = {},
-        count = 0;
+function registry() {
+    const reg = {};
 
     function addItem(key, constructor) {
+        if (constructor === undefined) {
+            throw new Error("key " + key + " is not registered and no constructor was provided to create it");
+        }
         let item = constructor();
         reg[key] = item;
-        count++;
-        if (count > maxItems && typeof garbageCollect === "function") {
-            garbageCollect(reg);
-            count = Object.keys(reg).length;
-        }
         return item;
-    }
-
-    if (maxItems === undefined) {
-        maxItems = 100;
     }
 
     return {
         get(key, constructor) {
-            let item = reg[key] || addItem(key, constructor);
-            return item;
+            return reg[key] || addItem(key, constructor);
         },
 
         call(key, constructor) {
@@ -37,6 +29,10 @@ function registry(maxItems, garbageCollect) {
 
         remove(key) {
             delete reg[key];
+        },
+
+        getSize() {
+            return Object.keys(reg).length;
         }
     };
 }

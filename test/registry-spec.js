@@ -6,12 +6,11 @@
  */
 /* global describe, beforeEach, spyOn, it, expect */
 
-import $ from "jquery";
 import registry from "../js/app/util/registry";
 
 function makeSpy(id) {
     let spy = {
-        id: id,
+        id,
         constructed: () => {},
         executed: () => {}
     };
@@ -30,7 +29,7 @@ function makeMock(spy) {
     };
 }
 
-describe("When I instantiate a registry with no arguments", () => {
+describe("When I instantiate a registry", () => {
     beforeEach(function () {
         this.registry = registry();
     });
@@ -63,6 +62,28 @@ describe("When I instantiate a registry with no arguments", () => {
             it("invokes the item function", function () {
                 this.registry.call("foo");
                 expect(this.spy.executed).toHaveBeenCalled();
+            });
+        });
+        describe("and I remove the item", () => {
+            beforeEach(function () {
+                this.registry.remove("foo");
+            });
+            describe("the registry's size", () => {
+                beforeEach(function () {
+                    this.registrySize = this.registry.getSize();
+                });
+                it("is 0", function () {
+                    expect(this.registrySize).toBe(0);
+                });
+            });
+            describe("and I try to get the item", () => {
+                describe("the registry", () => {
+                    it("throws an exception", function () {
+                        expect(() => {
+                            this.registry.get("foo");
+                        }).toThrow(new Error("key foo is not registered and no constructor was provided to create it"));
+                    });
+                });
             });
         });
     });
@@ -105,81 +126,4 @@ describe("When I instantiate a registry with no arguments", () => {
         });
     });
 });
-
-describe("When I instantiate the registry with maxItems = 3 and a garbage collector that removes every second item", () => {
-    beforeEach(function () {
-        let spy = makeSpy("gc");
-        this.gcSpy = spy;
-        this.registry = registry(3, reg => {
-            let flag = false;
-            spy.executed();
-            $.each(reg, function (key) {
-                if (flag) {
-                    delete reg[key];
-                }
-                flag = !flag;
-            });
-        });
-    });
-    describe("and I get 4 items", () => {
-        beforeEach(function () {
-            let i;
-            this.spies = new Array(4);
-            this.mocks = new Array(4);
-            for (i = 0; i < 4; i++) {
-                this.spies[i] = makeSpy("bar" + i);
-                this.mocks[i] = makeMock(this.spies[i]);
-                this.registry.get("foo" + i, this.mocks[i]);
-            }
-        });
-        describe("the garbage collector", () => {
-            it("was invoked", function () {
-                expect(this.gcSpy.executed).toHaveBeenCalled();
-            });
-        });
-        describe("and I call the first item, the registry", () => {
-            it("invokes the item function", function () {
-                this.registry.call("foo0");
-                expect(this.spies[0].executed).toHaveBeenCalled();
-            });
-        });
-        describe("and I call the second item, the registry", () => {
-            it("throws an exception", function () {
-                expect(function () {
-                    this.registry.call("foo1");
-                }).toThrow();
-            });
-            it("does not invoke the item function", function () {
-                try {
-                    this.registry.call("foo1");
-                } catch (e) {
-                    // empty
-                }
-                expect(this.spies[1].executed).not.toHaveBeenCalled();
-            });
-        });
-        describe("and I call the third item, the registry", () => {
-            it("invokes the item function", function () {
-                this.registry.call("foo2");
-                expect(this.spies[2].executed).toHaveBeenCalled();
-            });
-        });
-        describe("and I call the fourth item, the registry", () => {
-            it("throws an exception", function () {
-                expect(function () {
-                    this.registry.call("foo3");
-                }).toThrow();
-            });
-            it("does not invoke the item function", function () {
-                try {
-                    this.registry.call("foo3");
-                } catch (e) {
-                    // empty
-                }
-                expect(this.spies[3].executed).not.toHaveBeenCalled();
-            });
-        });
-    });
-});
-
 

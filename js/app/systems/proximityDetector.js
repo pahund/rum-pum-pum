@@ -10,8 +10,9 @@
 import world from "../game/world";
 import nest from "../util/nest";
 import iterate from "../util/iterate";
+import registryf from "../util/registry";
 
-const registry = world.getWorldRegistry();
+const registry = registryf();
 
 function getDistance(ent1, ent2) {
     let h = ent2.components.positioned.coordinates.x - ent1.components.positioned.coordinates.x,

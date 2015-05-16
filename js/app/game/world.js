@@ -7,8 +7,6 @@
  * @since 14/12/14
  */
 import $ from "jquery";
-import config from "../config";
-import registryf from "../util/registry";
 
 let entities = {};
 
@@ -156,29 +154,6 @@ const world = {
             }
         });
         return entityId;
-    },
-
-    /**
-     * Removes properties from the specified object if they names do not correspond to the ID of an entity.
-     *
-     * @param o The object to collect garbage from
-     */
-    garbageCollect(o) {
-        $.each(o, key => {
-            if (entities[key] === undefined) {
-                delete o[key];
-            }
-        });
-    },
-
-    /**
-     * Creates a registry that uses the world's garbageCollect function to purge obsolete items.
-     *
-     * @see app/util/registry
-     * @returns {*} The registry
-     */
-    getWorldRegistry() {
-        return registryf(config.maxRegistryItems, this.garbageCollect);
     }
 };
 

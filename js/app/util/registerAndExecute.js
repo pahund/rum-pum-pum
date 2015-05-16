@@ -10,7 +10,7 @@
  * @since 17/12/14
  */
 import $ from "jquery";
-import world from "../game/world";
+import registryf from "./registry";
 
 /**
  * Creates the register and execute function.
@@ -22,7 +22,7 @@ import world from "../game/world";
  */
 function registerAndExecute() {
     const slice = Array.prototype.slice,
-        registry = world.getWorldRegistry(),
+        registry = registryf(),
         callback = arguments[0],
         hasCondition = typeof arguments[1] === "function",
         condition = hasCondition ? arguments[1] : () => true,
