@@ -4,7 +4,7 @@
  * Local development configuration for webpack optimization tool. Used by webpack dev server.
  *
  * @author <a href="https://github.com/pahund">Patrick Hund</a>
- * @since 05/14/15
+ * @since 12 Jan 2015
  */
 var webpack = require("webpack");
 

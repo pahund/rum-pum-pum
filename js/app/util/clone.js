@@ -2,7 +2,7 @@
  * clone.js
  *
  * @author <a href="https://github.com/pahund">Patrick Hund</a>
- * @since 19/12/14
+ * @since 19 Dec 2014
  * @see http://stackoverflow.com/questions/728360/most-elegant-way-to-clone-a-javascript-object
  */
 import $ from "jquery";

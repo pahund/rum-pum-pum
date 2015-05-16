@@ -3,8 +3,8 @@
  *
  * Background graphics of the main screen.
  *
- * @author <a href="mailto:pahund@team.mobile.de">Patrick Hund</a>
- * @since 03/01/15
+ * @author <a href="https://github.com/pahund">Patrick Hund</a>
+ * @since 3 Jan 2015
  */
 import grid from "./grid";
 import PIXI from "pixi";

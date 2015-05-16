@@ -4,7 +4,7 @@
  * Blueprint for barking kangaroo (low cuica).
  *
  * @author <a href="https://github.com/pahund">Patrick Hund</a>
- * @since 03/01/15
+ * @since 3 Jan 2015
  */
 import PIXI from "pixi";
 import dimensions from "../game/dimensions";

@@ -4,7 +4,7 @@
  * Initialization logic for the Pixi renderer. Creates and returns the renderer as a singleton.
  *
  * @author <a href="https://github.com/pahund">Patrick Hund</a>
- * @since 04/12/14
+ * @since 4 Dec 2014
  */
 import PIXI from "pixi";
 import dimensions from "./dimensions";

@@ -4,7 +4,7 @@
  * Data object for various dimensions used for calculating sizes and positions.
  *
  * @author <a href="https://github.com/pahund">Patrick Hund</a>
- * @since 04/12/14
+ * @since 4 Dec 2014
  */
 import $ from "jquery";
 

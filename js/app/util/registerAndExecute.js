@@ -7,7 +7,7 @@
  * otherwise it is removed from the map.
  *
  * @author <a href="https://github.com/pahund">Patrick Hund</a>
- * @since 17/12/14
+ * @since 17 Dec 2014
  */
 import $ from "jquery";
 import registryf from "./registry";

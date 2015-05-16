@@ -2,7 +2,7 @@
  * context.js
  *
  * @author <a href="https://github.com/pahund">Patrick Hund</a>
- * @since 06/11/14
+ * @since 3 Dec 2014
  */
 
 const Context = window.AudioContext ||

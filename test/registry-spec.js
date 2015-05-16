@@ -1,7 +1,7 @@
 /**
  * registry-spec.js
  *
- * @author <a href="mailto:pahund@team.mobile.de">Patrick Hund</a>
+ * @author <a href="https://github.com/pahund">Patrick Hund</a>
  * @since 14 Apr 2015
  */
 /* global describe, beforeEach, spyOn, it, expect */

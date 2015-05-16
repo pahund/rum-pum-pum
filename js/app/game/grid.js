@@ -4,8 +4,8 @@
  * The grid that the entities are placed on. A singleton composed of a
  * grid calculator and a grid toggler instance.
  *
- * @author <a href="mailto:pahund@team.mobile.de">Patrick Hund</a>
- * @since 03/01/15
+ * @author <a href="https://github.com/pahund">Patrick Hund</a>
+ * @since 3 Jan 2015
  */
 import $ from "jquery";
 import config from "../config";

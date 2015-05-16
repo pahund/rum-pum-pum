@@ -4,8 +4,8 @@
  * Stores boolean states for a grid of a configurable number of rows and columns, providing
  * methods to change and get the state of each grid cell.
  *
- * @author <a href="mailto:pahund@team.mobile.de">Patrick Hund</a>
- * @since 04/01/15
+ * @author <a href="https://github.com/pahund">Patrick Hund</a>
+ * @since 4 Jan 2015
  */
 function gridToggler(rows, cols) {
 

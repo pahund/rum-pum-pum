@@ -4,7 +4,7 @@
  * A component for an entity that is moving.
  *
  * @author <a href="https://github.com/pahund">Patrick Hund</a>
- * @since 14/12/14
+ * @since 14 Dec 2014
  */
 import componentFactory from "./componentFactory";
 

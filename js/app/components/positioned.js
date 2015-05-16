@@ -4,7 +4,7 @@
  * A component for entities that are positioned on the stage.
  *
  * @author <a href="https://github.com/pahund">Patrick Hund</a>
- * @since 11/12/14
+ * @since 16 Dec 2014
  */
 import componentFactory from "./componentFactory";
 import PIXI from "pixi";

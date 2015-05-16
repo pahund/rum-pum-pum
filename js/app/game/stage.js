@@ -4,7 +4,7 @@
  * Initialization and interaction logic for the Pixi stage. Creates and returns the stage as a singleton.
  *
  * @author <a href="https://github.com/pahund">Patrick Hund</a>
- * @since 04/12/14
+ * @since 4 Dec 2014
  */
 import PIXI from "pixi";
 import grid from "./grid";

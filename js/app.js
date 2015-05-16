@@ -4,7 +4,7 @@
  * Starting point of the application, does all the initialization and starts the game loop.
  *
  * @author <a href="https://github.com/pahund">Patrick Hund</a>
- * @since 22/10/14
+ * @since 22 Oct 2014
  */
 
 import $ from "jquery";

@@ -4,7 +4,7 @@
  * The "world" object is the central manager for all entities. Created and returned as a singleton.
  *
  * @author <a href="https://github.com/pahund">Patrick Hund</a>
- * @since 14/12/14
+ * @since 14 Dec 2014
  */
 import $ from "jquery";
 

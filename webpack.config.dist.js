@@ -4,7 +4,7 @@
  * Production configuration for webpack optimization tool. Used by grunt for optimize job.
  *
  * @author <a href="https://github.com/pahund">Patrick Hund</a>
- * @since 10/01/15
+ * @since 12 Jan 2015
  */
 var webpack = require("webpack"),
     HtmlWebpackPlugin = require("html-webpack-plugin");

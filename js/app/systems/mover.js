@@ -5,7 +5,7 @@
  * intervals.
  *
  * @author <a href="https://github.com/pahund">Patrick Hund</a>
- * @since 14/12/14
+ * @since 14 Dec 2014
  */
 import world from "../game/world";
 import getTimestamp from "../util/getTimestamp";

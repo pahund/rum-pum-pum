@@ -5,7 +5,7 @@
  * where each step sets a frame on the entity's sprite texture and lasts a specific time interval.
  *
  * @author <a href="https://github.com/pahund">Patrick Hund</a>
- * @since 16/12/14
+ * @since 16 Dec 2014
  */
 import world from "../game/world";
 import timer from "../util/timer";

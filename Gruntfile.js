@@ -2,7 +2,7 @@
  * Gruntfile
  *
  * @author <a href="https://github.com/pahund">Patrick Hund</a>
- * @since 03/12/14
+ * @since 3 Dec 2014
  */
 
 (function () {

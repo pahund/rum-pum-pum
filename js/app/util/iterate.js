@@ -30,7 +30,7 @@
  * "My favorite vegetable is: broccoli"
  *
  * @author <a href="https://github.com/pahund">Patrick Hund</a>
- * @since 18/12/14
+ * @since 18 Dec 2014
  */
 function iterate(...items) {
     items = items.reduce((prev, curr) => prev.concat(curr), []);

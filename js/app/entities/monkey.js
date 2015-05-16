@@ -4,7 +4,7 @@
  * Blueprint for a drumming monkey entity (snare drum).
  *
  * @author <a href="https://github.com/pahund">Patrick Hund</a>
- * @since 27/12/14
+ * @since 27 Dec 2014
  */
 import PIXI from "pixi";
 import dimensions from "../game/dimensions";

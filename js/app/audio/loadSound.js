@@ -2,7 +2,7 @@
  * loadSound.js
  *
  * @author <a href="https://github.com/pahund">Patrick Hund</a>
- * @since 06/11/14
+ * @since 6 Nov 2014
  */
 
 import context from "./context";

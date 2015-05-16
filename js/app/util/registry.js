@@ -4,7 +4,7 @@
  * Returns a function that manages a map of keys and functions.
  *
  * @author <a href="https://github.com/pahund">Patrick Hund</a>
- * @since 19/12/14
+ * @since 19 Dec 2014
  */
 function registry() {
     const reg = {};

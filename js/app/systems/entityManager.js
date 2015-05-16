@@ -1,8 +1,8 @@
 /**
  * entityManager.js
  *
- * @author <a href="mailto:pahund@team.mobile.de">Patrick Hund</a>
- * @since 04/01/15
+ * @author <a href="https://github.com/pahund">Patrick Hund</a>
+ * @since 4 Jan 2015
  */
 import world from "../game/world";
 import config from "../config";

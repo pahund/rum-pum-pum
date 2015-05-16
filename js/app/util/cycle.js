@@ -5,8 +5,8 @@
  * created function is called, passing the arguments and returning the functions return value. After each function
  * has been invoked, starts from the top.
  *
- * @author <a href="mailto:pahund@team.mobile.de">Patrick Hund</a>
- * @since 27/12/14
+ * @author <a href="https://github.com/pahund">Patrick Hund</a>
+ * @since 27 Dec 2014
  */
 function cycle() {
     let funcs = arguments,

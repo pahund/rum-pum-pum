@@ -6,7 +6,7 @@
  * browser viewport dimensions), and the number of rows and columns.
  *
  * @author <a href="https://github.com/pahund">Patrick Hund</a>
- * @since 22/12/14
+ * @since 22 Dec 2014
  */
 import $ from "jquery";
 import dimensions from "../game/dimensions";

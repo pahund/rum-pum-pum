@@ -4,7 +4,7 @@
  * Blueprint for a drumming bear entity (bass drum).
  *
  * @author <a href="https://github.com/pahund">Patrick Hund</a>
- * @since 15/12/14
+ * @since 15 Dec 2014
  */
 import PIXI from "pixi";
 import dimensions from "../game/dimensions";

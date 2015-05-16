@@ -4,7 +4,7 @@
  * A component for entities that have a texture.
  *
  * @author <a href="https://github.com/pahund">Patrick Hund</a>
- * @since 11/12/14
+ * @since 11 Dec 2014
  */
 import componentFactory from "./componentFactory";
 
