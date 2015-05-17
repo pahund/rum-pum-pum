@@ -28,6 +28,10 @@ const config = {
         {
             id: "cuica-lo",
             path: "sounds/cuica-lo01.ogg"
+        },
+        {
+            id: "hi-hat-closed",
+            path: "sounds/hi-hat-closed.ogg"
         }
     ],
     rowForAnimal: {

@@ -5,6 +5,7 @@
  *
  * @author <a href="https://github.com/pahund">Patrick Hund</a>
  * @since 22 Oct 2014
+ *
  */
 
 import $ from "jquery";
@@ -25,11 +26,14 @@ import mover from "./app/systems/mover";
 import proximityDetector from "./app/systems/proximityDetector";
 import sequenceAnimator from "./app/systems/sequenceAnimator";
 import soundPlayer from "./app/systems/soundPlayer";
+//import rhythmExperiment from "./app/audio/rhythmExperiment";
+import Timer from "worker!./app/worker/timer.js";
 
 const loader = PIXI.loader;
 
 let start,
-    stop;
+    stop,
+    timer;
 
 start = function () {
     $("#play").html("Stop").one("click", stop);
@@ -80,5 +84,15 @@ player.load(config.sounds);
 if (config.debug) {
     $("#monitor").html("debug active").show();
 }
+//window.setTimeout(rhythmExperiment, 1000);
 
+timer = new Timer();
+
+timer.onmessage = e => {
+    if (e.data === "tick") {
+        console.log("[PH_LOG] tick!"); // PH_TODO: REMOVE
+    }
+};
+
+timer.postMessage("start");
 

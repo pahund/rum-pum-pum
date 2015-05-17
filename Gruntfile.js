@@ -39,17 +39,8 @@
 
         require("load-grunt-tasks")(grunt);
 
-        grunt.registerTask("help", function () {
-            grunt.log.writeln("grunt help:       displays this message");
-            grunt.log.writeln("grunt dist:       creates folder 'dist' with files optimized for distribution");
-            grunt.log.writeln("grunt clean:      deletes downloaded or generated files and directories");
-        });
-
         grunt.registerTask("default", [
-            "help"
-        ]);
-
-        grunt.registerTask("dist", [
+            "clean",
             "webpack:dist",
             "copy:dist"
         ]);

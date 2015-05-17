@@ -56,6 +56,12 @@ Copyright (c) 2006 [reinsamba](https://www.freesound.org/people/reinsamba/).
 Published under [Creative Commons CC BY 3.0](http://creativecommons.org/licenses/by/3.0/) license.
 Downloaded from [Freesounds.org](https://www.freesound.org/people/reinsamba/packs/1339/).
 
+### Acknowledgements
+
+Parts of _Rum Pum Pum_'s code are based on these projects on GitHub:
+
+* [metronome](https://github.com/cwilso/metronome) by [Chris Wilson](https://github.com/cwilso)
+
 ### Third Party Libraries and Tools
 
 * [pixi.js](https://github.com/GoodBoyDigital/pixi.js/) &mdash; Copyright (C) 2013-2015 Mathew Groves.

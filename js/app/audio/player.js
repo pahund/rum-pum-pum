@@ -37,14 +37,14 @@ function load() {
     $.each(getSoundsFromInput(arguments), (index, sound) => loadSound(sound.path, data => buffers[sound.id] = data));
 }
 
-function play(id) {
+function play(id, time = 0) {
     let source = context.createBufferSource(),
         gain = context.createGain();
 
     source.connect(gain);
     gain.connect(context.destination);
     source.buffer = buffers[id];
-    source.start(0);
+    source.start(time);
 }
 
 export default {
