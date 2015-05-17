@@ -12,12 +12,21 @@ import stage from "./stage";
 let actions = [],
     running = false;
 
+window.requestAnimFrame = (function(){
+    return window.requestAnimationFrame ||
+            window.webkitRequestAnimationFrame ||
+            window.mozRequestAnimationFrame ||
+            window.oRequestAnimationFrame ||
+            window.msRequestAnimationFrame ||
+            (callback => window.setTimeout(callback, 1000 / 60));
+})();
+
 (function loop() {
     if (running) {
         actions.forEach(action => action());
         renderer.render(stage);
     }
-    window.requestAnimationFrame(loop);
+    window.requestAnimFrame(loop);
 })();
 
 export default {
