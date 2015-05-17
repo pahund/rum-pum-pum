@@ -12,14 +12,14 @@ import stage from "./stage";
 let actions = [],
     running = false;
 
-window.requestAnimFrame = (function(){
-    return window.requestAnimationFrame ||
+window.requestAnimFrame = (() =>
+    window.requestAnimationFrame ||
             window.webkitRequestAnimationFrame ||
             window.mozRequestAnimationFrame ||
             window.oRequestAnimationFrame ||
             window.msRequestAnimationFrame ||
-            (callback => window.setTimeout(callback, 1000 / 60));
-})();
+            (callback => window.setTimeout(callback, 1000 / 60))
+)();
 
 (function loop() {
     if (running) {
