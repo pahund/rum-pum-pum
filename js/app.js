@@ -27,7 +27,7 @@ import proximityDetector from "./app/systems/proximityDetector";
 import sequenceAnimator from "./app/systems/sequenceAnimator";
 import soundPlayer from "./app/systems/soundPlayer";
 //import rhythmExperiment from "./app/audio/rhythmExperiment";
-import Timer from "worker!./app/worker/timer.js";
+import Timer from "./app/worker/timer.js";
 
 const loader = PIXI.loader;
 
