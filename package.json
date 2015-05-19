@@ -33,6 +33,7 @@
     "worker-loader": "~0.6.0"
   },
   "scripts": {
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "install": "grunt"
   }
 }

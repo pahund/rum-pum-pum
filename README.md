@@ -23,18 +23,17 @@ Installation steps:
 
 * `npm install`
 
-Start the application (webpack dev server) like so:
+This will install all the required npm packages and start a Grunt build that creates a `dist` folder with static
+files (HTML, CSS, JS, etc.). Open up `dist/index.html` in your browser to play (needs to support Web Audio API).
+
+## Development 
+
+Rum Pum Pum uses [webpack](http://webpack.github.io/) to optimize and bundle its resources. For easy developement
+with live reloading, you can start a webpack dev server:
 
 * `npm start`
 
-Open up [localhost:8080](http://localhost:8080/) in your favorite browser (needs to support Web Audio API).
-
-## Creating Optimized Distribution Version
-
-Rum Pum Pum uses [webpack](http://webpack.github.io/) to optimize and bundle its resources. To create a distribution,
-use this command (after initial `npm install`):
-
-    grunt 
+Open up [localhost:8080](http://localhost:8080/) in your favorite browser.
 
 ## Running Tests
 

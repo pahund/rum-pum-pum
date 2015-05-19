@@ -90,7 +90,7 @@ timer = new Timer();
 
 timer.onmessage = e => {
     if (e.data === "tick") {
-        console.log("[PH_LOG] tick!"); // PH_TODO: REMOVE
+        //console.log("[PH_LOG] tick!"); // PH_TODO: REMOVE
     }
 };
 
