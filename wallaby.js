@@ -6,15 +6,6 @@ module.exports = () => {
     return {
         files: [
             {
-                pattern: "bower_components/jquery/dist/jquery.js",
-                instrument: false
-            },
-            {
-                pattern: "bower_components/jasmine-jquery/lib/jasmine-jquery.js",
-                instrument: false,
-                load: false
-            },
-            {
                 pattern: "js/**/*.js",
                 load: false
             }

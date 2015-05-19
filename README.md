@@ -37,15 +37,18 @@ Open up [localhost:8080](http://localhost:8080/) in your favorite browser.
 
 ## Running Tests
 
-The unit tests of Rum Pum Pum are based on [jasmine](https://github.com/velesin/jasmine-jquery) and meant to be run
-with the [Wallaby.js](http://wallabyjs.com/) test runner plugin for JetBrains IDEs 
-([WebStorm](https://www.jetbrains.com/webstorm/) or [IntelliJ IDEA](https://www.jetbrains.com/idea/)).
+The unit tests of Rum Pum Pum are based on [jasmine](https://github.com/velesin/jasmine-jquery) and can be run with
+the [Karma](http://karma-runner.github.io/) test runner.
 
-Prior to running the tests, install dev dependencies using Bower:
-  
-    bower install
-    
-You can then create a Wallaby.js run configuration, pointing to the [wallaby.js](wallaby.js) configuration file.
+You can also do this with npm:
+
+* `npm test`
+
+If you use a JetBrains IDE ([WebStorm](https://www.jetbrains.com/webstorm/) or [IntelliJ IDEA](https://www.jetbrains.com/idea/)),
+you can also use the [Wallaby.js](http://wallabyjs.com/) test runner plugin (commercial software, but well worth it if
+you like test driven development).
+
+You can create a Wallaby.js run configuration, pointing to the [wallaby.js](wallaby.js) configuration file.
 
 ## Credits and Acknowledgements
 
