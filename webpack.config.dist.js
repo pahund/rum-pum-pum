@@ -32,8 +32,7 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                //loader: "eslint-loader"
-                loader: "eslint-loader?{rules:[{'no-console':0}]}"
+                loader: "eslint-loader"
             }
         ],
         postLoaders: [
