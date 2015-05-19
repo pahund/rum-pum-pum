@@ -23,11 +23,11 @@ Installation steps:
 
 * `npm install`
 
-Start the webpack dev server like so:
+Start the application (webpack dev server) like so:
 
-* `webpack-dev-server`
+* `npm start`
 
-Open up [index.html](index.html) in your favorite browser (needs to support Web Audio API).
+Open up [localhost:8080](http://localhost:8080/) in your favorite browser (needs to support Web Audio API).
 
 ## Creating Optimized Distribution Version
 

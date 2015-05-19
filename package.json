@@ -31,5 +31,8 @@
     "eslint": "~0.21.0",
     "eslint-loader": "~0.11.2",
     "worker-loader": "~0.6.0"
+  },
+  "scripts": {
+    "start": "webpack-dev-server"
   }
 }
