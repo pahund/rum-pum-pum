@@ -26,24 +26,19 @@ import mover from "./app/systems/mover";
 import proximityDetector from "./app/systems/proximityDetector";
 import sequenceAnimator from "./app/systems/sequenceAnimator";
 import soundPlayer from "./app/systems/soundPlayer";
-//import rhythmExperiment from "./app/audio/rhythmExperiment";
-import Timer from "./app/worker/timer.js";
 
-const loader = PIXI.loader;
+const loader = PIXI.loader,
+    $play = $("#play");
 
-let start,
-    stop,
-    timer;
-
-start = function () {
-    $("#play").html("Stop").one("click", stop);
+function playToggle() {
+    if (loop.isRunning()) {
+        loop.stop();
+        $play.html("Start");
+        return;
+    }
     loop.start();
-};
-
-stop = function () {
-    $("#play").html("Start").one("click", start);
-    loop.stop();
-};
+    $play.html("Stop");
+}
 
 function onAssetsLoaded() {
 
@@ -72,7 +67,7 @@ function onAssetsLoaded() {
         spriteManager.update
     );
 
-    $("#play").one("click", start);
+    $play.click(playToggle);
 }
 
 $("body").append(renderer.view);
@@ -84,15 +79,4 @@ player.load(config.sounds);
 if (config.debug) {
     $("#monitor").html("debug active").show();
 }
-//window.setTimeout(rhythmExperiment, 1000);
-
-timer = new Timer();
-
-timer.onmessage = e => {
-    if (e.data === "tick") {
-        //console.log("[PH_LOG] tick!"); // PH_TODO: REMOVE
-    }
-};
-
-timer.postMessage("start");
 

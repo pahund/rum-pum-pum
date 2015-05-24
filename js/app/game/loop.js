@@ -9,8 +9,9 @@
 import renderer from "./renderer";
 import stage from "./stage";
 
-let actions = [],
-    running = false;
+const actions = [];
+
+let running = false;
 
 window.requestAnimFrame = (() =>
     window.requestAnimationFrame ||
@@ -41,5 +42,8 @@ export default {
     },
     stop() {
         running = false;
+    },
+    isRunning() {
+        return running;
     }
 };
