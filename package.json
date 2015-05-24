@@ -36,7 +36,6 @@
     "ncp": "~2.0.0",
     "wallaby-webpack": "0.0.5",
     "webpack": "~1.9.5",
-    "webpack-dev-server": "~1.8.2",
-    "worker-loader": "~0.6.0"
+    "webpack-dev-server": "~1.8.2"
   }
 }

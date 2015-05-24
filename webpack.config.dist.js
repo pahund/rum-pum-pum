@@ -34,12 +34,6 @@ module.exports = {
                 exclude: /node_modules/,
                 loader: "eslint-loader"
             }
-        ],
-        postLoaders: [
-            {
-                test: /worker\/.+\.js$/,
-                loader: "worker-loader"
-            }
         ]
     },
     plugins: [
