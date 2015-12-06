@@ -9,13 +9,21 @@
 
 const latency = 20; // ms
 
-export function foo() {
-    console.log("[PH_LOG] latency: ", latency); // PH_TODO: REMOVE
+let foobar = 0;
+
+console.log("[PH_LOG] synchronizer is like SOOO getting initialized"); // PH_TODO: REMOVE
+
+function foo() {
+    console.log("[PH_LOG] adding +1 to foobar"); // PH_TODO: REMOVE
+    foobar++;
 }
 
-export function bar() {
-    console.log("[PH_LOG] bar"); // PH_TODO: REMOVE
+function bar() {
+    console.log("[PH_LOG] foobar: ", foobar); // PH_TODO: REMOVE
 }
 
 
-
+export default {
+    foo,
+    bar
+};
